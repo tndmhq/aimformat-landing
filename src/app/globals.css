@@ -1,0 +1,294 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/*
+  "The Standing Type" — a fine-press manuscript theme for the .aim format.
+  One disciplined oxblood accent. Redline/greenline are reserved exclusively
+  for the track-changes metaphor, never for generic UI.
+*/
+
+:root {
+  --radius: 0.5rem;
+
+  /* Paper palette */
+  --paper: #f4ecdd;
+  --paper-deep: #ece1cd;
+  --surface: #fbf6ea;
+  --ink: #211a12;
+  --ink-soft: #6b5d49;
+  /* Darkened from #9b8c73 to clear WCAG AA (≥4.5:1) on the paper background. */
+  --ink-faint: #7a684a;
+  --oxblood: #7b2e26;
+  --oxblood-deep: #5a1f1a;
+  --rule: #d8cbb2;
+  --rule-soft: #e3d8c1;
+  --code-panel: #241e16;
+  --code-panel-soft: #2e261b;
+  --code-text: #e7dcc6;
+  --code-comment: #9c8e72;
+  --code-accent: #d98e6a;
+  --code-string: #a9b98a;
+  --redline: #a12f23;
+  --greenline: #3e6b3a;
+  --sepia: #c9b68f;
+  --stamp: #8a3a2e;
+  --highlight: #ede0c2;
+
+  /* shadcn/ui token mapping onto the paper palette */
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: var(--surface);
+  --card-foreground: var(--ink);
+  --popover: var(--surface);
+  --popover-foreground: var(--ink);
+  --primary: var(--oxblood);
+  --primary-foreground: #fbf6ea;
+  --secondary: var(--highlight);
+  --secondary-foreground: var(--ink);
+  --muted: var(--paper-deep);
+  --muted-foreground: var(--ink-soft);
+  --accent: var(--highlight);
+  --accent-foreground: var(--oxblood-deep);
+  --destructive: var(--redline);
+  --border: var(--rule);
+  --input: var(--rule);
+  --ring: var(--oxblood);
+}
+
+@theme inline {
+  /* shadcn tokens */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* semantic paper utilities (bg-paper, text-ink, border-rule, ...) */
+  --color-paper: var(--paper);
+  --color-paper-deep: var(--paper-deep);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-faint: var(--ink-faint);
+  --color-oxblood: var(--oxblood);
+  --color-oxblood-deep: var(--oxblood-deep);
+  --color-rule: var(--rule);
+  --color-rule-soft: var(--rule-soft);
+  --color-code-panel: var(--code-panel);
+  --color-code-panel-soft: var(--code-panel-soft);
+  --color-code-text: var(--code-text);
+  --color-code-comment: var(--code-comment);
+  --color-code-accent: var(--code-accent);
+  --color-code-string: var(--code-string);
+  --color-redline: var(--redline);
+  --color-greenline: var(--greenline);
+  --color-sepia: var(--sepia);
+  --color-stamp: var(--stamp);
+  --color-highlight: var(--highlight);
+
+  --font-display: var(--font-fraunces);
+  --font-body: var(--font-newsreader);
+  --font-mono: var(--font-plex-mono);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --animate-accordion-down: accordion-down 0.22s ease-out;
+  --animate-accordion-up: accordion-up 0.22s ease-out;
+}
+
+@keyframes accordion-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--accordion-panel-height);
+  }
+}
+@keyframes accordion-up {
+  from {
+    height: var(--accordion-panel-height);
+  }
+  to {
+    height: 0;
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body), Georgia, "Times New Roman", serif;
+    font-feature-settings: "liga" 1, "onum" 1, "kern" 1;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    /* Laid-paper substrate: faint horizontal laid lines over warm cream. */
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 23px,
+      color-mix(in oklab, var(--rule) 26%, transparent) 23px,
+      color-mix(in oklab, var(--rule) 26%, transparent) 24px
+    );
+    background-attachment: fixed;
+  }
+
+  /* Fine-press grain laid over the whole page, behind content. */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  ::selection {
+    background-color: color-mix(in oklab, var(--oxblood) 22%, transparent);
+    color: var(--oxblood-deep);
+  }
+
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--paper-deep);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: color-mix(in oklab, var(--ink-soft) 45%, transparent);
+    border: 3px solid var(--paper-deep);
+    border-radius: 999px;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--oxblood);
+    outline-offset: 2px;
+  }
+}
+
+@layer utilities {
+  /* Small-caps mono label — the typographic spine of the spec feel. */
+  .label-mono {
+    font-family: var(--font-mono), ui-monospace, monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 0.6875rem;
+    line-height: 1.2;
+  }
+
+  .font-display {
+    font-family: var(--font-display), Georgia, serif;
+  }
+  .font-body {
+    font-family: var(--font-body), Georgia, serif;
+  }
+  .font-mono {
+    font-family: var(--font-mono), ui-monospace, monospace;
+  }
+
+  .small-caps {
+    font-variant: small-caps;
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Book measure for long-form columns. */
+  .measure {
+    max-width: 66ch;
+  }
+  .measure-tight {
+    max-width: 54ch;
+  }
+
+  /* True CSS drop cap for the opening manifesto. */
+  .dropcap::first-letter {
+    font-family: var(--font-display), Georgia, serif;
+    color: var(--oxblood);
+    float: left;
+    font-weight: 420;
+    font-size: 4.4em;
+    line-height: 0.82;
+    padding-right: 0.08em;
+    padding-top: 0.04em;
+    margin-bottom: -0.05em;
+  }
+
+  /* Track-changes ink — used ONLY in the demo figures. */
+  .redline {
+    color: var(--redline);
+    text-decoration: line-through;
+    text-decoration-thickness: 1.5px;
+  }
+  .greenline {
+    color: var(--greenline);
+    text-decoration: underline;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 3px;
+  }
+
+  /* Deckled (torn) paper edge for the hero leaf. */
+  .deckle-r {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='400' preserveAspectRatio='none'%3E%3Cpath d='M0 0 H6 L4 12 L7 26 L3 40 L6 56 L4 72 L7 90 L3 108 L6 126 L4 146 L7 168 L3 190 L6 212 L4 236 L7 262 L3 288 L6 314 L4 342 L7 372 L4 400 L0 400 Z' fill='black'/%3E%3C/svg%3E"),
+      linear-gradient(black, black);
+    -webkit-mask-position: right center, left center;
+    -webkit-mask-size: 8px 100%, calc(100% - 6px) 100%;
+    -webkit-mask-repeat: no-repeat, no-repeat;
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='400' preserveAspectRatio='none'%3E%3Cpath d='M0 0 H6 L4 12 L7 26 L3 40 L6 56 L4 72 L7 90 L3 108 L6 126 L4 146 L7 168 L3 190 L6 212 L4 236 L7 262 L3 288 L6 314 L4 342 L7 372 L4 400 L0 400 Z' fill='black'/%3E%3C/svg%3E"),
+      linear-gradient(black, black);
+    mask-position: right center, left center;
+    mask-size: 8px 100%, calc(100% - 6px) 100%;
+    mask-repeat: no-repeat, no-repeat;
+  }
+
+  .shadow-leaf {
+    box-shadow:
+      0 1px 0 rgba(58, 40, 20, 0.04),
+      0 18px 40px -24px rgba(58, 40, 20, 0.35),
+      0 4px 12px -8px rgba(58, 40, 20, 0.2);
+  }
+  .shadow-plate {
+    box-shadow: 0 14px 36px -22px rgba(20, 14, 6, 0.6);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

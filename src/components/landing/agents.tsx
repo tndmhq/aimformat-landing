@@ -1,0 +1,114 @@
+import {
+  Container,
+  RunningHead,
+  SectionHeader,
+} from "@/components/aim/primitives";
+import { CodePlate } from "@/components/aim/code-plate";
+import { Badge } from "@/components/ui/badge";
+import { mcpSource } from "@/lib/snippets";
+
+const onRamps = [
+  {
+    label: "Plain file",
+    detail: "Valid HTML5. Any model reads it directly, no tooling.",
+  },
+  {
+    label: "MCP server",
+    detail:
+      "Local stdio. uvx tndm-mcp or pip install tndm. One-click install for Cursor and Claude Desktop.",
+  },
+  {
+    label: "Claude Skill",
+    detail: "Bundles the MCP server with authoring guidance.",
+  },
+  {
+    label: "Python SDK",
+    detail: "A typed Pydantic AST view alongside the raw HTML.",
+  },
+];
+
+const capabilities = [
+  "Propose chunk-level edits against a stable id",
+  "Accept or reject a proposal, with attribution",
+  "Fetch the TOC or a single chunk, not the whole file",
+  "Read the summary before touching the body",
+];
+
+const clients = ["Claude Code", "Claude Desktop", "Cursor", "Cline", "Zed"];
+
+export function Agents() {
+  return (
+    <section id="agents" className="relative scroll-mt-16">
+      <RunningHead section="§5" folio="The On-Ramps" />
+      <Container className="py-20 sm:py-24">
+        <SectionHeader
+          n="§5"
+          eyebrow="§5 · The On-Ramps"
+          title="Agent-native from day one"
+          lede="Because a plain .aim file is valid HTML, any model can already read one with no tooling at all. For chunk-level propose and accept, and for navigation without loading the whole file, there is a local MCP server."
+        />
+
+        <div className="mt-12 grid grid-cols-1 gap-12 lg:grid-cols-[1fr_1fr] lg:items-start">
+          <div>
+            <p className="measure font-body text-[1.1rem] leading-[1.74] text-ink/85 text-pretty">
+              It runs over stdio, so nothing is hosted and nothing leaves your
+              machine. Install it once and Claude Code, Claude Desktop, Cursor,
+              Cline, and Zed can all work the same file. A Claude Skill bundles
+              the server with authoring guidance, and a Python SDK gives you a
+              typed Pydantic view of the AST alongside the raw HTML.
+            </p>
+
+            <ul className="mt-8 space-y-2.5">
+              {capabilities.map((c) => (
+                <li
+                  key={c}
+                  className="flex gap-3 font-body text-[1rem] leading-snug text-ink/85"
+                >
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rotate-45 bg-oxblood/70" />
+                  {c}
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-8">
+              <p className="label-mono mb-3 text-ink-soft">
+                Works with the clients you already run
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {clients.map((c) => (
+                  <Badge
+                    key={c}
+                    variant="outline"
+                    className="label-mono rounded-[2px] border-ink/25 px-2.5 py-1 text-ink-soft"
+                  >
+                    {c}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="lg:sticky lg:top-20">
+            <CodePlate
+              code={mcpSource}
+              lang="shell"
+              filename="install + propose/accept"
+            />
+            <div className="mt-8 grid gap-x-8 gap-y-5 sm:grid-cols-2">
+              {onRamps.map((o) => (
+                <div key={o.label} className="border-t border-ink/15 pt-3">
+                  <p className="font-display text-[1.05rem] font-medium text-ink">
+                    {o.label}
+                  </p>
+                  <p className="mt-1 font-body text-[0.92rem] leading-snug text-ink-soft">
+                    {o.detail}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </Container>
+    </section>
+  );
+}
