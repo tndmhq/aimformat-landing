@@ -3,10 +3,11 @@
 Deferred deliberately; revisit before (or at) launch.
 
 ## Before sharing widely
-- [ ] **OG image.** `layout.tsx` declares `twitter.card: summary_large_image` but no
-  image is set (`openGraph.images` / `twitter.images`). Design a paper-and-oxblood
-  card in the site's letterpress style — this is the highest-ROI asset for X/HN
-  sharing. Wire it into the metadata once it exists.
+- [x] **OG image.** Done (2026-07-08). `src/app/opengraph-image.tsx` renders a
+  paper-and-oxblood letterpress card via `next/og` (shared renderer in
+  `src/lib/og.tsx`; brand fonts vendored under `public/og-fonts/`). Next wires
+  it into `og:image` automatically; Twitter uses it via the `og:image` fallback
+  for `summary_large_image`. Metadata/canonical URL also moved to `aimformat.com`.
 - [ ] **Buttondown.** Create the list, set `BUTTONDOWN_API_KEY` in Vercel (the API
   route now refuses to run in production without it), and confirm the
   `editor-interest` tag exists so tagged signups don't error.

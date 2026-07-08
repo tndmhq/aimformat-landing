@@ -25,7 +25,7 @@ const plexMono = IBM_Plex_Mono({
   weight: ["400", "500", "600"],
 });
 
-const SITE_URL = "https://aim-format.tndm.dev";
+const SITE_URL = "https://aimformat.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
