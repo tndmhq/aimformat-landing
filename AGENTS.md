@@ -26,8 +26,6 @@ workspace (`tndm-workspace/knowledge/`).
 - **Memory:** this repo has no `docs/` memory tiers (placeholder-scale);
   durable decisions about the site go in the workspace log, technical
   format decisions in `aimformat`.
-- **Git:** no autonomous commits in a user's local checkout — prepare changes
-  and let the user review/commit (cloud/sandboxed environments are fine).
 - **Agent-friendliness:** suggest repo improvements for future agents
   proactively.
 
