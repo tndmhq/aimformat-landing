@@ -26,7 +26,8 @@ type Result = "added" | "exists"
 async function subscribeViaButtondown(
   email: string,
   editorInterest: boolean,
-  apiKey: string
+  apiKey: string,
+  ip?: string
 ): Promise<Result> {
   const res = await fetch(BUTTONDOWN_ENDPOINT, {
     method: "POST",
@@ -37,6 +38,9 @@ async function subscribeViaButtondown(
     body: JSON.stringify({
       email_address: email,
       ...(editorInterest ? { tags: ["editor-interest"] } : {}),
+      // Forward the subscriber's real IP so Buttondown's firewall scores the
+      // actual visitor, not this Worker's datacenter IP (which reads as risky).
+      ...(ip ? { ip_address: ip } : {}),
     }),
   })
 
@@ -96,10 +100,11 @@ async function persistToFile(
 
 async function persistSubscriber(
   email: string,
-  editorInterest: boolean
+  editorInterest: boolean,
+  ip?: string
 ): Promise<Result> {
   const apiKey = process.env.BUTTONDOWN_API_KEY
-  if (apiKey) return subscribeViaButtondown(email, editorInterest, apiKey)
+  if (apiKey) return subscribeViaButtondown(email, editorInterest, apiKey, ip)
 
   // The file fallback is for local dev only. In production the filesystem is
   // ephemeral, so a fake "success" here would silently drop the address —
@@ -132,8 +137,10 @@ export async function POST(req: Request) {
     )
   }
 
+  const ip = req.headers.get("CF-Connecting-IP") ?? undefined
+
   try {
-    const status = await persistSubscriber(normalized, editorInterest)
+    const status = await persistSubscriber(normalized, editorInterest, ip)
     return NextResponse.json({ ok: true, status })
   } catch (err) {
     console.error("[subscribe] failed to persist subscriber:", err)
