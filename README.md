@@ -40,10 +40,10 @@ the address and forwards it to **Buttondown**. An optional "keep me posted on th
 Tndm editor" checkbox rides along and becomes an `editor-interest` tag on the
 subscriber, so editor demand stays measurable.
 
-- **Production:** set `BUTTONDOWN_API_KEY` (Vercel env var; key from
-  <https://buttondown.com/settings/api>). The route **fails loudly** if the key is
-  missing in production — the filesystem there is ephemeral, so a silent fallback
-  would drop addresses.
+- **Production:** set `BUTTONDOWN_API_KEY` as a **Cloudflare Worker secret** (see
+  [Deployment](#deployment); key from <https://buttondown.com/settings/api>). The route
+  **fails loudly** if the key is missing in production — the filesystem there is ephemeral,
+  so a silent fallback would drop addresses.
 - **Local dev:** with no key set, signups append to `data/subscribers.json`
   (git-ignored) so the form works out of the box. Duplicates are a no-op; invalid
   addresses return `422`.
@@ -66,7 +66,44 @@ src/
     highlight.tsx           # tiny markup/json/shell highlighter for the inked-plate code
 ```
 
-## Deploying
+## Deployment
 
-Standard Next.js app — deploy to Vercel (or any Node host) as-is. When swapping the
-newsletter to a hosted provider, the local `data/` store is no longer used.
+Hosted on **Cloudflare Workers** via the [`@opennextjs/cloudflare`](https://opennext.js.org/cloudflare)
+adapter. (Next.js 16 with a Node-runtime API route isn't a fit for static export or the
+older Pages/`next-on-pages` edge path — OpenNext → Workers is the supported route.) Live at
+**[aimformat.com](https://aimformat.com)** — Worker `aimformat-landing`, Cloudflare account
+`luca.campanella1@gmail.com`.
+
+**One-time prerequisites**
+- Node 20+, then `npm install`.
+- Authenticate wrangler once: `npx wrangler login` (browser OAuth; the token is stored in
+  `~/.wrangler` and auto-refreshes).
+
+**Deploy**
+
+```bash
+npm run deploy     # opennextjs-cloudflare build + wrangler deploy → live in ~30–60s
+npm run preview    # optional: run the Workers build locally under workerd
+```
+
+The `aimformat.com` custom domain is declared as a route in [`wrangler.jsonc`](wrangler.jsonc),
+so it stays attached on every deploy.
+
+**Push-to-deploy (once connected):** connect this repo to **Cloudflare Workers Builds**
+(dashboard → Workers & Pages → `aimformat-landing` → Settings → Build → Connect to Git; build
+command `npx opennextjs-cloudflare build`, deploy command `npx wrangler deploy`). Then every
+push to `main` auto-builds and deploys, and the manual `npm run deploy` above becomes optional.
+
+**The newsletter secret** — set once; persists across deploys:
+
+```bash
+npx wrangler secret put BUTTONDOWN_API_KEY   # paste the key when prompted; from buttondown.com/settings/api
+```
+
+`/api/subscribe` **fails loudly (500) in production without it** by design (the Workers
+filesystem is ephemeral, so a silent fallback would drop signups).
+
+**Config files**
+- [`wrangler.jsonc`](wrangler.jsonc) — Worker name, `nodejs_compat`, static-asset binding, `aimformat.com` route.
+- [`open-next.config.ts`](open-next.config.ts) — OpenNext adapter config (minimal; no incremental cache for this near-static site).
+- `next.config.ts` — calls `initOpenNextCloudflareForDev()` so Cloudflare bindings work under `next dev`.

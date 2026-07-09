@@ -8,9 +8,11 @@ Deferred deliberately; revisit before (or at) launch.
   `src/lib/og.tsx`; brand fonts vendored under `public/og-fonts/`). Next wires
   it into `og:image` automatically; Twitter uses it via the `og:image` fallback
   for `summary_large_image`. Metadata/canonical URL also moved to `aimformat.com`.
-- [ ] **Buttondown.** Create the list, set `BUTTONDOWN_API_KEY` in Vercel (the API
-  route now refuses to run in production without it), and confirm the
-  `editor-interest` tag exists so tagged signups don't error.
+- [ ] **Buttondown.** Create the list, set `BUTTONDOWN_API_KEY` as a **Cloudflare
+  Worker secret** (`npx wrangler secret put BUTTONDOWN_API_KEY`; the API route refuses
+  to run in production without it — the live form won't work until it's set), and confirm
+  the `editor-interest` tag exists so tagged signups don't error. (Site is live at
+  [aimformat.com](https://aimformat.com) as of 2026-07-09.)
 
 ## Content queued behind product milestones
 - [ ] **Publish the draft spec publicly** (replaces the subscriber-gated spec; the

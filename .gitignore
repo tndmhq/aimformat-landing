@@ -43,3 +43,9 @@ next-env.d.ts
 
 # Local newsletter capture (stub store)
 /data/
+
+# cloudflare / opennext (build output + local secrets)
+/.open-next/
+/.wrangler/
+.dev.vars
+cloudflare-env.d.ts
