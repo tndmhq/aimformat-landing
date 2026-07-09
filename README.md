@@ -74,25 +74,22 @@ older Pages/`next-on-pages` edge path — OpenNext → Workers is the supported 
 **[aimformat.com](https://aimformat.com)** — Worker `aimformat-landing`, Cloudflare account
 `luca.campanella1@gmail.com`.
 
-**One-time prerequisites**
-- Node 20+, then `npm install`.
-- Authenticate wrangler once: `npx wrangler login` (browser OAuth; the token is stored in
-  `~/.wrangler` and auto-refreshes).
+**How it deploys — push to `main`.** This repo is connected to **Cloudflare Workers Builds**,
+so **every push to `main` auto-builds and deploys** (build `npx opennextjs-cloudflare build`
+→ deploy `npx wrangler deploy`; ~1–2 min to go live). That's the normal path: merge to `main`
+and the live site follows — no manual step. The `aimformat.com` custom domain is declared as a
+route in [`wrangler.jsonc`](wrangler.jsonc), so it stays attached on every build.
 
-**Deploy**
+**Manual deploy (fallback)** — for an out-of-band publish (CI down, or before a build finishes):
 
 ```bash
 npm run deploy     # opennextjs-cloudflare build + wrangler deploy → live in ~30–60s
 npm run preview    # optional: run the Workers build locally under workerd
 ```
 
-The `aimformat.com` custom domain is declared as a route in [`wrangler.jsonc`](wrangler.jsonc),
-so it stays attached on every deploy.
-
-**Push-to-deploy (once connected):** connect this repo to **Cloudflare Workers Builds**
-(dashboard → Workers & Pages → `aimformat-landing` → Settings → Build → Connect to Git; build
-command `npx opennextjs-cloudflare build`, deploy command `npx wrangler deploy`). Then every
-push to `main` auto-builds and deploys, and the manual `npm run deploy` above becomes optional.
+One-time for manual deploys: Node 20+, `npm install`, and `npx wrangler login` (browser OAuth;
+token stored in `~/.wrangler`, auto-refreshes). Workers Builds wiring, if it ever needs redoing:
+dashboard → Workers & Pages → `aimformat-landing` → Settings → Build → Connect to Git.
 
 **The newsletter secret** — set once; persists across deploys:
 
