@@ -23,6 +23,6 @@ export const faq = [
   },
   {
     q: "Where is the repository?",
-    a: "Coming soon. The v0.1 spec and the open-source drop land first to newsletter subscribers; the public repository follows shortly after.",
+    a: "Public on GitHub at github.com/tndmhq/aimformat, under the MIT License. The v0.1 spec and launch notices land first to newsletter subscribers.",
   },
 ];

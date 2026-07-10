@@ -22,6 +22,7 @@ const jsonLd = {
       url: "https://aimformat.com",
       description:
         "An open, MIT-licensed document file format where humans and AI agents co-author the same rich document.",
+      sameAs: ["https://github.com/tndmhq/aimformat"],
       publisher: { "@type": "Organization", name: "Tndm" },
     },
     {

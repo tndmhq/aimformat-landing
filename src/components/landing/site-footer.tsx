@@ -5,7 +5,7 @@ import {
   InkStamp,
   Monogram,
   Pressmark,
-  RepoComingSoon,
+  REPO_URL,
 } from "@/components/aim/primitives";
 
 // Section hrefs are "/#…" (not bare "#…") so they also work from subpages
@@ -35,7 +35,7 @@ const columns = [
       { label: "License: MIT", href: "/#faq" },
       { label: "Edition: Vol. 0.1", href: "/#top" },
       { label: "Editors", href: "/editors" },
-      { label: "Repo — coming soon", href: null },
+      { label: "Repo · GitHub", href: REPO_URL },
       { label: "Contact", href: "mailto:contact@usetndm.com" },
       { label: "Subscribe", href: "/#cta" },
     ],
@@ -79,22 +79,22 @@ export function SiteFooter() {
             <nav key={col.heading} aria-label={col.heading}>
               <p className="label-mono mb-4 text-ink-soft">{col.heading}</p>
               <ul className="space-y-2.5">
-                {col.items.map((item) =>
-                  item.href ? (
+                {col.items.map((item) => {
+                  const external = item.href.startsWith("http");
+                  return (
                     <li key={item.label}>
                       <a
                         href={item.href}
+                        {...(external
+                          ? { target: "_blank", rel: "noreferrer" }
+                          : {})}
                         className="font-body text-[1rem] text-ink/80 underline-offset-4 transition-colors hover:text-oxblood hover:underline"
                       >
                         {item.label}
                       </a>
                     </li>
-                  ) : (
-                    <li key={item.label}>
-                      <RepoComingSoon />
-                    </li>
-                  ),
-                )}
+                  );
+                })}
               </ul>
             </nav>
           ))}

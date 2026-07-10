@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Check } from "lucide-react";
 import {
   Container,
-  RepoComingSoon,
+  RepoLink,
   RunningHead,
 } from "@/components/aim/primitives";
 import { PressButton } from "@/components/aim/press-button";
@@ -135,17 +135,18 @@ export function Newsletter() {
                   </p>
                 )}
                 <p className="mt-4 font-body text-[0.88rem] italic leading-snug text-ink-soft">
-                  The spec and the repo arrive here first. No spam, no sharing,
-                  unsubscribe in one click.
+                  The v0.1 spec and the launch arrive here first. No spam, no
+                  sharing, unsubscribe in one click.
                 </p>
               </form>
             )}
           </div>
 
           <div className="mt-7 flex flex-col items-center gap-2">
-            <RepoComingSoon variant="seal" />
+            <RepoLink variant="seal" />
             <p className="font-body text-[0.85rem] italic text-ink-faint">
-              The public repository follows the spec; subscribers see it first.
+              The format is open source under the MIT License — read it, fork it,
+              build on it today.
             </p>
           </div>
         </div>

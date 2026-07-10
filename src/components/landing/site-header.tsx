@@ -2,7 +2,7 @@ import Link from "next/link";
 import {
   AimWordmark,
   Monogram,
-  RepoComingSoon,
+  RepoLink,
 } from "@/components/aim/primitives";
 
 // Hrefs are "/#…" (not bare "#…") so the links also work from subpages
@@ -41,7 +41,7 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-4">
-          <RepoComingSoon className="hidden md:inline-flex" />
+          <RepoLink className="hidden md:inline-flex" />
           <Link
             href="/#cta"
             className="label-mono text-oxblood underline-offset-4 hover:underline"
