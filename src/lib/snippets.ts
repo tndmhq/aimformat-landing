@@ -150,7 +150,8 @@ export const slideSource = `<aim-slide data-aim-container="s1"
 
   <figure data-aim="ch" style="left:1020px;
       top:170px; width:770px; height:690px">
-    <svg viewBox="0 0 770 690">…</svg>
+    <svg role="img" aria-label="Q3 revenue
+      chart" width="770" height="690">…</svg>
   </figure>
 
 </aim-slide>`;
