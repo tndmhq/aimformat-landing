@@ -120,7 +120,7 @@ export function LayoutExport() {
           n="§6"
           eyebrow="§6 · Layout &amp; Export"
           title="Fixed canvas, deterministic export"
-          lede="This is where the case for a new format lands hardest. A slide is a fixed canvas with positioned children, and Markdown has no way to say so. .aim does. An aim-slide defines the canvas; its children are placed with ordinary Tailwind positioning."
+          lede="This is where the case for a new format lands hardest. A slide is a fixed canvas with positioned children, and Markdown has no way to say so. .aim does. An aim-slide defines the canvas; its children are pinned to it with plain pixel coordinates, styled in the same Tailwind subset."
         />
 
         <div className="mt-12 grid grid-cols-1 items-start gap-10 lg:grid-cols-2">

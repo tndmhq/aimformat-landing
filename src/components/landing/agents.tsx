@@ -10,27 +10,30 @@ import { mcpSource } from "@/lib/snippets";
 const onRamps = [
   {
     label: "Plain file",
-    detail: "Valid HTML5. Any model reads it directly, no tooling.",
+    detail:
+      "Valid HTML5. Any model reads it directly, no tooling — the file itself points agents at aimformat.com/llms.txt.",
   },
   {
     label: "MCP server",
     detail:
-      "Local stdio. uvx tndm-mcp or pip install tndm. One-click install for Cursor and Claude Desktop.",
+      "Local stdio: pip install 'aimformat[mcp]', then aim mcp. Six tools, from projected read to export.",
   },
   {
     label: "Claude Skill",
-    detail: "Bundles the MCP server with authoring guidance.",
+    detail:
+      "npx skills add tndmhq/aimformat — teaches the conventions and wires up the CLI verbs.",
   },
   {
     label: "Python SDK",
-    detail: "A typed Pydantic AST view alongside the raw HTML.",
+    detail:
+      "pip install aimformat. Zero runtime dependencies; typed load, propose, accept, save.",
   },
 ];
 
 const capabilities = [
   "Propose chunk-level edits against a stable id",
   "Accept or reject a proposal, with attribution",
-  "Fetch the TOC or a single chunk, not the whole file",
+  "A projected, token-cheap read — summary, TOC, chunks, pending lane",
   "Read the summary before touching the body",
 ];
 
@@ -54,8 +57,9 @@ export function Agents() {
               It runs over stdio, so nothing is hosted and nothing leaves your
               machine. Install it once and Claude Code, Claude Desktop, Cursor,
               Cline, and Zed can all work the same file. A Claude Skill bundles
-              the server with authoring guidance, and a Python SDK gives you a
-              typed Pydantic view of the AST alongside the raw HTML.
+              the CLI verbs with authoring guidance, and a dependency-free
+              Python SDK gives you typed load, propose, and accept calls over
+              the raw file.
             </p>
 
             <ul className="mt-8 space-y-2.5">
