@@ -9,6 +9,7 @@ import { LayoutExport } from "@/components/landing/layout-export";
 import { Ledger } from "@/components/landing/ledger";
 import { EditorNote } from "@/components/landing/editor-note";
 import { Faq } from "@/components/landing/faq";
+import { Quickstart } from "@/components/landing/quickstart";
 import { Newsletter } from "@/components/landing/newsletter";
 import { SiteFooter } from "@/components/landing/site-footer";
 import { faq } from "@/lib/faq";
@@ -51,6 +52,7 @@ export default function Home() {
         <Ledger />
         <EditorNote />
         <Faq />
+        <Quickstart />
         <Newsletter />
       </main>
       <SiteFooter />
