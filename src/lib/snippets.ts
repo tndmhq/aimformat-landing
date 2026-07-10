@@ -5,7 +5,7 @@
 // +jsonl, and <style data-aim-css>. Truncated with … where illustrative.
 
 export const heroSourceSliver = `<p data-aim="a7f3c1e0" class="text-base
-  leading-7">The parties agree to the
+  leading-relaxed">The parties agree to the
   terms set forth herein…</p>
 
 <aim-proposals>
@@ -25,7 +25,7 @@ export function threeLaneSourceFor(status: ProposalStatus) {
   const term =
     status === "accepted" ? "thirty (30) business days" : "sixty (60) days";
   const chunk = `<p data-aim="a7f3c1e0" class="text-base
-  leading-7">The Vendor shall deliver the
+  leading-relaxed">The Vendor shall deliver the
   completed milestones within
   ${term} of
   the effective date.</p>`;
@@ -41,7 +41,7 @@ export function threeLaneSourceFor(status: ProposalStatus) {
     data-at="2026-05-04T14:32:00Z"
     data-explanation="Thirty days, not sixty.">
   <template><p data-aim="a7f3c1e0"
-    class="text-base leading-7">…within
+    class="text-base leading-relaxed">…within
     thirty (30) business days of…</p>
   </template>
 </aim-proposal>
@@ -83,7 +83,7 @@ export const anatomyFile = `<!doctype html>
 <h2 data-aim="8b1f" class="text-2xl
     font-semibold">Scope of Work</h2>
 <p data-aim="a7f3c1e0" class="text-base
-  leading-7">The Vendor shall deliver the
+  leading-relaxed">The Vendor shall deliver the
   completed milestones within sixty (60)
   days…</p>
 
@@ -130,7 +130,7 @@ export const substrateAim = `<h2 data-aim="8b1f"
   Scope of Work</h2>
 
 <p data-aim="a7f3c1e0"
-  class="text-base leading-7">
+  class="text-base leading-relaxed">
   The Vendor shall deliver the
   completed milestones within
   sixty (60) days…</p>`;
@@ -159,7 +159,8 @@ export const slideSource = `<aim-slide data-aim-container="s1"
 export const mcpSource = `# install the local MCP server
 $ pip install 'aimformat[mcp]'
 
-# wire it into any MCP client
+# wire it into any MCP client — aimformat is
+# the aim CLI's collision-proof alias
 { "mcpServers": { "aimformat":
   { "command": "aimformat", "args": ["mcp"] } } }
 

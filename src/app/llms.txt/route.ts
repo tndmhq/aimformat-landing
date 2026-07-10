@@ -104,7 +104,9 @@ explanation, not the payload.
 - MCP server: \`pip install 'aimformat[mcp]'\`, then \`aim mcp\` (local
   stdio; six tools: aim_read, aim_edit, aim_propose, aim_resolve,
   aim_lint, aim_export)
-- MCP client config:
+- MCP client config (\`aimformat\` is the same CLI as \`aim\`, installed
+  as a collision-proof alias — the unrelated AimStack package also ships
+  an \`aim\` binary — so configs stay unambiguous):
   \`{"mcpServers": {"aimformat": {"command": "aimformat", "args": ["mcp"]}}}\`
 - Agent Skill: \`npx skills add tndmhq/aimformat\`
 

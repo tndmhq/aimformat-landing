@@ -72,7 +72,7 @@ export default function EditorsPage() {
           <RunningHead section="Editors" folio="A Directory" />
           <Container className="py-20 sm:py-24">
             <SectionHeader
-              eyebrow="Editors &amp; Viewers"
+              eyebrow="Editors & Viewers"
               title="Where .aim files open"
               lede=".aim renders in any browser, because it is the page; an editor adds the review surface — word-level diffs, one-click accept/reject, slide navigation."
             />
