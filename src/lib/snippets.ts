@@ -156,6 +156,18 @@ export const slideSource = `<aim-slide data-aim-container="s1"
 
 </aim-slide>`;
 
+export const quickstartSource = `# the open .aim format — MIT-licensed, on PyPI.
+# a typed Python SDK + the aim CLI, zero runtime deps:
+$ pip install aimformat
+
+# add the local MCP server so agents can propose and
+# accept edits over stdio — nothing hosted, nothing leaves:
+$ pip install 'aimformat[mcp]'
+$ aim mcp
+
+# or teach Claude the conventions in one line:
+$ npx skills add tndmhq/aimformat`;
+
 export const mcpSource = `# install the local MCP server
 $ pip install 'aimformat[mcp]'
 
