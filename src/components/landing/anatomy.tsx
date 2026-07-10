@@ -8,43 +8,44 @@ import { anatomyFile } from "@/lib/snippets";
 
 const elements = [
   {
-    term: "<aim-chunk id>",
-    gloss: "A unit of content with a stable UUID that survives edits and full rewrites.",
-    why: "So change-logs, comments, and cross-references stay pinned to the same passage even after the text is rewritten.",
+    term: 'data-aim="id"',
+    gloss: "A stable chunk id on a plain HTML element — the unit you address, cite, and edit.",
+    why: "So proposals, history, and cross-references stay pinned to the same passage even after the text is rewritten.",
   },
   {
-    term: "<aim-proposal>",
-    gloss: "A proposed change to a chunk: a deletion, an insertion, or both.",
-    why: "This is lane II. It sits beside the accepted text and carries its own acceptance state.",
+    term: "<aim-proposals>",
+    gloss: "The pending lane: suggested changes as cards, each with author, action, and payload.",
+    why: "This is lane II. Suggestions sit beside the accepted text — visible, attributed, and inert until decided.",
   },
   {
-    term: "<aim-summary>",
-    gloss: "An AI-readable summary of the whole file.",
-    why: "An agent reads it first to decide where to work, instead of loading the entire document.",
+    term: "application/aim-meta+json",
+    gloss: "A derived head cache: an AI-readable summary and TOC, stamped with the doc hash.",
+    why: "An agent orients here first — and verifies the hash before trusting it — instead of loading the entire document.",
   },
   {
-    term: "<aim-toc>",
-    gloss: "A table of contents for agent navigation.",
-    why: "Jump to the right region of a 60-page proposal without spending the context window getting there.",
+    term: "application/aim-history+jsonl",
+    gloss: "An append-only record of every state change, written invertibly.",
+    why: "Any past version is reconstructible, and every accept or reject stays attributed inside the file itself.",
   },
   {
-    term: "<aim-slide width height>",
+    term: "<aim-slide>",
     gloss: "A fixed-canvas slide with absolutely positioned children.",
     why: "Real layout. The same source exports deterministically to PPTX and PDF.",
   },
   {
-    term: "<aim-pagebreak/>",
-    gloss: "An explicit page boundary for paged export.",
-    why: "Deterministic pagination when the file becomes PDF or DOCX.",
+    term: "<style data-aim-css>",
+    gloss: "The embedded, machine-managed stylesheet for the Tailwind subset.",
+    why: "The raw file renders styled in any browser — no viewer to ship, no build step, nothing external to load.",
   },
 ];
 
 const annotations = [
-  ["<aim-summary>", "An agent reads this first to orient, instead of loading the whole file."],
-  ["<aim-toc>", "Navigation for agents: jump to a region without spending the context window."],
-  ['id="a7f3c1e0…"', "A stable UUID. It survives rewrites, so comments and proposals stay pinned to this passage."],
+  ["application/aim-meta+json", "An agent reads this first to orient — summary and TOC — instead of loading the whole file."],
+  ['<style data-aim-css="0.1">', "The embedded stylesheet. Machine-managed, never content; the file renders with nothing installed."],
+  ['data-aim="a7f3c1e0"', "A stable id. It survives rewrites, so proposals and history stay pinned to this passage."],
   ['class="text-2xl…"', "Plain Tailwind. The model already writes this fluently; it is also the rendered style."],
-  ["<aim-pagebreak/>", "An explicit page boundary for deterministic PDF / DOCX export."],
+  ["<aim-proposals>", "Lane II. Pending suggestions wait here — visible and inert — for a human accept or reject."],
+  ["application/aim-history+jsonl", "The append-only history: every change recorded invertibly, so past versions are reconstructible."],
 ];
 
 export function Anatomy() {
@@ -56,7 +57,7 @@ export function Anatomy() {
           n="§3"
           eyebrow="§3 · The Vocabulary"
           title="Anatomy of an .aim file"
-          lede="An .aim file is valid HTML5. Open it in a browser and it renders; there is nothing to install to read one. The structure lives in a small set of custom elements, each one a plain tag a model already knows how to balance."
+          lede="An .aim file is valid HTML5. Open it in a browser and it renders; there is nothing to install to read one. The structure lives in a small vocabulary of attributes and custom elements, each one plain markup a model already knows how to balance."
         />
 
         {/* type specimen of the custom elements */}

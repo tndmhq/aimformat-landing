@@ -20,7 +20,7 @@ const rules: Record<Lang, Rule[]> = {
     { pattern: /^#.*$/gm, className: "text-code-comment italic" },
     { pattern: /^\$ /gm, className: "text-code-comment" },
     { pattern: /"[^"]*"/g, className: "text-code-string" },
-    { pattern: /\b(uvx|pip|install|claude|cursor)\b/g, className: "text-code-accent" },
+    { pattern: /\b(pip|install|claude|cursor)\b/g, className: "text-code-accent" },
   ],
 };
 

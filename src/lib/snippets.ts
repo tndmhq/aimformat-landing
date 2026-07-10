@@ -1,65 +1,100 @@
-export const heroSourceSliver = `<aim-chunk id="a7f3c1e0-…">
-  <p class="text-base leading-7">
-    The parties agree to the terms
-    set forth herein…
-  </p>
-  <aim-proposal id="prop-3b9d"
-      author="claude" status="pending">
-    <del>sixty (60) days</del>
-    <ins>thirty (30) business days</ins>
-  </aim-proposal>
-</aim-chunk>`;
+// Illustrative source slivers, kept faithful to the real .aim vocabulary
+// (see aimformat's examples/proposal.aim and examples/deck.aim): data-aim /
+// data-aim-container ids, the <aim-proposals> pending lane with p- ids and
+// <template> payloads, application/aim-meta+json, application/aim-history
+// +jsonl, and <style data-aim-css>. Truncated with … where illustrative.
+
+export const heroSourceSliver = `<p data-aim="a7f3c1e0" class="text-base
+  leading-7">The parties agree to the
+  terms set forth herein…</p>
+
+<aim-proposals>
+<aim-proposal id="p-3b9d"
+    data-action="modify" data-for="a7f3c1e0"
+    data-author="agent"
+    data-author-model="claude-opus-4-8"
+    data-explanation="Thirty (30) business
+      days, not sixty.">
+  <template>…</template>
+</aim-proposal>
+</aim-proposals>`;
 
 export type ProposalStatus = "pending" | "accepted" | "rejected";
 
 export function threeLaneSourceFor(status: ProposalStatus) {
   const term =
     status === "accepted" ? "thirty (30) business days" : "sixty (60) days";
-  return `<aim-chunk id="a7f3c1e0-9c2b-4f7e">
-  <p class="text-base leading-7">
-    The Vendor shall deliver the completed
-    milestones within ${term} of
-    the effective date.
-  </p>
+  const chunk = `<p data-aim="a7f3c1e0" class="text-base
+  leading-7">The Vendor shall deliver the
+  completed milestones within
+  ${term} of
+  the effective date.</p>`;
 
-  <aim-proposal id="prop-3b9d"
-      author="claude"
-      at="2026-05-04T14:32:00Z"
-      status="${status}">
-    <del>sixty (60) days</del>
-    <ins>thirty (30) business days</ins>
-  </aim-proposal>
-</aim-chunk>`;
+  if (status === "pending") {
+    return `${chunk}
+
+<aim-proposals>
+<aim-proposal id="p-3b9d"
+    data-action="modify" data-for="a7f3c1e0"
+    data-author="agent"
+    data-author-model="claude-opus-4-8"
+    data-at="2026-05-04T14:32:00Z"
+    data-explanation="Thirty days, not sixty.">
+  <template><p data-aim="a7f3c1e0"
+    class="text-base leading-7">…within
+    thirty (30) business days of…</p>
+  </template>
+</aim-proposal>
+</aim-proposals>`;
+  }
+
+  return `${chunk}
+
+<script type="application/aim-history+jsonl">
+{"decided_by":{"id":"ada","type":"human"},
+ "decision":"${status}","kind":"resolution",
+ "proposal":"p-3b9d",
+ "proposed_by":{"model":"claude-opus-4-8",
+   "type":"agent"},
+ "seq":7,"t":"2026-05-04T14:36:00Z",
+ "target":"a7f3c1e0", …}
+</script>`;
 }
 
 export const anatomyFile = `<!doctype html>
-<html>
+<html data-aim-version="0.1" lang="en">
 <head>
-  <script src="https://cdn.tndm.dev/aim.js"></script>
+<meta charset="utf-8">
+<title>Q3 Vendor Proposal — Acme GmbH</title>
+<script type="application/aim-meta+json">
+{"summary":{"text":"Q3 vendor proposal:
+   scope, timeline, and payment terms.",
+  "model":"claude-opus-4-8",
+  "as_of_seq":9,"doc_hash":"sha256:b5d4…"},
+ "toc":[{"title":"Scope of Work","level":2,
+   "chunks":["8b1f","a7f3c1e0"]}, …]}
+</script>
+<style data-aim-css="0.1">
+  /* machine-managed Tailwind subset */
+</style>
 </head>
 <body>
 
-<aim-summary>
-  Q3 vendor proposal: scope, timeline,
-  and payment terms. 12 chunks, 2 slides.
-</aim-summary>
+<h2 data-aim="8b1f" class="text-2xl
+    font-semibold">Scope of Work</h2>
+<p data-aim="a7f3c1e0" class="text-base
+  leading-7">The Vendor shall deliver the
+  completed milestones within sixty (60)
+  days…</p>
 
-<aim-toc>
-  <a href="#a7f3c1e0">§2 Scope of Work</a>
-  <a href="#b2e91d44">§3 Payment Terms</a>
-</aim-toc>
+<aim-proposals>
+<aim-proposal id="p-3b9d" …>…</aim-proposal>
+</aim-proposals>
 
-<aim-chunk id="a7f3c1e0-9c2b-4f7e">
-  <h2 class="text-2xl font-semibold">
-    Scope of Work
-  </h2>
-  <p class="text-base leading-7">
-    The Vendor shall deliver the completed
-    milestones within sixty (60) days…
-  </p>
-</aim-chunk>
-
-<aim-pagebreak/>
+<script type="application/aim-history+jsonl">
+{"kind":"direct_edit","seq":1, …}
+{"kind":"resolution","decision":"accepted", …}
+</script>
 
 </body>
 </html>`;
@@ -90,48 +125,46 @@ export const substrateAst = `{
   ]
 }`;
 
-export const substrateAim = `<aim-chunk id="a7f3c1e0-…">
-  <h2 class="text-2xl font-semibold">
-    Scope of Work
-  </h2>
-  <p class="text-base leading-7">
-    The Vendor shall deliver the
-    completed milestones within
-    sixty (60) days…
-  </p>
-</aim-chunk>`;
+export const substrateAim = `<h2 data-aim="8b1f"
+    class="text-2xl font-semibold">
+  Scope of Work</h2>
 
-export const slideSource = `<aim-slide width="1920" height="1080"
-    class="bg-[#fbf6ea]">
+<p data-aim="a7f3c1e0"
+  class="text-base leading-7">
+  The Vendor shall deliver the
+  completed milestones within
+  sixty (60) days…</p>`;
 
-  <h1 class="absolute left-[8%] top-[18%]
-      text-6xl font-semibold">
-    Q3 in one page
-  </h1>
+export const slideSource = `<aim-slide data-aim-container="s1"
+    style="width:1920px; height:1080px">
 
-  <p class="absolute left-[8%] top-[36%]
-      text-2xl text-zinc-500">
-    Revenue, retention, and the
-    road to v0.1
-  </p>
+  <h2 data-aim="t1" class="text-6xl
+      font-semibold" style="left:150px;
+      top:190px; width:800px">
+    Q3 in one page</h2>
 
-  <figure class="absolute right-[7%]
-      top-[16%] h-[64%] w-[40%]">
-    <!-- chart -->
+  <p data-aim="st1" class="text-2xl
+      text-gray-500" style="left:150px;
+      top:390px; width:760px">Revenue,
+    retention, and the road to v0.1</p>
+
+  <figure data-aim="ch" style="left:1020px;
+      top:170px; width:770px; height:690px">
+    <svg viewBox="0 0 770 690">…</svg>
   </figure>
 
 </aim-slide>`;
 
 export const mcpSource = `# install the local MCP server
-$ uvx tndm-mcp
+$ pip install 'aimformat[mcp]'
 
-# or
-$ pip install tndm
+# wire it into any MCP client
+{ "mcpServers": { "aimformat":
+  { "command": "aimformat", "args": ["mcp"] } } }
 
-# then, from any MCP client:
-> read_summary("report.aim")
-> get_chunk("a7f3c1e0")
-> propose_edit("a7f3c1e0",
-    del="sixty (60) days",
-    ins="thirty (30) business days")
-> accept("prop-3b9d")`;
+# then, from the client:
+> aim_read("report.aim")
+> aim_propose("report.aim", action="modify",
+    target="a7f3c1e0", html="…",
+    explanation="Thirty days, not sixty.")
+> aim_resolve("report.aim", "accept", ["p-3b9d"])`;

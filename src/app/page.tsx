@@ -19,7 +19,7 @@ const jsonLd = {
     {
       "@type": "WebSite",
       name: ".aim",
-      url: "https://aim-format.tndm.dev",
+      url: "https://aimformat.com",
       description:
         "An open, MIT-licensed document file format where humans and AI agents co-author the same rich document.",
       publisher: { "@type": "Organization", name: "Tndm" },
@@ -39,7 +39,7 @@ export default function Home() {
   return (
     <>
       <SiteHeader />
-      <main className="relative flex-1">
+      <main id="main" className="relative flex-1">
         <Hero />
         <Manifesto />
         <ThreeLanes />

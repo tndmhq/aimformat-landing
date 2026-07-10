@@ -8,33 +8,36 @@ import {
   RepoComingSoon,
 } from "@/components/aim/primitives";
 
+// Section hrefs are "/#…" (not bare "#…") so they also work from subpages
+// like /editors; on the home page they still behave as fragment jumps.
 const columns = [
   {
     heading: "The Format",
     items: [
-      { label: "§1 Thesis", href: "#format" },
-      { label: "§2 Three Lanes", href: "#three-lanes" },
-      { label: "§3 Anatomy", href: "#anatomy" },
-      { label: "§4 Substrate", href: "#substrate" },
+      { label: "§1 Thesis", href: "/#format" },
+      { label: "§2 Three Lanes", href: "/#three-lanes" },
+      { label: "§3 Anatomy", href: "/#anatomy" },
+      { label: "§4 Substrate", href: "/#substrate" },
     ],
   },
   {
     heading: "For Agents",
     items: [
-      { label: "§5 MCP & SDK", href: "#agents" },
-      { label: "§6 Layout & Export", href: "#layout" },
-      { label: "§7 Ledger", href: "#comparison" },
-      { label: "§8 Notes & Queries", href: "#faq" },
+      { label: "§5 MCP & SDK", href: "/#agents" },
+      { label: "§6 Layout & Export", href: "/#layout" },
+      { label: "§7 Ledger", href: "/#comparison" },
+      { label: "§8 Notes & Queries", href: "/#faq" },
     ],
   },
   {
     heading: "Imprint",
     items: [
-      { label: "License: MIT", href: "#faq" },
-      { label: "Edition: Vol. 0.1", href: "#top" },
+      { label: "License: MIT", href: "/#faq" },
+      { label: "Edition: Vol. 0.1", href: "/#top" },
+      { label: "Editors", href: "/editors" },
       { label: "Repo — coming soon", href: null },
       { label: "Contact", href: "mailto:contact@usetndm.com" },
-      { label: "Subscribe", href: "#cta" },
+      { label: "Subscribe", href: "/#cta" },
     ],
   },
 ];

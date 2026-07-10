@@ -71,7 +71,7 @@ export function ThreeLaneFigure() {
           </Lane>
           <Lane numeral="III" label="State">
             <ul className="space-y-0.5 font-mono text-[0.7rem] text-ink-soft">
-              <li>id prop-3b9d</li>
+              <li>id p-3b9d</li>
               <li>
                 status{" "}
                 <span
@@ -105,9 +105,9 @@ export function ThreeLaneFigure() {
 
       <figcaption className="mt-4 font-body text-[0.9rem] italic leading-snug text-ink-soft">
         {status === "pending" &&
-          "Accept the proposal and lane II folds into lane I; the status becomes accepted, and the record stays in the file."}
+          "Accept the proposal and lane II folds into lane I; the decision is recorded in the file's own history."}
         {status === "accepted" &&
-          "Lane II folded into lane I. Open the source: the proposal is still there, status accepted — history that travels with the document."}
+          "Lane II folded into lane I. Open the source: the pending lane has cleared, and the history script carries the resolution — who proposed, who decided, and the exact change."}
         {status === "rejected" &&
           "The document stands unchanged, but the file remembers what was proposed and declined. That record is the point."}
       </figcaption>
