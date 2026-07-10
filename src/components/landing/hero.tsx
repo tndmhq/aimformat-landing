@@ -1,4 +1,4 @@
-import { Container, MetaPill } from "@/components/aim/primitives";
+import { Container, MetaPill, RepoLink } from "@/components/aim/primitives";
 import { PressButton } from "@/components/aim/press-button";
 import { LeafCard } from "@/components/aim/leaf";
 import { RedlineDemo } from "@/components/aim/redline";
@@ -53,17 +53,12 @@ export function Hero() {
                 Subscribe for the spec and launch
                 <span aria-hidden>→</span>
               </PressButton>
-              <span
-                className="label-mono cursor-default select-none text-ink-faint"
-                title="The public repository follows the spec; subscribers see it first."
-              >
-                Repo — coming soon
-              </span>
+              <RepoLink variant="button">View the source</RepoLink>
             </div>
 
             <p className="mt-5 max-w-md font-body text-[0.95rem] italic leading-snug text-ink-soft">
-              The v0.1 spec, the open-source drop, and the launch land here
-              first. A few letters a year, no more.
+              The format is open source on GitHub, MIT-licensed. The v0.1 spec
+              and the launch land here first — a few letters a year, no more.
             </p>
 
             <div className="mt-7 flex flex-wrap gap-2">

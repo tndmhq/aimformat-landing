@@ -11,8 +11,11 @@ red/green editor's ink (the three-lane track-changes primitive) with a half-peel
 reserved exclusively for the track-changes metaphor. Set in Fraunces, Newsreader, and
 IBM Plex Mono.
 
-The sole call to action is the **newsletter**. A public repository link is intentionally
-deferred (shown as a non-clickable "Repo — coming soon" affordance).
+The primary call to action is the **newsletter**. The public
+[repository](https://github.com/tndmhq/aimformat) is linked as a secondary, deliberately
+less-prominent CTA (the hero "View the source" button, plus quiet links in the header and
+footer). Repo links are centralized in `RepoLink`/`REPO_URL` in
+[`src/components/aim/primitives.tsx`](src/components/aim/primitives.tsx).
 
 ## Stack
 

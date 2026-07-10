@@ -16,12 +16,15 @@ Deferred deliberately; revisit before (or at) launch.
 
 ## Content queued behind product milestones
 - [ ] **Publish the draft spec publicly** (replaces the subscriber-gated spec; the
-  "Repo — coming soon" seals should then link to it or to the repo).
+  repo seals/links could then point at the spec specifically rather than the repo root).
 - [ ] **Status / roadmap strip** ("Now: v0.1 spec · Next: SDK + MCP server · Later:
   editor") so present-tense feature claims are anchored to a visible timeline.
 - [ ] **Editor landing page** (separate site; the newsletter checkbox already
   segments editor-interested subscribers via the Buttondown tag).
-- [ ] **GitHub link** in header/footer once the repo is public.
+- [x] **GitHub link** in header/footer once the repo is public. Done (2026-07-10):
+  live repo links in the hero (secondary "View the source" CTA), header, footer, and
+  newsletter seal; FAQ + JSON-LD updated. Repo is public at
+  [tndmhq/aimformat](https://github.com/tndmhq/aimformat).
 
 ## To discuss
 - [ ] **§7 Ledger table review.** The table self-grades `.aim` with five checkmarks

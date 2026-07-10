@@ -1,6 +1,8 @@
 import type { ReactNode } from "react";
-import { Lock } from "lucide-react";
 import { cn } from "@/lib/utils";
+
+/** The open format's public repository. */
+export const REPO_URL = "https://github.com/tndmhq/aimformat";
 
 /* ----------------------------------------------------------------- layout */
 
@@ -274,38 +276,78 @@ export function InkStamp({ className }: { className?: string }) {
   );
 }
 
-/* ----------------------------------------------------- repo coming soon seal */
+/* ---------------------------------------------------------- github repo link */
 
-export function RepoComingSoon({
+/** The GitHub mark, hand-set as SVG (lucide dropped its brand glyphs). */
+export function GitHubMark({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 16 16" className={className} fill="currentColor" aria-hidden>
+      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.76-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8Z" />
+    </svg>
+  );
+}
+
+/**
+ * Link to the public repository. The secondary action to Subscribe.
+ * - `button`: outlined plate — the hero's "view the source" companion CTA.
+ * - `seal`: dashed pill, echoing the subscription slip.
+ * - `inline`: quiet mono link for the header and footer.
+ */
+export function RepoLink({
   variant = "inline",
   className,
+  children,
 }: {
-  variant?: "inline" | "seal";
+  variant?: "button" | "seal" | "inline";
   className?: string;
+  children?: ReactNode;
 }) {
-  if (variant === "seal") {
+  const external = {
+    href: REPO_URL,
+    target: "_blank",
+    rel: "noreferrer",
+  } as const;
+
+  if (variant === "button") {
     return (
-      <div
+      <a
+        {...external}
         className={cn(
-          "inline-flex select-none items-center gap-2 rounded-full border border-dashed border-ink/30 bg-paper/50 px-3.5 py-2 text-ink-faint",
+          "inline-flex cursor-pointer items-center justify-center gap-2 rounded-[3px] border border-ink/30 bg-paper/40 px-5 py-3 font-mono text-[0.78rem] uppercase tracking-[0.12em] text-ink-soft transition-colors hover:border-oxblood hover:text-oxblood focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-oxblood",
           className,
         )}
       >
-        <Lock className="size-3.5" aria-hidden />
-        <span className="label-mono">Repo — coming soon</span>
-      </div>
+        <GitHubMark className="size-4" />
+        {children ?? "View the source"}
+      </a>
     );
   }
+
+  if (variant === "seal") {
+    return (
+      <a
+        {...external}
+        className={cn(
+          "inline-flex select-none items-center gap-2 rounded-full border border-dashed border-ink/30 bg-paper/50 px-3.5 py-2 text-ink-soft transition-colors hover:border-oxblood hover:text-oxblood",
+          className,
+        )}
+      >
+        <GitHubMark className="size-3.5" />
+        <span className="label-mono">{children ?? "Read the source on GitHub"}</span>
+      </a>
+    );
+  }
+
   return (
-    <span
-      title="The public repository follows the spec; subscribers see it first."
+    <a
+      {...external}
       className={cn(
-        "label-mono inline-flex cursor-default select-none items-center gap-1.5 text-ink-faint",
+        "label-mono inline-flex items-center gap-1.5 text-ink-soft transition-colors hover:text-oxblood",
         className,
       )}
     >
-      <Lock className="size-3" aria-hidden />
-      Repo — coming soon
-    </span>
+      <GitHubMark className="size-3" />
+      {children ?? "Repo"}
+    </a>
   );
 }
