@@ -15,7 +15,10 @@ The primary call to action is the **newsletter**. The public
 [repository](https://github.com/tndmhq/aimformat) is linked as a secondary, deliberately
 less-prominent CTA (the hero "View the source" button, plus quiet links in the header and
 footer). Repo links are centralized in `RepoLink`/`REPO_URL` in
-[`src/components/aim/primitives.tsx`](src/components/aim/primitives.tsx).
+[`src/components/aim/primitives.tsx`](src/components/aim/primitives.tsx). A
+**Quickstart** section (`src/components/landing/quickstart.tsx`) is the newsletter's
+developer-facing counterpart: a copy-paste `pip install aimformat` "act now" moment
+ahead of the newsletter CTA.
 
 ## Stack
 
