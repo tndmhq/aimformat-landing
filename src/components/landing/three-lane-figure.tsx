@@ -36,7 +36,7 @@ export function ThreeLaneFigure() {
 
   return (
     <figure className="lg:sticky lg:top-20">
-      <LeafCard runningHead="Fig. 1 · One chunk, three lanes — try it">
+      <LeafCard runningHead="Fig. 1 · One chunk, three lanes · try it">
         <RedlineDemo status={status} onStatusChange={setStatus} />
 
         <div className="mt-6 grid gap-px overflow-hidden rounded-[3px] border border-ink/15 bg-ink/10 sm:grid-cols-3">
@@ -107,9 +107,9 @@ export function ThreeLaneFigure() {
         {status === "pending" &&
           "Accept the proposal and lane II folds into lane I; the decision is recorded in the file's own history."}
         {status === "accepted" &&
-          "Lane II folded into lane I. Open the source: the pending lane has cleared, and the history script carries the resolution — who proposed, who decided, and the exact change."}
+          "Lane II folded into lane I. Open the source: the pending lane has cleared, and the history script records who proposed, who decided, and the exact change."}
         {status === "rejected" &&
-          "The document stands unchanged, but the file remembers what was proposed and declined. That record is the point."}
+          "The document stands unchanged, but the file remembers what was proposed and declined: the record a contract review needs."}
       </figcaption>
     </figure>
   );

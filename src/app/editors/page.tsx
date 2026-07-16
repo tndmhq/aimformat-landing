@@ -12,7 +12,7 @@ import {
 export const metadata: Metadata = {
   title: "Editors",
   description:
-    "Where .aim files open: the directory of editors and viewers for the open .aim document format — from Tndm, the flagship review editor, to the zero-install tier of any web browser.",
+    "Where .aim files open: the directory of editors and viewers for the open .aim document format, including Tndm (the flagship review editor) and the zero-install tier of any web browser.",
   alternates: { canonical: "/editors" },
 };
 
@@ -56,7 +56,7 @@ const entries: {
       <>
         The tier every file ships with. Because a .aim document is valid
         HTML5 with its stylesheet embedded, the raw file renders its content
-        plus a readable memo of pending changes — no editor, no extension,
+        plus a readable memo of pending changes: no editor, no extension,
         no build step.
       </>
     ),
@@ -74,7 +74,7 @@ export default function EditorsPage() {
             <SectionHeader
               eyebrow="Editors & Viewers"
               title="Where .aim files open"
-              lede=".aim renders in any browser, because it is the page; an editor adds the review surface — word-level diffs, one-click accept/reject, slide navigation."
+              lede=".aim renders in any browser, because it is the page; an editor adds the review surface: word-level diffs, one-click accept/reject, slide navigation."
             />
 
             <div className="mt-14 max-w-3xl space-y-10">
@@ -94,7 +94,7 @@ export default function EditorsPage() {
 
               <p className="measure border-t border-ink/20 pt-6 font-body text-[1rem] leading-[1.7] text-ink-soft">
                 Building an editor or viewer for .aim? The format is open,
-                and so is this list — write to{" "}
+                and so is this list. Write to{" "}
                 <a href="mailto:contact@usetndm.com" className={linkClass}>
                   contact@usetndm.com
                 </a>{" "}

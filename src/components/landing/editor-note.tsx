@@ -21,7 +21,7 @@ export function EditorNote() {
             >
               Say so when you subscribe
             </a>
-            {" "}— there is a box for exactly that.
+            ; there is a box for exactly that.
           </p>
         </div>
       </Container>

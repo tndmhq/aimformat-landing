@@ -36,8 +36,8 @@ export function Manifesto() {
             <span className="text-oxblood">.</span>aim closes that gap. It is one
             open file a person and an agent can hold at the same time, where
             every change is proposed, attributed, and tracked, and where the
-            styled artifact and its source are the same object. Not a
-            representation you transform. The page itself.
+            styled artifact and its source are the same object: not a
+            representation you transform, but the page itself.
           </p>
 
           {/* the builder's bill — the toll every AI-document system pays today */}
@@ -46,8 +46,8 @@ export function Manifesto() {
               The builder&rsquo;s bill
             </p>
             <p className="mt-3 font-body text-[1.1rem] leading-[1.65] text-ink text-pretty">
-              If you are building AI for documents — a legal editor, a proposal
-              tool, an agent that writes decks — you are paying this bill right
+              If you are building AI for documents (a legal editor, a proposal
+              tool, an agent that writes decks), you are paying this bill right
               now, in-house, like everyone else:
             </p>
             <ol className="mt-5 space-y-2.5">
@@ -74,7 +74,7 @@ export function Manifesto() {
               it interoperates with anyone else&rsquo;s stack.{" "}
               <span className="text-oxblood">.</span>aim pays the whole bill in
               the file, once: chunks, identity, summaries, embeddings, and
-              propose-and-accept are properties of the format — so your system
+              propose-and-accept are properties of the format, so your system
               never rebuilds them.
             </p>
           </div>

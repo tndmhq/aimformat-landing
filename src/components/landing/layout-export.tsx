@@ -70,7 +70,11 @@ function SlideArtifact() {
 }
 
 function ExportFan() {
-  const targets = ["PDF", "DOCX", "PPTX"];
+  const targets = [
+    { name: "PDF", badge: "deterministic", badgeClass: "text-greenline" },
+    { name: "DOCX", badge: "deterministic", badgeClass: "text-greenline" },
+    { name: "PPTX", badge: "roadmap", badgeClass: "text-ink-faint" },
+  ];
   return (
     <div className="flex flex-wrap items-center gap-5">
       <div className="flex h-16 w-16 shrink-0 flex-col items-center justify-center rounded-[2px] border border-ink/20 bg-surface text-center shadow-leaf">
@@ -95,14 +99,14 @@ function ExportFan() {
       <div className="space-y-2">
         {targets.map((t) => (
           <div
-            key={t}
+            key={t.name}
             className="flex items-center gap-2 rounded-[2px] border border-ink/20 bg-surface px-3 py-1.5"
           >
             <span className="font-mono text-[0.82rem] font-medium text-ink">
-              {t}
+              {t.name}
             </span>
-            <span className="label-mono text-[0.55rem] text-greenline">
-              deterministic
+            <span className={`label-mono text-[0.55rem] ${t.badgeClass}`}>
+              {t.badge}
             </span>
           </div>
         ))}
@@ -131,9 +135,9 @@ export function LayoutExport() {
         <div className="mt-14 flex flex-col gap-8 border-t border-ink/15 pt-10 md:flex-row md:items-center md:justify-between">
           <p className="measure-tight font-body text-[1.1rem] leading-[1.7] text-ink/85 text-pretty">
             Because the slide is real HTML with real coordinates, export is a
-            transform, not a rewrite. One source produces a deterministic PPTX
-            and a deterministic PDF, every time. Author once, in the open
-            format. Let the exports fall out of it.
+            transform, not a rewrite. One source produces the same PDF and the
+            same Word file every time; PPTX export is on the roadmap. Author
+            once, in the open format. Let the exports fall out of it.
           </p>
           <ExportFan />
         </div>

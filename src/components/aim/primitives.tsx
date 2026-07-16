@@ -270,7 +270,7 @@ export function InkStamp({ className }: { className?: string }) {
         fontSize="8.5"
         letterSpacing="2"
       >
-        v0.1
+        v0.2
       </text>
     </svg>
   );

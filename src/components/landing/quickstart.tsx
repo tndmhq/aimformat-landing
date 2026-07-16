@@ -13,7 +13,7 @@ const resources = [
   {
     label: "The full on-ramps",
     href: "#agents",
-    note: "MCP tools, the SDK, and the clients it works with — §5.",
+    note: "MCP tools, the SDK, and the clients it works with (§5).",
   },
   {
     label: "llms.txt",
@@ -23,7 +23,7 @@ const resources = [
   {
     label: "Editors & viewers",
     href: "/editors",
-    note: "Where .aim files open — from the browser up.",
+    note: "Where .aim files open, from the browser up.",
   },
 ];
 
@@ -43,11 +43,10 @@ export function Quickstart() {
           lede={
             <>
               The <span className="text-oxblood">.</span>aim format is
-              MIT-licensed and published to PyPI &mdash; a typed Python SDK and
+              MIT-licensed and published to PyPI: a typed Python SDK and
               the <code className="rounded-[2px] bg-ink/[0.06] px-1 py-0.5 font-mono text-[0.85em] text-ink">aim</code>{" "}
               CLI, zero runtime dependencies. Nothing hosted, no account,
-              nothing to wait for. The press notices below are for the v0.1 spec
-              and the launch.
+              nothing to wait for. The press notices below are for the launch.
             </>
           }
         />

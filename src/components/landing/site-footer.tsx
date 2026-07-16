@@ -33,7 +33,7 @@ const columns = [
     heading: "Imprint",
     items: [
       { label: "License: MIT", href: "/#faq" },
-      { label: "Edition: Vol. 0.1", href: "/#top" },
+      { label: "Edition: Vol. 0.2", href: "/#top" },
       { label: "Editors", href: "/editors" },
       { label: "Repo · GitHub", href: REPO_URL },
       { label: "Contact", href: "mailto:contact@usetndm.com" },
@@ -63,7 +63,7 @@ export function SiteFooter() {
             </div>
             <p className="mt-6 max-w-xs font-body text-[0.92rem] leading-snug text-ink-soft">
               Set by{" "}
-              <span className="text-ink">Luca Campanella</span> — three years
+              <span className="text-ink">Luca Campanella</span>: three years
               at Typewise (YC S22), past CTO of CuratedAI.{" "}
               <a
                 href="mailto:contact@usetndm.com"

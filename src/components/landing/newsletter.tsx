@@ -35,7 +35,7 @@ export function Newsletter() {
       };
       if (res.ok && data.ok) {
         setStatus("success");
-        setMessage("Almost there — confirm in your inbox.");
+        setMessage("Almost there: confirm in your inbox.");
       } else {
         setStatus("error");
         setMessage(data.error || "Something went wrong. Please try again.");
@@ -56,8 +56,8 @@ export function Newsletter() {
             Subscribe to the press notices
           </h2>
           <p className="mx-auto mt-5 max-w-xl font-body text-[1.15rem] leading-[1.65] text-ink/85 text-pretty">
-            One file humans and agents can both hold. The spec, the open-source
-            drop, and the launch arrive here first. Subscribe for the notices, a
+            One file humans and agents can both hold. The launch, and whatever
+            ships after it, arrives here first. Subscribe for the notices: a
             few letters a year, nothing else.
           </p>
         </div>
@@ -85,7 +85,7 @@ export function Newsletter() {
                 <p className="font-display text-xl text-ink">{message}</p>
                 <p className="font-body text-[0.92rem] italic text-ink-soft">
                   Click the confirmation note we just sent, and the next thing
-                  you hear from us is the v0.1 spec.
+                  you hear from us is the launch.
                 </p>
               </div>
             ) : (
@@ -122,7 +122,7 @@ export function Newsletter() {
                   />
                   <span>
                     Also keep me posted on the{" "}
-                    <span className="text-ink">Tndm editor</span> — the
+                    <span className="text-ink">Tndm editor</span>, the
                     Word-meets-Cursor app built on the format.
                   </span>
                 </label>
@@ -135,8 +135,8 @@ export function Newsletter() {
                   </p>
                 )}
                 <p className="mt-4 font-body text-[0.88rem] italic leading-snug text-ink-soft">
-                  The v0.1 spec and the launch arrive here first. No spam, no
-                  sharing, unsubscribe in one click.
+                  Launch notices arrive here first. No spam, no sharing,
+                  unsubscribe in one click.
                 </p>
               </form>
             )}
@@ -145,7 +145,7 @@ export function Newsletter() {
           <div className="mt-7 flex flex-col items-center gap-2">
             <RepoLink variant="seal" />
             <p className="font-body text-[0.85rem] italic text-ink-faint">
-              The format is open source under the MIT License — read it, fork it,
+              The format is open source under the MIT License: read it, fork it,
               build on it today.
             </p>
           </div>
