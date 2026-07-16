@@ -92,7 +92,7 @@ export function RunningHead({
     <div className="relative z-10 border-y border-ink/20 bg-paper/30">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-1.5 sm:px-10">
         <span className="label-mono small-caps text-ink-soft">
-          .aim · vol. 0.1 · {section}
+          .aim · vol. 0.2 · {section}
         </span>
         <span className="label-mono small-caps text-ink-soft">{folio}</span>
       </div>

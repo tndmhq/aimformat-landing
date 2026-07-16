@@ -64,7 +64,7 @@ export function SiteFooter() {
             <p className="mt-6 max-w-xs font-body text-[0.92rem] leading-snug text-ink-soft">
               Set by{" "}
               <span className="text-ink">Luca Campanella</span>: three years
-              at Typewise (YC S22), past CTO of CuratedAI.{" "}
+              at Typewise, past CTO of CuratedAI.{" "}
               <a
                 href="mailto:contact@usetndm.com"
                 className="text-oxblood underline-offset-4 hover:underline"
