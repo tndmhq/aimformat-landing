@@ -12,7 +12,9 @@ structure, and the newsletter setup, and [`TODO.md`](TODO.md) for deferred
 work. The editor's landing site is a separate private repo (`tndm-landing`).
 
 **This repo is public: no strategy, pricing, competitor framing, or YC
-material.** Site copy follows the writing guidelines kept in the private
+material.** Exception (Luca, 2026-07-16): biographical credentials may name
+a past employer's batch — "Typewise (YC S22)" is fine; Tndm's own YC plans
+are not. Site copy follows the writing guidelines kept in the private
 workspace (`tndm-workspace/knowledge/`).
 
 ## Conventions

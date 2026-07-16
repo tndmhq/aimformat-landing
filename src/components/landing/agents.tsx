@@ -11,7 +11,7 @@ const onRamps = [
   {
     label: "Plain file",
     detail:
-      "Valid HTML5. Any model reads it directly, no tooling — the file itself points agents at aimformat.com/llms.txt.",
+      "Valid HTML5. Any model reads it directly, no tooling; the file itself points agents at aimformat.com/llms.txt.",
   },
   {
     label: "MCP server",
@@ -21,7 +21,7 @@ const onRamps = [
   {
     label: "Claude Skill",
     detail:
-      "npx skills add tndmhq/aimformat — teaches the conventions and wires up the CLI verbs.",
+      "npx skills add tndmhq/aimformat: teaches the conventions and wires up the CLI verbs.",
   },
   {
     label: "Python SDK",
@@ -33,7 +33,7 @@ const onRamps = [
 const capabilities = [
   "Propose chunk-level edits against a stable id",
   "Accept or reject a proposal, with attribution",
-  "A projected, token-cheap read — summary, TOC, chunks, pending lane",
+  "A projected, token-cheap read: summary, TOC, chunks, pending lane",
   "Read the summary before touching the body",
 ];
 

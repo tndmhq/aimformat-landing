@@ -9,18 +9,18 @@ import { anatomyFile } from "@/lib/snippets";
 const elements = [
   {
     term: 'data-aim="id"',
-    gloss: "A stable chunk id on a plain HTML element — the unit you address, cite, and edit.",
+    gloss: "A stable chunk id on a plain HTML element: the unit you address, cite, and edit.",
     why: "So proposals, history, and cross-references stay pinned to the same passage even after the text is rewritten.",
   },
   {
     term: "<aim-proposals>",
     gloss: "The pending lane: suggested changes as cards, each with author, action, and payload.",
-    why: "This is lane II. Suggestions sit beside the accepted text — visible, attributed, and inert until decided.",
+    why: "This is lane II. Suggestions sit beside the accepted text: visible, attributed, and inert until decided.",
   },
   {
     term: "application/aim-meta+json",
     gloss: "A derived head cache: an AI-readable summary and TOC, stamped with the doc hash.",
-    why: "An agent orients here first — and verifies the hash before trusting it — instead of loading the entire document.",
+    why: "An agent orients here first (and verifies the hash before trusting it) instead of loading the entire document.",
   },
   {
     term: "application/aim-history+jsonl",
@@ -30,21 +30,21 @@ const elements = [
   {
     term: "<aim-slide>",
     gloss: "A fixed-canvas slide with absolutely positioned children.",
-    why: "Real layout. The same source exports deterministically to PPTX and PDF.",
+    why: "Real layout. The same source exports deterministically to PDF; PPTX is on the roadmap.",
   },
   {
     term: "<style data-aim-css>",
     gloss: "The embedded, machine-managed stylesheet for the Tailwind subset.",
-    why: "The raw file renders styled in any browser — no viewer to ship, no build step, nothing external to load.",
+    why: "The raw file renders styled in any browser: no viewer to ship, no build step, nothing external to load.",
   },
 ];
 
 const annotations = [
-  ["application/aim-meta+json", "An agent reads this first to orient — summary and TOC — instead of loading the whole file."],
+  ["application/aim-meta+json", "An agent reads this first to orient (summary and TOC) instead of loading the whole file."],
   ['<style data-aim-css="0.1">', "The embedded stylesheet. Machine-managed, never content; the file renders with nothing installed."],
   ['data-aim="a7f3c1e0"', "A stable id. It survives rewrites, so proposals and history stay pinned to this passage."],
   ['class="text-2xl…"', "Plain Tailwind. The model already writes this fluently; it is also the rendered style."],
-  ["<aim-proposals>", "Lane II. Pending suggestions wait here — visible and inert — for a human accept or reject."],
+  ["<aim-proposals>", "Lane II. Pending suggestions wait here, visible and inert, for a human accept or reject."],
   ["application/aim-history+jsonl", "The append-only history: every change recorded invertibly, so past versions are reconstructible."],
 ];
 

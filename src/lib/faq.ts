@@ -19,10 +19,10 @@ export const faq = [
   },
   {
     q: "How do exports work?",
-    a: "Deterministically. Because the file is the styled artifact with real coordinates, PDF, DOCX, and PPTX are transforms of one source, not separate rewrites. The same input always produces the same output.",
+    a: "Deterministically. Because the file is the styled artifact with real coordinates, PDF and DOCX are transforms of one source, not separate rewrites, and the same input always produces the same output. PPTX export follows the same path and is on the roadmap.",
   },
   {
     q: "Where is the repository?",
-    a: "Public on GitHub at github.com/tndmhq/aimformat, under the MIT License. The v0.1 spec and launch notices land first to newsletter subscribers.",
+    a: "Public on GitHub at github.com/tndmhq/aimformat, under the MIT License. Launch notices land first with newsletter subscribers.",
   },
 ];

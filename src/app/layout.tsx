@@ -30,7 +30,7 @@ const SITE_URL = "https://aimformat.com";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: ".aim — the open document format for the AI era",
+    default: ".aim: the open document format for the AI era",
     template: "%s · .aim",
   },
   description:
@@ -52,14 +52,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: SITE_URL,
-    title: ".aim — the open document format for the AI era",
+    title: ".aim: the open document format for the AI era",
     description:
       "An open file format where humans and AI agents co-author the same rich document. Every change proposed, reviewed, and tracked. Valid HTML5 + Tailwind. MIT. By Tndm.",
     siteName: ".aim",
   },
   twitter: {
     card: "summary_large_image",
-    title: ".aim — the open document format for the AI era",
+    title: ".aim: the open document format for the AI era",
     description:
       "Markdown for the age of agents, finally with layout. Valid HTML5 + Tailwind, stable chunks, slides, and native three-lane track changes. Open source, MIT. By Tndm.",
   },

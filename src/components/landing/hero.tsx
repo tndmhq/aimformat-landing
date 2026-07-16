@@ -36,34 +36,34 @@ export function Hero() {
             </p>
 
             <h1 className="mt-6 font-display text-[clamp(2.6rem,5.6vw,4.9rem)] font-normal leading-[1.03] tracking-[-0.02em] text-ink text-balance">
-              <span className="text-oxblood">.</span>aim — the open format for
+              <span className="text-oxblood">.</span>aim: the open format for
               documents humans and AI write together
             </h1>
 
             <p className="measure mt-7 font-body text-[1.24rem] leading-[1.65] text-ink/85 text-pretty">
               There is no Markdown for layout-rich, AI-native documents. So we
               set one in type. <span className="text-oxblood">.</span>aim is
-              valid HTML5 with a Tailwind subset — extended with stable chunks,
+              valid HTML5 with a Tailwind subset, extended with stable chunks,
               slides, and track-changes that live in the file itself. It
               renders in any browser, because it is the page.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-4">
               <PressButton href="#cta">
-                Subscribe for the spec and launch
+                Subscribe for the launch letter
                 <span aria-hidden>→</span>
               </PressButton>
               <RepoLink variant="button">View the source</RepoLink>
             </div>
 
             <p className="mt-5 max-w-md font-body text-[0.95rem] italic leading-snug text-ink-soft">
-              The format is open source on GitHub, MIT-licensed. The v0.1 spec
-              and the launch land here first — a few letters a year, no more.
+              The format is open source on GitHub, MIT-licensed. Launch news
+              lands here first: a few letters a year, no more.
             </p>
 
             <div className="mt-7 flex flex-wrap gap-2">
               <MetaPill>MIT</MetaPill>
-              <MetaPill>v0.1</MetaPill>
+              <MetaPill>v0.2</MetaPill>
               <MetaPill>HTML5 + Tailwind</MetaPill>
               <MetaPill>stdio · MCP</MetaPill>
             </div>

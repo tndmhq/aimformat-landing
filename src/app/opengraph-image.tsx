@@ -1,6 +1,6 @@
 import { renderOgImage } from "@/lib/og";
 
-export const alt = ".aim — the open document format for the AI era";
+export const alt = ".aim: the open document format for the AI era";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
