@@ -52,13 +52,54 @@ async function subscribeViaButtondown(
 
   if (res.ok) return "added"
 
-  // Buttondown returns 400 when the address is already on the list.
+  // Buttondown returns 400 when the address is already on the list. Tags only
+  // ride on the create call, so an existing subscriber who checks the editor
+  // box here would otherwise never get tagged — merge onto their record.
   const detail = await res.text()
   if (res.status === 400 && /already|exists|subscribed/i.test(detail)) {
+    if (editorInterest) {
+      await addTagsToExistingSubscriber(email, ["editor-interest"], apiKey)
+    }
     return "exists"
   }
 
   throw new Error(`Buttondown responded ${res.status}: ${detail}`)
+}
+
+async function addTagsToExistingSubscriber(
+  email: string,
+  tags: string[],
+  apiKey: string
+): Promise<void> {
+  try {
+    const url = `${BUTTONDOWN_ENDPOINT}/${encodeURIComponent(email)}`
+    const res = await fetch(url, {
+      headers: { Authorization: `Token ${apiKey}` },
+    })
+    if (!res.ok) {
+      throw new Error(`Buttondown responded ${res.status} on subscriber read`)
+    }
+    const subscriber = (await res.json()) as { tags?: string[] }
+    const existing = Array.isArray(subscriber.tags) ? subscriber.tags : []
+    const missing = tags.filter((t) => !existing.includes(t))
+    if (missing.length === 0) return
+
+    const patch = await fetch(url, {
+      method: "PATCH",
+      headers: {
+        Authorization: `Token ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ tags: [...existing, ...missing] }),
+    })
+    if (!patch.ok) {
+      throw new Error(`Buttondown responded ${patch.status} on tag update`)
+    }
+  } catch (err) {
+    // The address is already on the list, which is what the visitor asked
+    // for; a failed tag merge shouldn't turn their signup into an error.
+    console.error("[subscribe] failed to update tags for existing subscriber:", err)
+  }
 }
 
 // --- Local file fallback (dev, no API key) ---------------------------------
