@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { SiteHeader } from "@/components/landing/site-header";
 import { SiteFooter } from "@/components/landing/site-footer";
@@ -8,13 +7,14 @@ import {
   RunningHead,
   SectionHeader,
 } from "@/components/aim/primitives";
+import { pageMeta } from "@/lib/meta";
 
-export const metadata: Metadata = {
+export const metadata = pageMeta({
   title: "Editors",
   description:
     "Where .aim files open: the directory of editors and viewers for the open .aim document format, including Tndm (the flagship review editor) and the zero-install tier of any web browser.",
-  alternates: { canonical: "/editors" },
-};
+  path: "/editors",
+});
 
 const linkClass = "text-oxblood underline-offset-4 hover:underline";
 
