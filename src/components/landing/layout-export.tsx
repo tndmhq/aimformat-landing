@@ -31,10 +31,10 @@ function SlideArtifact() {
           0
         </span>
         <span className="absolute left-1/2 top-0.5 z-20 font-mono text-[0.5rem] text-ink-faint">
-          960
+          480
         </span>
         <span className="absolute right-1 top-0.5 z-20 font-mono text-[0.5rem] text-ink-faint">
-          1920
+          960
         </span>
 
         {/* the positioned children of the canvas */}

@@ -41,7 +41,7 @@ const elements = [
 
 const annotations = [
   ["application/aim-meta+json", "An agent reads this first to orient (summary and TOC) instead of loading the whole file."],
-  ['<style data-aim-css="0.1">', "The embedded stylesheet. Machine-managed, never content; the file renders with nothing installed."],
+  ['<style data-aim-css="0.2">', "The embedded stylesheet. Machine-managed, never content; the file renders with nothing installed."],
   ['data-aim="a7f3c1e0"', "A stable id. It survives rewrites, so proposals and history stay pinned to this passage."],
   ['class="text-2xl…"', "Plain Tailwind. The model already writes this fluently; it is also the rendered style."],
   ["<aim-proposals>", "Lane II. Pending suggestions wait here, visible and inert, for a human accept or reject."],
