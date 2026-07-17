@@ -15,12 +15,18 @@ Deferred deliberately; revisit before (or at) launch.
   [aimformat.com](https://aimformat.com) as of 2026-07-09.)
 
 ## Content queued behind product milestones
-- [ ] **Publish the draft spec publicly** (replaces the subscriber-gated spec; the
-  repo seals/links could then point at the spec specifically rather than the repo root).
-- [ ] **Status / roadmap strip** ("Now: v0.1 spec · Next: SDK + MCP server · Later:
-  editor") so present-tense feature claims are anchored to a visible timeline.
-- [ ] **Editor landing page** (separate site; the newsletter checkbox already
-  segments editor-interested subscribers via the Buttondown tag).
+- [x] **Publish the draft spec publicly.** Done (2026-07-10): the repo is public
+  with the spec at its root
+  ([tndmhq/aimformat `spec.md`](https://github.com/tndmhq/aimformat/blob/main/spec.md),
+  v0.2 as of this note), and site links such as the `llms.txt` Docs list point
+  at the spec directly rather than the repo root.
+- [ ] **Status / roadmap strip** ("Now: v0.2 spec + Python SDK + MCP server ·
+  Next: spec v0.3 · Later: editor GA") so present-tense feature claims are
+  anchored to a visible timeline.
+- [x] **Editor landing page.** Done: `tndm-landing` (separate private repo,
+  built 2026-07-08) serves [usetndm.com](https://usetndm.com), linked from the
+  footer and [`/editors`](src/app/editors/page.tsx); the newsletter checkbox
+  segments editor-interested subscribers via the Buttondown tag.
 - [x] **GitHub link** in header/footer once the repo is public. Done (2026-07-10):
   live repo links in the hero (secondary "View the source" CTA), header, footer, and
   newsletter seal; FAQ + JSON-LD updated. Repo is public at
