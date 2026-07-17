@@ -21,12 +21,14 @@ Deferred deliberately; revisit before (or at) launch.
   v0.2 as of this note), and site links such as the `llms.txt` Docs list point
   at the spec directly rather than the repo root.
 - [ ] **Status / roadmap strip** ("Now: v0.2 spec + Python SDK + MCP server ·
-  Next: spec v0.3 · Later: editor GA") so present-tense feature claims are
-  anchored to a visible timeline.
-- [x] **Editor landing page.** Done: `tndm-landing` (separate private repo,
-  built 2026-07-08) serves [usetndm.com](https://usetndm.com), linked from the
-  footer and [`/editors`](src/app/editors/page.tsx); the newsletter checkbox
-  segments editor-interested subscribers via the Buttondown tag.
+  …") so present-tense feature claims are anchored to a visible timeline;
+  exact Next/Later copy decided when the strip ships.
+- [x] **Editor landing page.** Done: the editor site serves
+  [usetndm.com](https://usetndm.com), reachable from
+  [`/editors`](src/app/editors/page.tsx) and `llms.txt`; the newsletter
+  checkbox segments editor-interested subscribers via the Buttondown tag.
+- [ ] **Direct footer link to the editor site** — today the footer reaches it
+  only indirectly via `/editors`.
 - [x] **GitHub link** in header/footer once the repo is public. Done (2026-07-10):
   live repo links in the hero (secondary "View the source" CTA), header, footer, and
   newsletter seal; FAQ + JSON-LD updated. Repo is public at
