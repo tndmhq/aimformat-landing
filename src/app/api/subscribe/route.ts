@@ -1,10 +1,16 @@
 import { NextResponse } from "next/server"
 import { promises as fs } from "fs"
 import path from "path"
+import { rateLimit } from "@/lib/rate-limit"
 
 export const runtime = "nodejs"
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+// Each new address triggers a confirmation email, so an unthrottled endpoint
+// can be scripted into subscription-bombing strangers. Generous for a human,
+// expensive for a loop.
+const RATE_LIMIT = { limit: 5, windowMs: 10 * 60_000 }
 
 // ---------------------------------------------------------------------------
 // Email capture.
@@ -116,6 +122,17 @@ async function persistSubscriber(
 }
 
 export async function POST(req: Request) {
+  const ip = req.headers.get("CF-Connecting-IP") ?? undefined
+  if (!rateLimit(`subscribe:${ip ?? "local"}`, RATE_LIMIT)) {
+    return NextResponse.json(
+      {
+        ok: false,
+        error: "Too many attempts from this connection. Please wait a few minutes and try again.",
+      },
+      { status: 429 }
+    )
+  }
+
   let email: unknown
   let editorInterest = false
   try {
@@ -136,8 +153,6 @@ export async function POST(req: Request) {
       { status: 422 }
     )
   }
-
-  const ip = req.headers.get("CF-Connecting-IP") ?? undefined
 
   try {
     const status = await persistSubscriber(normalized, editorInterest, ip)
