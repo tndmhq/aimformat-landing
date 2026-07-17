@@ -136,22 +136,22 @@ export const substrateAim = `<h2 data-aim="8b1f"
   sixty (60) days…</p>`;
 
 export const slideSource = `<aim-slide data-aim-container="s1"
-    style="width:1920px; height:1080px">
+    style="width:960px; height:540px">
 
   <h2 data-aim="t1" class="text-6xl
-      font-semibold" style="left:150px;
-      top:190px; width:800px">
+      font-semibold" style="left:75px;
+      top:95px; width:400px">
     Q3 in one page</h2>
 
   <p data-aim="st1" class="text-2xl
-      text-gray-500" style="left:150px;
-      top:390px; width:760px">Revenue,
+      text-gray-500" style="left:75px;
+      top:195px; width:380px">Revenue,
     retention, and the road to v0.1</p>
 
-  <figure data-aim="ch" style="left:1020px;
-      top:170px; width:770px; height:690px">
+  <figure data-aim="ch" style="left:510px;
+      top:85px; width:385px; height:345px">
     <svg role="img" aria-label="Q3 revenue
-      chart" width="770" height="690">…</svg>
+      chart" width="385" height="345">…</svg>
   </figure>
 
 </aim-slide>`;
