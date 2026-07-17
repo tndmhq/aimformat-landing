@@ -15,11 +15,12 @@ const RATE_LIMIT = { limit: 5, windowMs: 10 * 60_000 }
 // ---------------------------------------------------------------------------
 // Email capture.
 //
-// In production, BUTTONDOWN_API_KEY (a Vercel env var) is REQUIRED and signups
-// are sent to Buttondown; without it the request fails loudly rather than
-// pretending to succeed. In local dev, with no key set, it falls back to
-// appending to data/subscribers.json so the form works out of the box.
-// Get the key at https://buttondown.com/settings/api
+// In production, BUTTONDOWN_API_KEY is REQUIRED and signups are sent to
+// Buttondown; without it the request fails loudly rather than pretending to
+// succeed. Deploy is Cloudflare Workers, so set the key as a Worker secret:
+// `npx wrangler secret put BUTTONDOWN_API_KEY`. In local dev, with no key
+// set, it falls back to appending to data/subscribers.json so the form works
+// out of the box. Get the key at https://buttondown.com/settings/api
 // ---------------------------------------------------------------------------
 
 const SOURCE = "aim-format-landing"
