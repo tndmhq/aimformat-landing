@@ -2,9 +2,9 @@
  * Shared Open Graph / social-preview card renderer ("The Standing Type").
  *
  * One letterpress plate per route: paper ground, an oxblood rule, a Fraunces
- * headline, a mono small-caps eyebrow, and a real track-changes proposal chip
- * (redline/greenline — the format's actual track-changes metaphor, never a
- * generic icon).
+ * headline, a quiet mono eyebrow (sentence case — tracked-out caps read as
+ * generated), and a real track-changes proposal chip (redline/greenline — the
+ * format's actual track-changes metaphor, never a generic icon).
  *
  * Consumed only by `opengraph-image.tsx` route handlers, which run on the
  * Node.js runtime, so reading the vendored fonts off disk is safe. Twitter
@@ -43,14 +43,12 @@ export type OgContent = {
 
 async function loadFonts() {
   const dir = join(process.cwd(), "public", "og-fonts");
-  const [fraunces, frauncesItalic, mono] = await Promise.all([
+  const [fraunces, mono] = await Promise.all([
     readFile(join(dir, "Fraunces-600.ttf")),
-    readFile(join(dir, "Fraunces-600-italic.ttf")),
     readFile(join(dir, "IBMPlexMono-500.ttf")),
   ]);
   return [
     { name: "Fraunces", data: fraunces, weight: 600 as const, style: "normal" as const },
-    { name: "Fraunces", data: frauncesItalic, weight: 600 as const, style: "italic" as const },
     { name: "IBM Plex Mono", data: mono, weight: 500 as const, style: "normal" as const },
   ];
 }
@@ -80,9 +78,8 @@ function ProposalChip() {
           display: "flex",
           fontFamily: "IBM Plex Mono",
           fontWeight: 500,
-          fontSize: 16,
-          letterSpacing: 4,
-          textTransform: "uppercase",
+          fontSize: 17,
+          letterSpacing: 0.5,
           color: INK_FAINT,
         }}
       >
@@ -171,8 +168,7 @@ function Card(c: OgContent) {
               fontFamily: "IBM Plex Mono",
               fontWeight: 500,
               fontSize: 25,
-              letterSpacing: 6,
-              textTransform: "uppercase",
+              letterSpacing: 1,
               color: OXBLOOD,
             }}
           >
@@ -225,8 +221,7 @@ function Card(c: OgContent) {
               fontFamily: "IBM Plex Mono",
               fontWeight: 500,
               fontSize: 20,
-              letterSpacing: 4,
-              textTransform: "uppercase",
+              letterSpacing: 0.5,
               color: INK_FAINT,
             }}
           >

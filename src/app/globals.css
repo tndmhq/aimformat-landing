@@ -193,13 +193,34 @@
 }
 
 @layer utilities {
-  /* Small-caps mono label — the typographic spine of the spec feel. */
+  /* Lowercase mono annotation — for technical labels: running heads, figure
+     captions, file names, meta lines. Deliberately NOT uppercase/tracked-out
+     (the tracked-caps eyebrow is a generated-site tell; see the workspace
+     ai-design-tells doc). */
   .label-mono {
     font-family: var(--font-mono), ui-monospace, monospace;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    font-size: 0.6875rem;
+    letter-spacing: 0.05em;
+    font-size: 0.72rem;
+    line-height: 1.4;
+  }
+
+  /* Small-caps serif eyebrow — chapter-heading voice for section openers.
+     Author the text in sentence case; the variant sets the small caps. */
+  .label-serif {
+    font-family: var(--font-display), Georgia, serif;
+    font-variant-caps: small-caps;
+    letter-spacing: 0.06em;
+    font-size: 1rem;
     line-height: 1.2;
+    font-weight: 500;
+  }
+
+  /* Colophon run — plain meta facts separated by interpuncts, not pill
+     badges. Apply to the flex container; children get a leading "·". */
+  .meta-run > * + *::before {
+    content: "·";
+    margin-right: 0.65em;
+    color: var(--ink-faint);
   }
 
   .font-display {

@@ -32,7 +32,7 @@ function Cell({ value, accent }: { value: string; accent?: boolean }) {
     );
   if (value === "—") return <span className="text-ink-faint">—</span>;
   return (
-    <span className="font-body text-[0.82rem] italic text-ink-soft">{value}</span>
+    <span className="font-body text-[0.82rem] text-ink-soft">{value}</span>
   );
 }
 

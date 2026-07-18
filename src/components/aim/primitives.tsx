@@ -58,8 +58,10 @@ export function Monogram({ className }: { className?: string }) {
   );
 }
 
-/* -------------------------------------------------------------- meta-pills */
+/* ------------------------------------------------------------ meta colophon */
 
+/** One fact in a colophon run (plain mono text; the parent `.meta-run`
+ *  container draws the interpunct separators — no pill chrome). */
 export function MetaPill({
   children,
   className,
@@ -68,12 +70,7 @@ export function MetaPill({
   className?: string;
 }) {
   return (
-    <span
-      className={cn(
-        "label-mono inline-flex items-center rounded-[2px] border border-ink/25 px-1.5 py-1 text-[0.6rem] text-ink-soft",
-        className,
-      )}
-    >
+    <span className={cn("label-mono text-ink-soft", className)}>
       {children}
     </span>
   );
@@ -91,10 +88,10 @@ export function RunningHead({
   return (
     <div className="relative z-10 border-y border-ink/20 bg-paper/30">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-1.5 sm:px-10">
-        <span className="label-mono small-caps text-ink-soft">
+        <span className="label-mono text-ink-soft">
           .aim · vol. 0.2 · {section}
         </span>
-        <span className="label-mono small-caps text-ink-soft">{folio}</span>
+        <span className="label-mono text-ink-soft">{folio}</span>
       </div>
     </div>
   );
@@ -122,7 +119,7 @@ export function SectionHeader({
   return (
     <header className={cn("relative", className)}>
       {eyebrow && (
-        <p className="label-mono mb-4 text-oxblood">{eyebrow}</p>
+        <p className="label-serif mb-4 text-oxblood">{eyebrow}</p>
       )}
       <div className="flex items-baseline gap-4">
         {n && (
@@ -147,7 +144,11 @@ export function SectionHeader({
           {lede}
         </p>
       )}
-      {pills && <div className="mt-6 flex flex-wrap gap-2">{pills}</div>}
+      {pills && (
+        <div className="meta-run mt-6 flex flex-wrap items-baseline gap-x-2.5 gap-y-1.5">
+          {pills}
+        </div>
+      )}
     </header>
   );
 }
@@ -257,7 +258,6 @@ export function InkStamp({ className }: { className?: string }) {
         className="font-display"
         fill="currentColor"
         fontSize="20"
-        fontStyle="italic"
       >
         .aim
       </text>
@@ -289,8 +289,9 @@ export function GitHubMark({ className }: { className?: string }) {
 
 /**
  * Link to the public repository. The secondary action to Subscribe.
- * - `button`: outlined plate — the hero's "view the source" companion CTA.
- * - `seal`: dashed pill, echoing the subscription slip.
+ * - `button`: underlined body-type link — the hero's companion to the press
+ *   button (deliberately not a second button shape).
+ * - `seal`: quiet mono link, echoing the running heads.
  * - `inline`: quiet mono link for the header and footer.
  */
 export function RepoLink({
@@ -313,7 +314,7 @@ export function RepoLink({
       <a
         {...external}
         className={cn(
-          "inline-flex cursor-pointer items-center justify-center gap-2 rounded-[3px] border border-ink/30 bg-paper/40 px-5 py-3 font-mono text-[0.78rem] uppercase tracking-[0.12em] text-ink-soft transition-colors hover:border-oxblood hover:text-oxblood focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-oxblood",
+          "inline-flex cursor-pointer items-center gap-2 py-2 font-body text-[1.05rem] text-ink underline decoration-ink/30 underline-offset-4 transition-colors hover:text-oxblood hover:decoration-oxblood focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-oxblood",
           className,
         )}
       >
@@ -328,12 +329,14 @@ export function RepoLink({
       <a
         {...external}
         className={cn(
-          "inline-flex select-none items-center gap-2 rounded-full border border-dashed border-ink/30 bg-paper/50 px-3.5 py-2 text-ink-soft transition-colors hover:border-oxblood hover:text-oxblood",
+          "inline-flex items-center gap-2 text-ink-soft transition-colors hover:text-oxblood",
           className,
         )}
       >
         <GitHubMark className="size-3.5" />
-        <span className="label-mono">{children ?? "Read the source on GitHub"}</span>
+        <span className="label-mono underline-offset-4 hover:underline">
+          {children ?? "Read the source on GitHub"}
+        </span>
       </a>
     );
   }

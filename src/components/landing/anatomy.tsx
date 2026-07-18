@@ -67,7 +67,7 @@ export function Anatomy() {
               <code className="font-mono text-[0.95rem] font-medium text-oxblood">
                 {el.term}
               </code>
-              <p className="mt-1.5 font-body text-[1.05rem] italic leading-snug text-ink">
+              <p className="mt-1.5 font-body text-[1.05rem] leading-snug text-ink">
                 {el.gloss}
               </p>
               <p className="mt-2 font-body text-[0.92rem] leading-snug text-ink-soft">
@@ -97,7 +97,7 @@ export function Anatomy() {
                   <code className="font-mono text-[0.78rem] text-oxblood">
                     {target}
                   </code>
-                  <p className="mt-1 font-body text-[0.95rem] italic leading-snug text-ink-soft">
+                  <p className="mt-1 font-body text-[0.95rem] leading-snug text-ink-soft">
                     {note}
                   </p>
                 </li>

@@ -4,7 +4,6 @@ import {
   SectionHeader,
 } from "@/components/aim/primitives";
 import { CodePlate } from "@/components/aim/code-plate";
-import { Badge } from "@/components/ui/badge";
 import { mcpSource } from "@/lib/snippets";
 
 const onRamps = [
@@ -78,15 +77,11 @@ export function Agents() {
               <p className="label-mono mb-3 text-ink-soft">
                 Works with the clients you already run
               </p>
-              <div className="flex flex-wrap gap-2">
+              <div className="meta-run flex flex-wrap items-baseline gap-x-2.5 gap-y-1.5">
                 {clients.map((c) => (
-                  <Badge
-                    key={c}
-                    variant="outline"
-                    className="label-mono rounded-[2px] border-ink/25 px-2.5 py-1 text-ink-soft"
-                  >
+                  <span key={c} className="label-mono text-ink-soft">
                     {c}
-                  </Badge>
+                  </span>
                 ))}
               </div>
             </div>

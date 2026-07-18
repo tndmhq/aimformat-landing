@@ -62,7 +62,7 @@ export function ThreeLaneFigure() {
                 <span className="greenline">thirty (30) business days</span>
               </p>
             ) : (
-              <p className="font-body text-[0.86rem] italic leading-relaxed text-ink-soft">
+              <p className="font-body text-[0.86rem] leading-relaxed text-ink-soft">
                 {status === "accepted"
                   ? "folded into lane I"
                   : "withdrawn, unapplied"}
@@ -103,7 +103,7 @@ export function ThreeLaneFigure() {
         />
       </details>
 
-      <figcaption className="mt-4 font-body text-[0.9rem] italic leading-snug text-ink-soft">
+      <figcaption className="mt-4 font-body text-[0.9rem] leading-snug text-ink-soft">
         {status === "pending" &&
           "Accept the proposal and lane II folds into lane I; the decision is recorded in the file's own history."}
         {status === "accepted" &&

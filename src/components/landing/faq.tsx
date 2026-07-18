@@ -35,9 +35,7 @@ export function Faq() {
               >
                 <AccordionTrigger className="py-4 text-left hover:no-underline">
                   <span className="flex items-baseline gap-3">
-                    <span className="label-mono text-oxblood">
-                      Q{String(i + 1).padStart(2, "0")}
-                    </span>
+                    <span className="label-mono text-oxblood">{i + 1}.</span>
                     <span className="font-display text-[1.2rem] font-medium text-ink">
                       {item.q}
                     </span>

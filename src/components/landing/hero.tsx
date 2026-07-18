@@ -31,7 +31,7 @@ export function Hero() {
         <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-[1.04fr_0.96fr] lg:gap-12">
           {/* ------------------------------------------------ the claim */}
           <div>
-            <p className="label-mono text-oxblood">
+            <p className="label-serif text-oxblood">
               An open document format · by Tndm
             </p>
 
@@ -51,21 +51,20 @@ export function Hero() {
             <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-4">
               <PressButton href="#cta">
                 Subscribe for the launch letter
-                <span aria-hidden>→</span>
               </PressButton>
               <RepoLink variant="button">View the source</RepoLink>
             </div>
 
-            <p className="mt-5 max-w-md font-body text-[0.95rem] italic leading-snug text-ink-soft">
+            <p className="mt-5 max-w-md font-body text-[0.95rem] leading-snug text-ink-soft">
               The format is open source on GitHub, MIT-licensed. Launch news
               lands here first: a few letters a year, no more.
             </p>
 
-            <div className="mt-7 flex flex-wrap gap-2">
+            <div className="meta-run mt-7 flex flex-wrap items-baseline gap-x-2.5 gap-y-1.5">
               <MetaPill>MIT</MetaPill>
               <MetaPill>v0.2</MetaPill>
               <MetaPill>HTML5 + Tailwind</MetaPill>
-              <MetaPill>stdio · MCP</MetaPill>
+              <MetaPill>stdio + MCP</MetaPill>
             </div>
           </div>
 

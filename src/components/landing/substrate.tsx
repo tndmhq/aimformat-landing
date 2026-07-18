@@ -48,7 +48,7 @@ export function Substrate() {
             in any browser for free, with no viewer to ship and no vendor to
             trust.
           </p>
-          <p className="border-l border-oxblood/35 pl-4 font-body text-[0.95rem] italic leading-snug text-ink-soft">
+          <p className="border-l border-oxblood/35 pl-4 font-body text-[0.95rem] leading-snug text-ink-soft">
             We know the tradeoff. HTML with utility classes is more verbose than
             a packed binary. We pay those tokens on purpose, and buy
             model-familiarity and free, deterministic rendering with them.
@@ -69,7 +69,7 @@ export function Substrate() {
                 copy={false}
                 bodyClassName="text-[0.72rem] min-h-[12rem]"
               />
-              <figcaption className="mt-3 font-body text-[0.92rem] italic leading-snug text-ink-soft">
+              <figcaption className="mt-3 font-body text-[0.92rem] leading-snug text-ink-soft">
                 {p.verdict}
               </figcaption>
             </figure>

@@ -123,7 +123,7 @@ export function RedlineDemo({
         )}
         <span
           className={cn(
-            "font-body text-[0.85rem] italic",
+            "font-body text-[0.85rem]",
             status === "pending" ? "text-oxblood" : "text-ink-soft",
           )}
         >

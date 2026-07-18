@@ -13,7 +13,7 @@ export function Manifesto() {
     <section id="format" className="relative scroll-mt-16">
       <RunningHead section="§1" folio="The Thesis" />
       <Container className="py-20 sm:py-24">
-        <p className="label-mono mb-6 text-center text-oxblood">
+        <p className="label-serif mb-6 text-center text-oxblood">
           §1 · The Thesis
         </p>
         <h2 className="mx-auto mb-10 max-w-2xl text-center font-display text-[clamp(1.8rem,3.2vw,2.4rem)] font-medium leading-[1.15] tracking-[-0.01em] text-ink text-balance">
@@ -42,7 +42,7 @@ export function Manifesto() {
 
           {/* the builder's bill — the toll every AI-document system pays today */}
           <div className="mt-12 border border-ink/20 bg-surface/60 p-6 sm:p-8">
-            <p className="label-mono text-oxblood">
+            <p className="label-serif text-oxblood">
               The builder&rsquo;s bill
             </p>
             <p className="mt-3 font-body text-[1.1rem] leading-[1.65] text-ink text-pretty">
@@ -63,7 +63,7 @@ export function Manifesto() {
                   className="flex gap-3.5 border-t border-ink/15 pt-2.5 font-body text-[1.02rem] leading-snug text-ink/85"
                 >
                   <span className="label-mono mt-1 shrink-0 text-oxblood">
-                    {String(i + 1).padStart(2, "0")}
+                    {i + 1}.
                   </span>
                   {step}
                 </li>

@@ -51,7 +51,7 @@ export function Newsletter() {
       <RunningHead section="Off the Press" folio="Subscribe" />
       <Container className="py-20 sm:py-24">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="label-mono text-oxblood">Off the press</p>
+          <p className="label-serif text-oxblood">Off the press</p>
           <h2 className="mt-4 font-display text-[clamp(2rem,4vw,3rem)] font-medium leading-[1.08] tracking-[-0.01em] text-ink text-balance">
             Subscribe to the press notices
           </h2>
@@ -83,7 +83,7 @@ export function Newsletter() {
                   <Check className="size-5" aria-hidden />
                 </span>
                 <p className="font-display text-xl text-ink">{message}</p>
-                <p className="font-body text-[0.92rem] italic text-ink-soft">
+                <p className="font-body text-[0.92rem] text-ink-soft">
                   Click the confirmation note we just sent, and the next thing
                   you hear from us is the launch.
                 </p>
@@ -128,13 +128,13 @@ export function Newsletter() {
                 </label>
                 {status === "error" && (
                   <p
-                    className="mt-3 font-body text-[0.9rem] italic text-redline"
+                    className="mt-3 font-body text-[0.9rem] text-redline"
                     role="alert"
                   >
                     {message}
                   </p>
                 )}
-                <p className="mt-4 font-body text-[0.88rem] italic leading-snug text-ink-soft">
+                <p className="mt-4 font-body text-[0.88rem] leading-snug text-ink-soft">
                   Launch notices arrive here first. No spam, no sharing,
                   unsubscribe in one click.
                 </p>
@@ -144,7 +144,7 @@ export function Newsletter() {
 
           <div className="mt-7 flex flex-col items-center gap-2">
             <RepoLink variant="seal" />
-            <p className="font-body text-[0.85rem] italic text-ink-faint">
+            <p className="font-body text-[0.85rem] text-ink-faint">
               The format is open source under the MIT License: read it, fork it,
               build on it today.
             </p>

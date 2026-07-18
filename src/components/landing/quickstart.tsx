@@ -69,7 +69,6 @@ export function Quickstart() {
                     className="font-display text-[1.05rem] font-medium text-ink underline-offset-4 transition-colors hover:text-oxblood hover:underline"
                   >
                     {r.label}
-                    <span aria-hidden> &rarr;</span>
                   </a>
                   <p className="mt-1 font-body text-[0.92rem] leading-snug text-ink-soft">
                     {r.note}

@@ -2,10 +2,11 @@ import type { ComponentProps, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 const pressButtonClasses =
-  "inline-flex cursor-pointer items-center justify-center gap-2 rounded-[3px] bg-oxblood px-5 py-3 font-mono text-[0.78rem] uppercase tracking-[0.12em] text-[#fbf6ea] shadow-[inset_0_1px_0_rgba(255,255,255,0.16),0_10px_22px_-12px_rgba(90,31,26,0.75)] transition-colors hover:bg-oxblood-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-oxblood disabled:pointer-events-none disabled:opacity-60";
+  "inline-flex cursor-pointer items-center justify-center gap-2 rounded-[3px] bg-oxblood px-5 py-2.5 font-display text-[0.98rem] font-medium tracking-[0.01em] text-[#fbf6ea] shadow-[inset_0_1px_0_rgba(255,255,255,0.16),0_10px_22px_-12px_rgba(90,31,26,0.75)] transition-colors hover:bg-oxblood-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-oxblood disabled:pointer-events-none disabled:opacity-60";
 
 /**
- * The page's one primary action, set as inked type on an oxblood plate.
+ * The page's one primary action: a bookplate — display type in sentence case
+ * on an oxblood plate. (Not tracked-caps mono; that reads as generated.)
  * Renders an anchor when given `href`, a real button otherwise.
  */
 export function PressButton({

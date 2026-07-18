@@ -61,7 +61,7 @@ function SlideArtifact() {
           </span>
         </div>
       </div>
-      <figcaption className="mt-3 font-body text-[0.92rem] italic leading-snug text-ink-soft">
+      <figcaption className="mt-3 font-body text-[0.92rem] leading-snug text-ink-soft">
         Fig. 5 · An aim-slide rendered to scale, with faint coordinate rulers.
         Real HTML, real coordinates.
       </figcaption>
