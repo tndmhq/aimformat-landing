@@ -30,6 +30,10 @@ workspace (`tndm-workspace/knowledge/`).
   format decisions in `aimformat`.
 - **Agent-friendliness:** suggest repo improvements for future agents
   proactively.
+- **No change is off the table: prefer the right design over backward-compatible
+  workarounds.** This project is early-stage: existing structures and internal
+  APIs are not constraints. When requirements expose a weak design, refactor or
+  replace it rather than add shims, parallel paths, or hacks.
 
 <!-- BEGIN:nextjs-agent-rules -->
 # This is NOT the Next.js you know
