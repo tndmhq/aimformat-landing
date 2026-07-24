@@ -33,7 +33,7 @@ export function SiteHeader() {
             <Link
               key={l.href}
               href={l.href}
-              className="label-mono text-ink-soft transition-colors hover:text-oxblood"
+              className="label-mono text-ink-soft transition-colors hover:text-accent"
             >
               {l.label}
             </Link>
@@ -44,7 +44,7 @@ export function SiteHeader() {
           <RepoLink className="hidden md:inline-flex" />
           <Link
             href="/#cta"
-            className="label-mono text-oxblood underline-offset-4 hover:underline"
+            className="label-mono text-accent underline-offset-4 hover:underline"
           >
             Subscribe
           </Link>

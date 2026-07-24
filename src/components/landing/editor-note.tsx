@@ -17,7 +17,7 @@ export function EditorNote() {
             Want it?{" "}
             <a
               href="#cta"
-              className="text-oxblood underline-offset-4 hover:underline"
+              className="text-accent underline-offset-4 hover:underline"
             >
               Say so when you subscribe
             </a>

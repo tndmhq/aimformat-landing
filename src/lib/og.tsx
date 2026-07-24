@@ -1,10 +1,12 @@
 /**
  * Shared Open Graph / social-preview card renderer ("The Standing Type").
  *
- * One letterpress plate per route: paper ground, an oxblood rule, a Fraunces
- * headline, a quiet mono eyebrow (sentence case — tracked-out caps read as
- * generated), and a real track-changes proposal chip (redline/greenline — the
- * format's actual track-changes metaphor, never a generic icon).
+ * One letterpress plate per route: paper ground, an accent-ink rule, a
+ * Fraunces headline, a quiet mono eyebrow (sentence case — tracked-out caps
+ * read as generated), and a real track-changes proposal chip (redline /
+ * greenline — the format's actual track-changes metaphor, never a generic
+ * icon). Two-ink rules apply here too: the wordmark takes the rubric ink as
+ * a standalone mark; no text run ever mixes inks.
  *
  * Consumed only by `opengraph-image.tsx` route handlers, which run on the
  * Node.js runtime, so reading the vendored fonts off disk is safe. Twitter
@@ -14,22 +16,25 @@
 import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
+import { PALETTE } from "@/lib/palette";
 
 export const OG_SIZE = { width: 1200, height: 630 };
 export const OG_CONTENT_TYPE = "image/png";
 
-// Standing Type palette (mirrors src/app/globals.css).
-const PAPER = "#f4ecdd";
-const SURFACE = "#fbf6ea";
-const INK = "#211a12";
-const INK_SOFT = "#6b5d49";
-const INK_FAINT = "#7a684a";
-const OXBLOOD = "#7b2e26";
-const RULE = "#d8cbb2";
-const REDLINE = "#a12f23";
-const GREENLINE = "#3e6b3a";
-const REDLINE_WASH = "#f3ded9";
-const GREENLINE_WASH = "#e2ead8";
+const {
+  paper: PAPER,
+  surface: SURFACE,
+  ink: INK,
+  inkSoft: INK_SOFT,
+  inkFaint: INK_FAINT,
+  accent: ACCENT,
+  rubric: RUBRIC,
+  rule: RULE,
+  redline: REDLINE,
+  greenline: GREENLINE,
+  redlineWash: REDLINE_WASH,
+  greenlineWash: GREENLINE_WASH,
+} = PALETTE;
 
 export type OgContent = {
   eyebrow: string;
@@ -137,7 +142,7 @@ function Card(c: OgContent) {
       }}
     >
       {/* letterpress rule */}
-      <div style={{ display: "flex", width: "100%", height: 14, backgroundColor: OXBLOOD }} />
+      <div style={{ display: "flex", width: "100%", height: 14, backgroundColor: ACCENT }} />
       {/* plate frame */}
       <div
         style={{
@@ -169,12 +174,12 @@ function Card(c: OgContent) {
               fontWeight: 500,
               fontSize: 25,
               letterSpacing: 1,
-              color: OXBLOOD,
+              color: ACCENT,
             }}
           >
             {c.eyebrow}
           </div>
-          <div style={{ display: "flex", fontFamily: "Fraunces", fontWeight: 600, fontSize: 34, color: OXBLOOD }}>
+          <div style={{ display: "flex", fontFamily: "Fraunces", fontWeight: 600, fontSize: 34, color: RUBRIC }}>
             {c.wordmark}
           </div>
         </div>

@@ -20,7 +20,7 @@ export function ThreeLanes() {
         <div className="mt-12 grid grid-cols-1 items-start gap-10 lg:grid-cols-[1fr_0.92fr]">
           {/* prose + lane definitions */}
           <div>
-            <p className="measure font-body text-[1.1rem] leading-[1.74] text-ink/85 text-pretty">
+            <p className="measure font-body text-[1.1rem] leading-[1.74] text-ink text-pretty">
               The agent does not rewrite your file and leave you to guess what
               moved. It reads the current document, writes a proposal beside the
               chunk it wants to change, and records that proposal as pending
@@ -49,7 +49,7 @@ export function ThreeLanes() {
                   key={row.k}
                   className="grid grid-cols-[auto_1fr] gap-x-4 border-t border-ink/15 pt-3"
                 >
-                  <dt className="label-mono whitespace-nowrap text-oxblood">
+                  <dt className="label-mono whitespace-nowrap text-accent">
                     {row.k}
                   </dt>
                   <dd className="font-body text-[0.98rem] leading-snug text-ink-soft">

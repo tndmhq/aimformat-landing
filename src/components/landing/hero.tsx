@@ -31,18 +31,17 @@ export function Hero() {
         <div className="grid grid-cols-1 items-center gap-14 lg:grid-cols-[1.04fr_0.96fr] lg:gap-12">
           {/* ------------------------------------------------ the claim */}
           <div>
-            <p className="label-serif text-oxblood">
+            <p className="label-serif text-rubric">
               An open document format · by Tndm
             </p>
 
             <h1 className="mt-6 font-display text-[clamp(2.6rem,5.6vw,4.9rem)] font-normal leading-[1.03] tracking-[-0.02em] text-ink text-balance">
-              <span className="text-oxblood">.</span>aim: the open format for
-              documents humans and AI write together
+              .aim: the open format for documents humans and AI write together
             </h1>
 
-            <p className="measure mt-7 font-body text-[1.24rem] leading-[1.65] text-ink/85 text-pretty">
+            <p className="measure mt-7 font-body text-[1.24rem] leading-[1.65] text-ink text-pretty">
               There is no Markdown for layout-rich, AI-native documents. So we
-              set one in type. <span className="text-oxblood">.</span>aim is
+              set one in type. .aim is
               valid HTML5 with a Tailwind subset, extended with stable chunks,
               slides, and track-changes that live in the file itself. It
               renders in any browser, because it is the page.
@@ -62,7 +61,7 @@ export function Hero() {
 
             <div className="meta-run mt-7 flex flex-wrap items-baseline gap-x-2.5 gap-y-1.5">
               <MetaPill>MIT</MetaPill>
-              <MetaPill>v0.2</MetaPill>
+              <MetaPill>v0.3</MetaPill>
               <MetaPill>HTML5 + Tailwind</MetaPill>
               <MetaPill>stdio + MCP</MetaPill>
             </div>
@@ -90,12 +89,12 @@ export function Hero() {
               runningHead="Proposal · §2 Scope of Work · folio 4"
               className="relative z-10"
             >
-              <p className="font-body text-[0.95rem] leading-[1.8] text-ink/80">
+              <p className="font-body text-[0.95rem] leading-[1.8] text-ink/90">
                 The parties agree to the terms set forth herein. Delivery,
                 acceptance, and payment proceed as follows.
               </p>
 
-              <div className="my-4 h-px w-full bg-oxblood/25" />
+              <div className="my-4 h-px w-full bg-accent/25" />
 
               <RedlineDemo proseClassName="text-[1.02rem]" />
 

@@ -36,13 +36,12 @@ export function Quickstart() {
           eyebrow="Off the shelf"
           title={
             <>
-              It&rsquo;s open. Install it in{" "}
-              <span className="text-oxblood">one line</span>.
+              It&rsquo;s open. Install it in one line.
             </>
           }
           lede={
             <>
-              The <span className="text-oxblood">.</span>aim format is
+              The .aim format is
               MIT-licensed and published to PyPI: a typed Python SDK and
               the <code className="rounded-[2px] bg-ink/[0.06] px-1 py-0.5 font-mono text-[0.85em] text-ink">aim</code>{" "}
               CLI, zero runtime dependencies. Nothing hosted, no account,
@@ -53,8 +52,8 @@ export function Quickstart() {
 
         <div className="mt-12 grid grid-cols-1 gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
           <div>
-            <p className="measure font-body text-[1.1rem] leading-[1.74] text-ink/85 text-pretty">
-              A plain <span className="text-oxblood">.</span>aim file is valid
+            <p className="measure font-body text-[1.1rem] leading-[1.74] text-ink text-pretty">
+              A plain .aim file is valid
               HTML, so any model can read one with no tooling at all. The
               package adds the <span className="text-ink">aim</span> CLI, a
               dependency-free SDK, and a local MCP server for chunk-level
@@ -66,7 +65,7 @@ export function Quickstart() {
                 <li key={r.label} className="border-t border-ink/15 pt-3">
                   <a
                     href={r.href}
-                    className="font-display text-[1.05rem] font-medium text-ink underline-offset-4 transition-colors hover:text-oxblood hover:underline"
+                    className="font-display text-[1.05rem] font-medium text-ink underline-offset-4 transition-colors hover:text-accent hover:underline"
                   >
                     {r.label}
                   </a>

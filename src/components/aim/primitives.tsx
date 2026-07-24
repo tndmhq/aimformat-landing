@@ -30,16 +30,12 @@ export function Container({
 
 /* --------------------------------------------------------------- wordmarks */
 
-export function AimWordmark({
-  className,
-  dotClassName,
-}: {
-  className?: string;
-  dotClassName?: string;
-}) {
+/** Single-ink by rule: the wordmark never mixes colors within the word.
+ *  It reads as one standalone mark in the leading press ink. */
+export function AimWordmark({ className }: { className?: string }) {
   return (
-    <span className={cn("font-display tracking-tight", className)}>
-      <span className={cn("text-oxblood", dotClassName)}>.</span>aim
+    <span className={cn("font-display tracking-tight text-accent", className)}>
+      .aim
     </span>
   );
 }
@@ -89,7 +85,7 @@ export function RunningHead({
     <div className="relative z-10 border-y border-ink/20 bg-paper/30">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-1.5 sm:px-10">
         <span className="label-mono text-ink-soft">
-          .aim · vol. 0.2 · {section}
+          .aim · vol. 0.3 · {section}
         </span>
         <span className="label-mono text-ink-soft">{folio}</span>
       </div>
@@ -119,12 +115,14 @@ export function SectionHeader({
   return (
     <header className={cn("relative", className)}>
       {eyebrow && (
-        <p className="label-serif mb-4 text-oxblood">{eyebrow}</p>
+        <p className="label-serif mb-4 text-rubric">{eyebrow}</p>
       )}
-      <div className="flex items-baseline gap-4">
+      {/* Headline rule: the title asserts itself with a hairline in its own
+          ink, not a text-decoration underline (that reads as a link). */}
+      <div className="flex items-baseline gap-4 border-b border-accent/30 pb-4">
         {n && (
           <span
-            className="font-display text-[1.4rem] font-medium leading-none text-oxblood small-caps"
+            className="font-display text-[1.4rem] font-medium leading-none text-rubric small-caps"
             aria-hidden
           >
             {n}
@@ -132,7 +130,7 @@ export function SectionHeader({
         )}
         <h2
           className={cn(
-            "font-display text-[clamp(1.9rem,3.4vw,2.5rem)] font-medium leading-[1.1] tracking-[-0.01em] text-ink text-balance",
+            "font-display text-[clamp(1.9rem,3.4vw,2.5rem)] font-medium leading-[1.1] tracking-[-0.01em] text-accent text-balance",
             titleClassName,
           )}
         >
@@ -140,7 +138,7 @@ export function SectionHeader({
         </h2>
       </div>
       {lede && (
-        <p className="measure mt-5 font-body text-[1.18rem] leading-[1.72] text-ink/85 text-pretty">
+        <p className="measure mt-5 font-body text-[1.18rem] leading-[1.72] text-ink text-pretty">
           {lede}
         </p>
       )}
@@ -162,7 +160,7 @@ export function Fleuron({ className }: { className?: string }) {
       aria-hidden
     >
       <span className="h-px w-16 bg-ink/20" />
-      <span className="font-display text-oxblood/70">❦</span>
+      <span className="font-display text-accent/70">❦</span>
       <span className="h-px w-16 bg-ink/20" />
     </div>
   );
@@ -182,9 +180,9 @@ export function Pressmark({ className }: { className?: string }) {
       <path
         d="M24 14c5 4 5 16 0 20-5-4-5-16 0-20Z"
         strokeWidth="1"
-        className="text-oxblood"
+        className="text-accent"
       />
-      <circle cx="24" cy="24" r="2" className="fill-oxblood" stroke="none" />
+      <circle cx="24" cy="24" r="2" className="fill-accent" stroke="none" />
     </svg>
   );
 }
@@ -270,7 +268,7 @@ export function InkStamp({ className }: { className?: string }) {
         fontSize="8.5"
         letterSpacing="2"
       >
-        v0.2
+        v0.3
       </text>
     </svg>
   );
@@ -314,7 +312,7 @@ export function RepoLink({
       <a
         {...external}
         className={cn(
-          "inline-flex cursor-pointer items-center gap-2 py-2 font-body text-[1.05rem] text-ink underline decoration-ink/30 underline-offset-4 transition-colors hover:text-oxblood hover:decoration-oxblood focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-oxblood",
+          "inline-flex cursor-pointer items-center gap-2 py-2 font-body text-[1.05rem] text-ink underline decoration-ink/30 underline-offset-4 transition-colors hover:text-accent hover:decoration-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
           className,
         )}
       >
@@ -329,7 +327,7 @@ export function RepoLink({
       <a
         {...external}
         className={cn(
-          "inline-flex items-center gap-2 text-ink-soft transition-colors hover:text-oxblood",
+          "inline-flex items-center gap-2 text-ink-soft transition-colors hover:text-accent",
           className,
         )}
       >
@@ -345,7 +343,7 @@ export function RepoLink({
     <a
       {...external}
       className={cn(
-        "label-mono inline-flex items-center gap-1.5 text-ink-soft transition-colors hover:text-oxblood",
+        "label-mono inline-flex items-center gap-1.5 text-ink-soft transition-colors hover:text-accent",
         className,
       )}
     >

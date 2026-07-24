@@ -2,57 +2,85 @@
 @import "tw-animate-css";
 
 /*
-  "The Standing Type" — a fine-press manuscript theme for the .aim format.
-  One disciplined oxblood accent. Redline/greenline are reserved exclusively
-  for the track-changes metaphor, never for generic UI.
+  "The Standing Type" — a fine-press manuscript theme for the .aim format,
+  printed as a TWO-INK press run ("Spring run" cut):
+
+    - --accent  (spring hunter green) is the leading ink: display type,
+      the primary action, focus, selection.
+    - --rubric  (madder red) is the second ink: section eyebrows and other
+      standalone marks. Named for rubrication — it marks openings, it never
+      carries body text or long-form copy.
+
+  Hard rules for this palette (maintainer-set, see workspace design-rules):
+    1. ONE INK PER TEXT RUN. Never switch color inside a sentence, headline,
+       or wordmark — inks separate by element, not mid-text.
+    2. Redline/greenline stay reserved for the track-changes metaphor, never
+       generic UI. Redline is brighter/scarleter than rubric and greenline is
+       leafier/oliver than accent so the metaphor never blurs into the brand.
+
+  To try a different palette: change the hex values in this block and their
+  mirror in src/lib/palette.ts (TS consumers: OG cards, themeColor). Roles,
+  not colors, are referenced everywhere else — no component names a hue.
 */
 
 :root {
   --radius: 0.5rem;
 
-  /* Paper palette */
-  --paper: #f4ecdd;
-  --paper-deep: #ece1cd;
-  --surface: #fbf6ea;
-  --ink: #211a12;
-  --ink-soft: #6b5d49;
-  /* Darkened from #9b8c73 to clear WCAG AA (≥4.5:1) on the paper background. */
-  --ink-faint: #7a684a;
-  --oxblood: #7b2e26;
-  --oxblood-deep: #5a1f1a;
-  --rule: #d8cbb2;
-  --rule-soft: #e3d8c1;
-  --code-panel: #241e16;
-  --code-panel-soft: #2e261b;
-  --code-text: #e7dcc6;
-  --code-comment: #9c8e72;
-  --code-accent: #d98e6a;
-  --code-string: #a9b98a;
-  --redline: #a12f23;
-  --greenline: #3e6b3a;
-  --sepia: #c9b68f;
-  --stamp: #8a3a2e;
-  --highlight: #ede0c2;
+  /* Paper */
+  --paper: #faf4e3;
+  --paper-deep: #f1e8cf;
+  --surface: #fefaf0;
 
-  /* shadcn/ui token mapping onto the paper palette */
+  /* Text inks */
+  --ink: #262219;
+  --ink-soft: #59513c;
+  /* Dark enough to clear WCAG AA (≥4.5:1) on both --paper and --paper-deep. */
+  --ink-faint: #665d49;
+
+  /* The two press inks */
+  --accent: #23684a;
+  --accent-deep: #1a4f37;
+  --rubric: #96382a;
+  --rubric-deep: #7b2e26;
+
+  /* Rules and furniture */
+  --rule: #dbd1b6;
+  --rule-soft: #e6dcc2;
+  --sepia: #c6b992;
+  --stamp: #8a3a2e;
+  --highlight: #f3e9c6;
+
+  /* Dark code plates (green-black, warm text) */
+  --code-panel: #1c2420;
+  --code-panel-soft: #253029;
+  --code-text: #e8e3d3;
+  --code-comment: #98937e;
+  --code-accent: #7db89c;
+  --code-string: #d99a83;
+
+  /* Track-changes inks — reserved, see header rule 2 */
+  --redline: #a12f23;
+  --greenline: #4a6b33;
+
+  /* shadcn/ui token mapping onto the paper palette. (No --accent /
+     --accent-foreground pair here: the palette owns the `accent` name, and
+     nothing in src/components/ui consumes the shadcn accent slot.) */
   --background: var(--paper);
   --foreground: var(--ink);
   --card: var(--surface);
   --card-foreground: var(--ink);
   --popover: var(--surface);
   --popover-foreground: var(--ink);
-  --primary: var(--oxblood);
-  --primary-foreground: #fbf6ea;
+  --primary: var(--accent);
+  --primary-foreground: var(--surface);
   --secondary: var(--highlight);
   --secondary-foreground: var(--ink);
   --muted: var(--paper-deep);
   --muted-foreground: var(--ink-soft);
-  --accent: var(--highlight);
-  --accent-foreground: var(--oxblood-deep);
   --destructive: var(--redline);
   --border: var(--rule);
   --input: var(--rule);
-  --ring: var(--oxblood);
+  --ring: var(--accent);
 }
 
 @theme inline {
@@ -69,8 +97,6 @@
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
   --color-border: var(--border);
   --color-input: var(--input);
@@ -83,8 +109,10 @@
   --color-ink: var(--ink);
   --color-ink-soft: var(--ink-soft);
   --color-ink-faint: var(--ink-faint);
-  --color-oxblood: var(--oxblood);
-  --color-oxblood-deep: var(--oxblood-deep);
+  --color-accent: var(--accent);
+  --color-accent-deep: var(--accent-deep);
+  --color-rubric: var(--rubric);
+  --color-rubric-deep: var(--rubric-deep);
   --color-rule: var(--rule);
   --color-rule-soft: var(--rule-soft);
   --color-code-panel: var(--code-panel);
@@ -146,7 +174,7 @@
     font-feature-settings: "liga" 1, "onum" 1, "kern" 1;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
-    /* Laid-paper substrate: faint horizontal laid lines over warm cream. */
+    /* Laid-paper substrate: faint horizontal laid lines over morning cream. */
     background-image: repeating-linear-gradient(
       to bottom,
       transparent 0,
@@ -169,8 +197,8 @@
   }
 
   ::selection {
-    background-color: color-mix(in oklab, var(--oxblood) 22%, transparent);
-    color: var(--oxblood-deep);
+    background-color: color-mix(in oklab, var(--accent) 22%, transparent);
+    color: var(--accent-deep);
   }
 
   ::-webkit-scrollbar {
@@ -187,7 +215,7 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--oxblood);
+    outline: 2px solid var(--accent);
     outline-offset: 2px;
   }
 }
@@ -251,10 +279,12 @@
     max-width: 54ch;
   }
 
-  /* True CSS drop cap for the opening manifesto. */
+  /* True CSS drop cap for the opening manifesto. Same ink as its sentence:
+     the one-ink-per-text-run rule (see palette header) applies to initials
+     too — the drop cap is size, not a second color. */
   .dropcap::first-letter {
     font-family: var(--font-display), Georgia, serif;
-    color: var(--oxblood);
+    color: var(--ink);
     float: left;
     font-weight: 420;
     font-size: 4.4em;
@@ -291,14 +321,15 @@
     mask-repeat: no-repeat, no-repeat;
   }
 
+  /* Shadow ink follows the paper's own hue — warm brown-black on cream. */
   .shadow-leaf {
     box-shadow:
-      0 1px 0 rgba(58, 40, 20, 0.04),
-      0 18px 40px -24px rgba(58, 40, 20, 0.35),
-      0 4px 12px -8px rgba(58, 40, 20, 0.2);
+      0 1px 0 rgba(56, 46, 24, 0.04),
+      0 18px 40px -24px rgba(56, 46, 24, 0.35),
+      0 4px 12px -8px rgba(56, 46, 24, 0.2);
   }
   .shadow-plate {
-    box-shadow: 0 14px 36px -22px rgba(20, 14, 6, 0.6);
+    box-shadow: 0 14px 36px -22px rgba(30, 24, 12, 0.6);
   }
 }
 

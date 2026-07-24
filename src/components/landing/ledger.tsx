@@ -26,7 +26,7 @@ const rows: {
 function Cell({ value, accent }: { value: string; accent?: boolean }) {
   if (value === "✓")
     return (
-      <span className={cn("text-[1.05rem]", accent ? "text-oxblood" : "text-ink")}>
+      <span className={cn("text-[1.05rem]", accent ? "text-accent" : "text-ink")}>
         ✓
       </span>
     );
@@ -79,17 +79,11 @@ export function Ledger() {
                     className={cn(
                       "py-3.5 pr-4 text-left font-display text-[1.15rem] font-medium",
                       row.highlight
-                        ? "border-l-2 border-oxblood pl-3 text-ink"
+                        ? "border-l-2 border-accent pl-3 text-ink"
                         : "pl-[2px] text-ink",
                     )}
                   >
-                    {row.name === ".aim" ? (
-                      <>
-                        <span className="text-oxblood">.</span>aim
-                      </>
-                    ) : (
-                      row.name
-                    )}
+                    {row.name}
                   </th>
                   {row.cells.map((value, i) => (
                     <td key={i} className="px-3 py-3.5 text-center">

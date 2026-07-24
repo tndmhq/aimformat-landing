@@ -1,8 +1,10 @@
 import { Container, RunningHead } from "@/components/aim/primitives";
 
+/* Footnote markers are apparatus, not ink: they sit inside sentences, so per
+   the one-ink-per-text-run rule they stay a neutral gray, never a press ink. */
 function Sup({ children }: { children: React.ReactNode }) {
   return (
-    <sup className="ml-0.5 align-super font-mono text-[0.58em] text-oxblood">
+    <sup className="ml-0.5 align-super font-mono text-[0.58em] text-ink-faint">
       {children}
     </sup>
   );
@@ -13,10 +15,10 @@ export function Manifesto() {
     <section id="format" className="relative scroll-mt-16">
       <RunningHead section="§1" folio="The Thesis" />
       <Container className="py-20 sm:py-24">
-        <p className="label-serif mb-6 text-center text-oxblood">
+        <p className="label-serif mb-6 text-center text-rubric">
           §1 · The Thesis
         </p>
-        <h2 className="mx-auto mb-10 max-w-2xl text-center font-display text-[clamp(1.8rem,3.2vw,2.4rem)] font-medium leading-[1.15] tracking-[-0.01em] text-ink text-balance">
+        <h2 className="mx-auto mb-10 max-w-2xl border-b border-accent/30 pb-4 text-center font-display text-[clamp(1.8rem,3.2vw,2.4rem)] font-medium leading-[1.15] tracking-[-0.01em] text-accent text-balance">
           The format that does not exist yet
         </h2>
 
@@ -33,7 +35,7 @@ export function Manifesto() {
             survives.
           </p>
           <p className="mt-5 font-body text-[1.28rem] leading-[1.72] text-ink text-pretty">
-            <span className="text-oxblood">.</span>aim closes that gap. It is one
+            .aim closes that gap. It is one
             open file a person and an agent can hold at the same time, where
             every change is proposed, attributed, and tracked, and where the
             styled artifact and its source are the same object: not a
@@ -42,7 +44,7 @@ export function Manifesto() {
 
           {/* the builder's bill — the toll every AI-document system pays today */}
           <div className="mt-12 border border-ink/20 bg-surface/60 p-6 sm:p-8">
-            <p className="label-serif text-oxblood">
+            <p className="label-serif text-rubric">
               The builder&rsquo;s bill
             </p>
             <p className="mt-3 font-body text-[1.1rem] leading-[1.65] text-ink text-pretty">
@@ -60,9 +62,9 @@ export function Manifesto() {
               ].map((step, i) => (
                 <li
                   key={i}
-                  className="flex gap-3.5 border-t border-ink/15 pt-2.5 font-body text-[1.02rem] leading-snug text-ink/85"
+                  className="flex gap-3.5 border-t border-ink/15 pt-2.5 font-body text-[1.02rem] leading-snug text-ink"
                 >
-                  <span className="label-mono mt-1 shrink-0 text-oxblood">
+                  <span className="label-mono mt-1 shrink-0 text-accent">
                     {i + 1}.
                   </span>
                   {step}
@@ -72,7 +74,7 @@ export function Manifesto() {
             <p className="mt-6 font-body text-[1.1rem] leading-[1.65] text-ink text-pretty">
               None of it is your product, none of it is reusable, and none of
               it interoperates with anyone else&rsquo;s stack.{" "}
-              <span className="text-oxblood">.</span>aim pays the whole bill in
+              .aim pays the whole bill in
               the file, once: chunks, identity, summaries, embeddings, and
               propose-and-accept are properties of the format, so your system
               never rebuilds them.

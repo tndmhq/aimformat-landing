@@ -41,14 +41,14 @@ export function Substrate() {
         />
 
         <div className="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-[1fr_18rem]">
-          <p className="measure font-body text-[1.1rem] leading-[1.74] text-ink/85 text-pretty">
+          <p className="measure font-body text-[1.1rem] leading-[1.74] text-ink text-pretty">
             That fluency is the difference between an agent that edits your
             document and one that corrupts it. The same choice pays a second
             time at render: an .aim file is the styled artifact, so it displays
             in any browser for free, with no viewer to ship and no vendor to
             trust.
           </p>
-          <p className="border-l border-oxblood/35 pl-4 font-body text-[0.95rem] leading-snug text-ink-soft">
+          <p className="border-l border-accent/35 pl-4 font-body text-[0.95rem] leading-snug text-ink-soft">
             We know the tradeoff. HTML with utility classes is more verbose than
             a packed binary. We pay those tokens on purpose, and buy
             model-familiarity and free, deterministic rendering with them.
@@ -84,7 +84,7 @@ export function Substrate() {
           <div className="grid grid-cols-1 items-center gap-5 md:grid-cols-[1fr_auto_1fr]">
             <CodePlate code={substrateAim} filename="report.aim" copy={false} />
             <div
-              className="flex items-center justify-center font-display text-3xl text-oxblood md:flex-col"
+              className="flex items-center justify-center font-display text-3xl text-accent md:flex-col"
               aria-label="renders as"
             >
               ≡
@@ -94,7 +94,7 @@ export function Substrate() {
               <h2 className="font-body text-2xl font-semibold text-ink">
                 Scope of Work
               </h2>
-              <p className="mt-2 font-body text-[0.95rem] leading-relaxed text-ink/80">
+              <p className="mt-2 font-body text-[0.95rem] leading-relaxed text-ink/90">
                 The Vendor shall deliver the completed milestones within sixty
                 (60) days of the effective date.
               </p>
