@@ -18,7 +18,7 @@ const navLinks = [
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 border-b border-ink/15 bg-paper/95 backdrop-blur-md">
+    <header className="sticky top-0 z-40 border-b border-ink/15 bg-paper">
       <div className="mx-auto flex h-12 max-w-6xl items-center justify-between gap-4 px-6 sm:px-10">
         <Link href="/#top" className="flex items-baseline gap-2" aria-label=".aim home">
           <Monogram />
@@ -33,7 +33,7 @@ export function SiteHeader() {
             <Link
               key={l.href}
               href={l.href}
-              className="label-mono text-ink-soft transition-colors hover:text-oxblood"
+              className="label-mono text-ink-soft transition-colors hover:text-accent"
             >
               {l.label}
             </Link>
@@ -44,7 +44,7 @@ export function SiteHeader() {
           <RepoLink className="hidden md:inline-flex" />
           <Link
             href="/#cta"
-            className="label-mono text-oxblood underline-offset-4 hover:underline"
+            className="label-mono text-accent underline-offset-4 hover:underline"
           >
             Subscribe
           </Link>

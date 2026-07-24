@@ -9,7 +9,7 @@ import { slideSource } from "@/lib/snippets";
 function SlideArtifact() {
   return (
     <figure>
-      <div className="relative aspect-[16/9] w-full overflow-hidden rounded-[2px] border border-ink/15 bg-[#fbf6ea] shadow-leaf">
+      <div className="relative aspect-[16/9] w-full overflow-hidden rounded-[2px] border border-ink/15 bg-surface shadow-leaf">
         {/* coordinate rulers */}
         <div
           className="absolute inset-x-0 top-0 z-10 h-4 border-b border-ink/10 bg-paper/70"
@@ -50,7 +50,7 @@ function SlideArtifact() {
               {[40, 62, 55, 78, 92].map((h, i) => (
                 <span
                   key={i}
-                  className="flex-1 rounded-[1px] bg-oxblood/25"
+                  className="flex-1 rounded-[1px] bg-accent/25"
                   style={{ height: `${h}%` }}
                 />
               ))}
@@ -61,7 +61,7 @@ function SlideArtifact() {
           </span>
         </div>
       </div>
-      <figcaption className="mt-3 font-body text-[0.92rem] italic leading-snug text-ink-soft">
+      <figcaption className="mt-3 font-body text-[0.92rem] leading-snug text-ink-soft">
         Fig. 5 · An aim-slide rendered to scale, with faint coordinate rulers.
         Real HTML, real coordinates.
       </figcaption>
@@ -78,16 +78,14 @@ function ExportFan() {
   return (
     <div className="flex flex-wrap items-center gap-5">
       <div className="flex h-16 w-16 shrink-0 flex-col items-center justify-center rounded-[2px] border border-ink/20 bg-surface text-center shadow-leaf">
-        <span className="font-display text-sm text-ink">
-          <span className="text-oxblood">.</span>aim
-        </span>
+        <span className="font-display text-sm text-accent">.aim</span>
         <span className="label-mono mt-0.5 text-[0.5rem] text-ink-faint">
           one source
         </span>
       </div>
       <svg
         viewBox="0 0 60 96"
-        className="h-20 w-12 shrink-0 text-oxblood/60"
+        className="h-20 w-12 shrink-0 text-accent/60"
         fill="none"
         stroke="currentColor"
         aria-hidden
@@ -133,7 +131,7 @@ export function LayoutExport() {
         </div>
 
         <div className="mt-14 flex flex-col gap-8 border-t border-ink/15 pt-10 md:flex-row md:items-center md:justify-between">
-          <p className="measure-tight font-body text-[1.1rem] leading-[1.7] text-ink/85 text-pretty">
+          <p className="measure-tight font-body text-[1.1rem] leading-[1.7] text-ink text-pretty">
             Because the slide is real HTML with real coordinates, export is a
             transform, not a rewrite. One source produces the same PDF and the
             same Word file every time; PPTX export is on the roadmap. Author

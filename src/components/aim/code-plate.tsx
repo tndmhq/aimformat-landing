@@ -4,7 +4,7 @@ import { CopyButton } from "./copy-button";
 
 /**
  * The single dark "inked plate" surface of the page — code set in IBM Plex
- * Mono on warm near-black, with a 2px oxblood left-rule and a typeset
+ * Mono on warm near-black, with a 2px accent left-rule and a typeset
  * filename tab. The deliberate tonal inversion that makes the technical
  * sections feel like a pressman's metal type tray against the cream.
  */
@@ -51,7 +51,7 @@ export function CodePlate({
       <div className="relative">
         <span
           aria-hidden
-          className="absolute inset-y-0 left-0 w-[2px] bg-oxblood/80"
+          className="absolute inset-y-0 left-0 w-[2px] bg-accent/80"
         />
         <pre
           className={cn(

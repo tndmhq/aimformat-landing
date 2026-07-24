@@ -34,10 +34,8 @@ export function LeafCard({
         )}
       >
         {runningHead && (
-          <div className="flex items-center justify-between border-b border-oxblood/30 px-6 pb-2 pt-5">
-            <span className="label-mono small-caps text-ink-soft">
-              {runningHead}
-            </span>
+          <div className="flex items-center justify-between border-b border-accent/30 px-6 pb-2 pt-5">
+            <span className="label-mono text-ink-soft">{runningHead}</span>
           </div>
         )}
         <div className="px-6 py-6 sm:px-8">{children}</div>

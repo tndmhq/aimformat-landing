@@ -33,7 +33,7 @@ const columns = [
     heading: "Imprint",
     items: [
       { label: "License: MIT", href: "/#faq" },
-      { label: "Edition: Vol. 0.2", href: "/#top" },
+      { label: "Edition: Vol. 0.3", href: "/#top" },
       { label: "Editors", href: "/editors" },
       { label: "Repo · GitHub", href: REPO_URL },
       { label: "Contact", href: "mailto:contact@usetndm.com" },
@@ -50,7 +50,7 @@ export function SiteFooter() {
           {/* brand block */}
           <div>
             <AimWordmark className="text-3xl" />
-            <p className="mt-4 max-w-xs font-body text-[1.05rem] italic leading-snug text-ink-soft">
+            <p className="mt-4 max-w-xs font-body text-[1.05rem] leading-snug text-ink-soft">
               One file humans and agents can both hold.
             </p>
             <div className="mt-6 flex items-center gap-4">
@@ -67,7 +67,7 @@ export function SiteFooter() {
               at Typewise (YC S22), past CTO of CuratedAI.{" "}
               <a
                 href="mailto:contact@usetndm.com"
-                className="text-oxblood underline-offset-4 hover:underline"
+                className="text-accent underline-offset-4 hover:underline"
               >
                 contact@usetndm.com
               </a>
@@ -77,7 +77,7 @@ export function SiteFooter() {
           {/* link columns */}
           {columns.map((col) => (
             <nav key={col.heading} aria-label={col.heading}>
-              <p className="label-mono mb-4 text-ink-soft">{col.heading}</p>
+              <p className="label-serif mb-4 text-ink-soft">{col.heading}</p>
               <ul className="space-y-2.5">
                 {col.items.map((item) => {
                   const external = item.href.startsWith("http");
@@ -88,7 +88,7 @@ export function SiteFooter() {
                         {...(external
                           ? { target: "_blank", rel: "noreferrer" }
                           : {})}
-                        className="font-body text-[1rem] text-ink/80 underline-offset-4 transition-colors hover:text-oxblood hover:underline"
+                        className="font-body text-[1rem] text-ink/90 underline-offset-4 transition-colors hover:text-accent hover:underline"
                       >
                         {item.label}
                       </a>

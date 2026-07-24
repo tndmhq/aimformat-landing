@@ -116,15 +116,15 @@ export function RedlineDemo({
           <button
             type="button"
             onClick={() => setStatus("pending")}
-            className="label-mono cursor-pointer text-ink-soft underline decoration-ink/30 underline-offset-4 transition-colors hover:text-oxblood"
+            className="label-mono cursor-pointer text-ink-soft underline decoration-ink/30 underline-offset-4 transition-colors hover:text-accent"
           >
             ↺ reopen the proposal
           </button>
         )}
         <span
           className={cn(
-            "font-body text-[0.85rem] italic",
-            status === "pending" ? "text-oxblood" : "text-ink-soft",
+            "font-body text-[0.85rem]",
+            status === "pending" ? "text-accent" : "text-ink-soft",
           )}
         >
           {statusLine(status)}

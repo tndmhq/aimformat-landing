@@ -4,7 +4,6 @@ import {
   SectionHeader,
 } from "@/components/aim/primitives";
 import { CodePlate } from "@/components/aim/code-plate";
-import { Badge } from "@/components/ui/badge";
 import { mcpSource } from "@/lib/snippets";
 
 const onRamps = [
@@ -53,7 +52,7 @@ export function Agents() {
 
         <div className="mt-12 grid grid-cols-1 gap-12 lg:grid-cols-[1fr_1fr] lg:items-start">
           <div>
-            <p className="measure font-body text-[1.1rem] leading-[1.74] text-ink/85 text-pretty">
+            <p className="measure font-body text-[1.1rem] leading-[1.74] text-ink text-pretty">
               It runs over stdio, so nothing is hosted and nothing leaves your
               machine. Install it once and Claude Code, Claude Desktop, Cursor,
               Cline, and Zed can all work the same file. A Claude Skill bundles
@@ -66,9 +65,9 @@ export function Agents() {
               {capabilities.map((c) => (
                 <li
                   key={c}
-                  className="flex gap-3 font-body text-[1rem] leading-snug text-ink/85"
+                  className="flex gap-3 font-body text-[1rem] leading-snug text-ink"
                 >
-                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rotate-45 bg-oxblood/70" />
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rotate-45 bg-accent/70" />
                   {c}
                 </li>
               ))}
@@ -78,15 +77,11 @@ export function Agents() {
               <p className="label-mono mb-3 text-ink-soft">
                 Works with the clients you already run
               </p>
-              <div className="flex flex-wrap gap-2">
+              <div className="meta-run flex flex-wrap items-baseline gap-x-2.5 gap-y-1.5">
                 {clients.map((c) => (
-                  <Badge
-                    key={c}
-                    variant="outline"
-                    className="label-mono rounded-[2px] border-ink/25 px-2.5 py-1 text-ink-soft"
-                  >
+                  <span key={c} className="label-mono text-ink-soft">
                     {c}
-                  </Badge>
+                  </span>
                 ))}
               </div>
             </div>

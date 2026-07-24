@@ -16,7 +16,7 @@ export const metadata = pageMeta({
   path: "/editors",
 });
 
-const linkClass = "text-oxblood underline-offset-4 hover:underline";
+const linkClass = "text-accent underline-offset-4 hover:underline";
 
 const entries: {
   name: string;
@@ -86,7 +86,7 @@ export default function EditorsPage() {
                     </h3>
                     <MetaPill>{e.pill}</MetaPill>
                   </div>
-                  <p className="measure mt-3 font-body text-[1.08rem] leading-[1.72] text-ink/85 text-pretty">
+                  <p className="measure mt-3 font-body text-[1.08rem] leading-[1.72] text-ink text-pretty">
                     {e.body}
                   </p>
                 </article>

@@ -41,7 +41,7 @@ const elements = [
 
 const annotations = [
   ["application/aim-meta+json", "An agent reads this first to orient (summary and TOC) instead of loading the whole file."],
-  ['<style data-aim-css="0.2">', "The embedded stylesheet. Machine-managed, never content; the file renders with nothing installed."],
+  ['<style data-aim-css="0.3">', "The embedded stylesheet. Machine-managed, never content; the file renders with nothing installed."],
   ['data-aim="a7f3c1e0"', "A stable id. It survives rewrites, so proposals and history stay pinned to this passage."],
   ['class="text-2xl…"', "Plain Tailwind. The model already writes this fluently; it is also the rendered style."],
   ["<aim-proposals>", "Lane II. Pending suggestions wait here, visible and inert, for a human accept or reject."],
@@ -64,10 +64,10 @@ export function Anatomy() {
         <div className="mt-12 grid gap-x-10 gap-y-8 sm:grid-cols-2">
           {elements.map((el) => (
             <div key={el.term} className="border-t border-ink/15 pt-4">
-              <code className="font-mono text-[0.95rem] font-medium text-oxblood">
+              <code className="font-mono text-[0.95rem] font-medium text-accent">
                 {el.term}
               </code>
-              <p className="mt-1.5 font-body text-[1.05rem] italic leading-snug text-ink">
+              <p className="mt-1.5 font-body text-[1.05rem] leading-snug text-ink">
                 {el.gloss}
               </p>
               <p className="mt-2 font-body text-[0.92rem] leading-snug text-ink-soft">
@@ -92,12 +92,12 @@ export function Anatomy() {
               {annotations.map(([target, note]) => (
                 <li
                   key={target}
-                  className="border-l border-oxblood/35 pl-3.5"
+                  className="border-l border-accent/35 pl-3.5"
                 >
-                  <code className="font-mono text-[0.78rem] text-oxblood">
+                  <code className="font-mono text-[0.78rem] text-accent">
                     {target}
                   </code>
-                  <p className="mt-1 font-body text-[0.95rem] italic leading-snug text-ink-soft">
+                  <p className="mt-1 font-body text-[0.95rem] leading-snug text-ink-soft">
                     {note}
                   </p>
                 </li>

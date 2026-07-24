@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Fraunces, Newsreader, IBM_Plex_Mono } from "next/font/google";
+import { PALETTE } from "@/lib/palette";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -67,7 +68,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f4ecdd",
+  themeColor: PALETTE.paper,
   colorScheme: "light",
 };
 

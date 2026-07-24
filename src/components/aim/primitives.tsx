@@ -30,16 +30,12 @@ export function Container({
 
 /* --------------------------------------------------------------- wordmarks */
 
-export function AimWordmark({
-  className,
-  dotClassName,
-}: {
-  className?: string;
-  dotClassName?: string;
-}) {
+/** Single-ink by rule: the wordmark never mixes colors within the word.
+ *  It reads as one standalone mark in the leading press ink. */
+export function AimWordmark({ className }: { className?: string }) {
   return (
-    <span className={cn("font-display tracking-tight", className)}>
-      <span className={cn("text-oxblood", dotClassName)}>.</span>aim
+    <span className={cn("font-display tracking-tight text-accent", className)}>
+      .aim
     </span>
   );
 }
@@ -58,8 +54,10 @@ export function Monogram({ className }: { className?: string }) {
   );
 }
 
-/* -------------------------------------------------------------- meta-pills */
+/* ------------------------------------------------------------ meta colophon */
 
+/** One fact in a colophon run (plain mono text; the parent `.meta-run`
+ *  container draws the interpunct separators — no pill chrome). */
 export function MetaPill({
   children,
   className,
@@ -68,12 +66,7 @@ export function MetaPill({
   className?: string;
 }) {
   return (
-    <span
-      className={cn(
-        "label-mono inline-flex items-center rounded-[2px] border border-ink/25 px-1.5 py-1 text-[0.6rem] text-ink-soft",
-        className,
-      )}
-    >
+    <span className={cn("label-mono text-ink-soft", className)}>
       {children}
     </span>
   );
@@ -91,10 +84,10 @@ export function RunningHead({
   return (
     <div className="relative z-10 border-y border-ink/20 bg-paper/30">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-1.5 sm:px-10">
-        <span className="label-mono small-caps text-ink-soft">
-          .aim · vol. 0.2 · {section}
+        <span className="label-mono text-ink-soft">
+          .aim · vol. 0.3 · {section}
         </span>
-        <span className="label-mono small-caps text-ink-soft">{folio}</span>
+        <span className="label-mono text-ink-soft">{folio}</span>
       </div>
     </div>
   );
@@ -122,12 +115,14 @@ export function SectionHeader({
   return (
     <header className={cn("relative", className)}>
       {eyebrow && (
-        <p className="label-mono mb-4 text-oxblood">{eyebrow}</p>
+        <p className="label-serif mb-4 text-rubric">{eyebrow}</p>
       )}
-      <div className="flex items-baseline gap-4">
+      {/* Headline rule: the title asserts itself with a hairline in its own
+          ink, not a text-decoration underline (that reads as a link). */}
+      <div className="flex items-baseline gap-4 border-b border-accent/30 pb-4">
         {n && (
           <span
-            className="font-display text-[1.4rem] font-medium leading-none text-oxblood small-caps"
+            className="font-display text-[1.4rem] font-medium leading-none text-rubric small-caps"
             aria-hidden
           >
             {n}
@@ -135,7 +130,7 @@ export function SectionHeader({
         )}
         <h2
           className={cn(
-            "font-display text-[clamp(1.9rem,3.4vw,2.5rem)] font-medium leading-[1.1] tracking-[-0.01em] text-ink text-balance",
+            "font-display text-[clamp(1.9rem,3.4vw,2.5rem)] font-medium leading-[1.1] tracking-[-0.01em] text-accent text-balance",
             titleClassName,
           )}
         >
@@ -143,11 +138,15 @@ export function SectionHeader({
         </h2>
       </div>
       {lede && (
-        <p className="measure mt-5 font-body text-[1.18rem] leading-[1.72] text-ink/85 text-pretty">
+        <p className="measure mt-5 font-body text-[1.18rem] leading-[1.72] text-ink text-pretty">
           {lede}
         </p>
       )}
-      {pills && <div className="mt-6 flex flex-wrap gap-2">{pills}</div>}
+      {pills && (
+        <div className="meta-run mt-6 flex flex-wrap items-baseline gap-x-2.5 gap-y-1.5">
+          {pills}
+        </div>
+      )}
     </header>
   );
 }
@@ -161,7 +160,7 @@ export function Fleuron({ className }: { className?: string }) {
       aria-hidden
     >
       <span className="h-px w-16 bg-ink/20" />
-      <span className="font-display text-oxblood/70">❦</span>
+      <span className="font-display text-accent/70">❦</span>
       <span className="h-px w-16 bg-ink/20" />
     </div>
   );
@@ -181,9 +180,9 @@ export function Pressmark({ className }: { className?: string }) {
       <path
         d="M24 14c5 4 5 16 0 20-5-4-5-16 0-20Z"
         strokeWidth="1"
-        className="text-oxblood"
+        className="text-accent"
       />
-      <circle cx="24" cy="24" r="2" className="fill-oxblood" stroke="none" />
+      <circle cx="24" cy="24" r="2" className="fill-accent" stroke="none" />
     </svg>
   );
 }
@@ -257,7 +256,6 @@ export function InkStamp({ className }: { className?: string }) {
         className="font-display"
         fill="currentColor"
         fontSize="20"
-        fontStyle="italic"
       >
         .aim
       </text>
@@ -270,7 +268,7 @@ export function InkStamp({ className }: { className?: string }) {
         fontSize="8.5"
         letterSpacing="2"
       >
-        v0.2
+        v0.3
       </text>
     </svg>
   );
@@ -289,8 +287,9 @@ export function GitHubMark({ className }: { className?: string }) {
 
 /**
  * Link to the public repository. The secondary action to Subscribe.
- * - `button`: outlined plate — the hero's "view the source" companion CTA.
- * - `seal`: dashed pill, echoing the subscription slip.
+ * - `button`: underlined body-type link — the hero's companion to the press
+ *   button (deliberately not a second button shape).
+ * - `seal`: quiet mono link, echoing the running heads.
  * - `inline`: quiet mono link for the header and footer.
  */
 export function RepoLink({
@@ -313,7 +312,7 @@ export function RepoLink({
       <a
         {...external}
         className={cn(
-          "inline-flex cursor-pointer items-center justify-center gap-2 rounded-[3px] border border-ink/30 bg-paper/40 px-5 py-3 font-mono text-[0.78rem] uppercase tracking-[0.12em] text-ink-soft transition-colors hover:border-oxblood hover:text-oxblood focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-oxblood",
+          "inline-flex cursor-pointer items-center gap-2 py-2 font-body text-[1.05rem] text-ink underline decoration-ink/30 underline-offset-4 transition-colors hover:text-accent hover:decoration-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
           className,
         )}
       >
@@ -328,12 +327,14 @@ export function RepoLink({
       <a
         {...external}
         className={cn(
-          "inline-flex select-none items-center gap-2 rounded-full border border-dashed border-ink/30 bg-paper/50 px-3.5 py-2 text-ink-soft transition-colors hover:border-oxblood hover:text-oxblood",
+          "inline-flex items-center gap-2 text-ink-soft transition-colors hover:text-accent",
           className,
         )}
       >
         <GitHubMark className="size-3.5" />
-        <span className="label-mono">{children ?? "Read the source on GitHub"}</span>
+        <span className="label-mono underline-offset-4 hover:underline">
+          {children ?? "Read the source on GitHub"}
+        </span>
       </a>
     );
   }
@@ -342,7 +343,7 @@ export function RepoLink({
     <a
       {...external}
       className={cn(
-        "label-mono inline-flex items-center gap-1.5 text-ink-soft transition-colors hover:text-oxblood",
+        "label-mono inline-flex items-center gap-1.5 text-ink-soft transition-colors hover:text-accent",
         className,
       )}
     >

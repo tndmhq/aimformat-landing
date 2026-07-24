@@ -51,11 +51,11 @@ export function Newsletter() {
       <RunningHead section="Off the Press" folio="Subscribe" />
       <Container className="py-20 sm:py-24">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="label-mono text-oxblood">Off the press</p>
-          <h2 className="mt-4 font-display text-[clamp(2rem,4vw,3rem)] font-medium leading-[1.08] tracking-[-0.01em] text-ink text-balance">
+          <p className="label-serif text-rubric">Off the press</p>
+          <h2 className="mx-auto mt-4 max-w-xl border-b border-accent/30 pb-4 font-display text-[clamp(2rem,4vw,3rem)] font-medium leading-[1.08] tracking-[-0.01em] text-accent text-balance">
             Subscribe to the press notices
           </h2>
-          <p className="mx-auto mt-5 max-w-xl font-body text-[1.15rem] leading-[1.65] text-ink/85 text-pretty">
+          <p className="mx-auto mt-5 max-w-xl font-body text-[1.15rem] leading-[1.65] text-ink text-pretty">
             One file humans and agents can both hold. The launch, and whatever
             ships after it, arrives here first. Subscribe for the notices: a
             few letters a year, nothing else.
@@ -64,7 +64,7 @@ export function Newsletter() {
 
         <div className="mx-auto mt-10 max-w-xl">
           {/* the tipped-in reply card / subscription slip */}
-          <div className="relative rounded-[3px] border border-ink/15 border-t-2 border-t-oxblood/50 [border-top-style:dashed] bg-surface px-6 py-7 shadow-leaf sm:px-8">
+          <div className="relative rounded-[3px] border border-ink/15 border-t-2 border-t-accent/50 [border-top-style:dashed] bg-surface px-6 py-7 shadow-leaf sm:px-8">
             <span
               aria-hidden
               className="absolute -left-2 -top-2 h-4 w-4 rounded-full border border-ink/15 bg-paper"
@@ -83,7 +83,7 @@ export function Newsletter() {
                   <Check className="size-5" aria-hidden />
                 </span>
                 <p className="font-display text-xl text-ink">{message}</p>
-                <p className="font-body text-[0.92rem] italic text-ink-soft">
+                <p className="font-body text-[0.92rem] text-ink-soft">
                   Click the confirmation note we just sent, and the next thing
                   you hear from us is the launch.
                 </p>
@@ -113,12 +113,12 @@ export function Newsletter() {
                     {status === "loading" ? "Sending…" : "Subscribe"}
                   </PressButton>
                 </div>
-                <label className="mt-4 flex cursor-pointer items-start gap-2.5 font-body text-[0.95rem] leading-snug text-ink/85">
+                <label className="mt-4 flex cursor-pointer items-start gap-2.5 font-body text-[0.95rem] leading-snug text-ink">
                   <input
                     type="checkbox"
                     checked={editorInterest}
                     onChange={(e) => setEditorInterest(e.target.checked)}
-                    className="mt-0.5 size-4 shrink-0 cursor-pointer accent-oxblood"
+                    className="mt-0.5 size-4 shrink-0 cursor-pointer accent-accent"
                   />
                   <span>
                     Also keep me posted on the{" "}
@@ -128,13 +128,13 @@ export function Newsletter() {
                 </label>
                 {status === "error" && (
                   <p
-                    className="mt-3 font-body text-[0.9rem] italic text-redline"
+                    className="mt-3 font-body text-[0.9rem] text-redline"
                     role="alert"
                   >
                     {message}
                   </p>
                 )}
-                <p className="mt-4 font-body text-[0.88rem] italic leading-snug text-ink-soft">
+                <p className="mt-4 font-body text-[0.88rem] leading-snug text-ink-soft">
                   Launch notices arrive here first. No spam, no sharing,
                   unsubscribe in one click.
                 </p>
@@ -144,7 +144,7 @@ export function Newsletter() {
 
           <div className="mt-7 flex flex-col items-center gap-2">
             <RepoLink variant="seal" />
-            <p className="font-body text-[0.85rem] italic text-ink-faint">
+            <p className="font-body text-[0.85rem] text-ink-faint">
               The format is open source under the MIT License: read it, fork it,
               build on it today.
             </p>

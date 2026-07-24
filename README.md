@@ -7,8 +7,11 @@ lives separately.
 Design direction: "The Standing Type", a fine-press manuscript treatment where the
 page itself is the product demo. The hero is a rendered `.aim` leaf marked up in
 red/green editor's ink (the three-lane track-changes primitive) with a half-peeled
-"view source" plate beneath. One disciplined oxblood accent; `redline`/`greenline` are
-reserved exclusively for the track-changes metaphor. Set in Fraunces, Newsreader, and
+"view source" plate beneath. Printed as a two-ink press run — a spring hunter
+green leads (display, actions) with a madder rubric for eyebrows and marks; no
+text run ever mixes inks. `redline`/`greenline` are reserved exclusively for the
+track-changes metaphor. Palette: `src/app/globals.css` `:root` block, mirrored
+for TS consumers in `src/lib/palette.ts`. Set in Fraunces, Newsreader, and
 IBM Plex Mono.
 
 The primary call to action is the newsletter. The public

@@ -19,7 +19,7 @@ function Lane({
   return (
     <div className="bg-surface p-5">
       <p className="label-mono mb-3 text-ink-soft">
-        <span className="text-oxblood">{numeral}.</span> {label}
+        {numeral}. {label}
       </p>
       {children}
     </div>
@@ -41,7 +41,7 @@ export function ThreeLaneFigure() {
 
         <div className="mt-6 grid gap-px overflow-hidden rounded-[3px] border border-ink/15 bg-ink/10 sm:grid-cols-3">
           <Lane numeral="I" label="Accepted">
-            <p className="font-body text-[0.86rem] leading-relaxed text-ink/80">
+            <p className="font-body text-[0.86rem] leading-relaxed text-ink/90">
               {status === "accepted" ? (
                 <>
                   …within{" "}
@@ -62,7 +62,7 @@ export function ThreeLaneFigure() {
                 <span className="greenline">thirty (30) business days</span>
               </p>
             ) : (
-              <p className="font-body text-[0.86rem] italic leading-relaxed text-ink-soft">
+              <p className="font-body text-[0.86rem] leading-relaxed text-ink-soft">
                 {status === "accepted"
                   ? "folded into lane I"
                   : "withdrawn, unapplied"}
@@ -76,7 +76,7 @@ export function ThreeLaneFigure() {
                 status{" "}
                 <span
                   className={cn(
-                    status === "pending" && "text-oxblood",
+                    status === "pending" && "text-accent",
                     status === "accepted" && "text-greenline",
                     status === "rejected" && "text-redline",
                   )}
@@ -92,7 +92,7 @@ export function ThreeLaneFigure() {
       </LeafCard>
 
       <details className="group mt-4">
-        <summary className="label-mono inline-flex cursor-pointer list-none items-center gap-2 text-ink-soft transition-colors hover:text-oxblood">
+        <summary className="label-mono inline-flex cursor-pointer list-none items-center gap-2 text-ink-soft transition-colors hover:text-accent">
           <span className="transition-transform group-open:rotate-90">▸</span>
           View the literal source
         </summary>
@@ -103,7 +103,7 @@ export function ThreeLaneFigure() {
         />
       </details>
 
-      <figcaption className="mt-4 font-body text-[0.9rem] italic leading-snug text-ink-soft">
+      <figcaption className="mt-4 font-body text-[0.9rem] leading-snug text-ink-soft">
         {status === "pending" &&
           "Accept the proposal and lane II folds into lane I; the decision is recorded in the file's own history."}
         {status === "accepted" &&

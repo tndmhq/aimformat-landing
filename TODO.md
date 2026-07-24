@@ -4,7 +4,7 @@ Deferred deliberately; revisit before (or at) launch.
 
 ## Before sharing widely
 - [x] **OG image.** Done (2026-07-08). `src/app/opengraph-image.tsx` renders a
-  paper-and-oxblood letterpress card via `next/og` (shared renderer in
+  letterpress card in the site palette via `next/og` (shared renderer in
   `src/lib/og.tsx`; brand fonts vendored under `public/og-fonts/`). Next wires
   it into `og:image` automatically; Twitter uses it via the `og:image` fallback
   for `summary_large_image`. Metadata/canonical URL also moved to `aimformat.com`.
@@ -20,7 +20,7 @@ Deferred deliberately; revisit before (or at) launch.
   ([tndmhq/aimformat `spec.md`](https://github.com/tndmhq/aimformat/blob/main/spec.md),
   v0.2 as of this note), and site links such as the `llms.txt` Docs list point
   at the spec directly rather than the repo root.
-- [ ] **Status / roadmap strip** ("Now: v0.2 spec + Python SDK + MCP server ·
+- [ ] **Status / roadmap strip** ("Now: v0.3 spec + Python SDK + MCP server ·
   …") so present-tense feature claims are anchored to a visible timeline;
   exact Next/Later copy decided when the strip ships.
 - [x] **Editor landing page.** Done: the editor site serves
