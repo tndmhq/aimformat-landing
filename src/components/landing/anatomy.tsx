@@ -34,8 +34,8 @@ const elements = [
   },
   {
     term: "<style data-aim-css>",
-    gloss: "The embedded, machine-managed stylesheet for the Tailwind subset.",
-    why: "The raw file renders styled in any browser: no viewer to ship, no build step, nothing external to load.",
+    gloss: "The embedded, machine-managed stylesheet, and beside it a theme block: brand colors and fonts as named slots.",
+    why: "The raw file renders styled in any browser, nothing external to load; restyling a document means changing a slot, not the text.",
   },
 ];
 

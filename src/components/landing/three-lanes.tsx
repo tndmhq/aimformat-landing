@@ -27,7 +27,12 @@ export function ThreeLanes() {
               until a human, or another agent, accepts or rejects it. Because
               the proposal lives in the file, the history travels with the
               document. Open it next year, in any tool, and the record of who
-              changed what, and whether it was accepted, is still there.
+              changed what, and whether it was accepted, is still there. That
+              record is also what the next agent starts from: it opens the
+              file and finds each proposal&rsquo;s author and model, the
+              one-line explanation it was filed with, and the suggestions a
+              person turned down, so it continues the collaboration instead
+              of starting it over.
             </p>
 
             <dl className="mt-8 space-y-3">

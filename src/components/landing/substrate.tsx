@@ -7,6 +7,19 @@ import { CodePlate } from "@/components/aim/code-plate";
 import { LeafCard } from "@/components/aim/leaf";
 import { substrateDocx, substrateAst, substrateAim } from "@/lib/snippets";
 
+const scriptLoop = [
+  "Ask for code that writes the file, run it, render it.",
+  "The model never sees the output; it guesses from the code.",
+  "Each tweak edits the script, then regenerates everything.",
+  "Nothing has a stable id, so review means rereading it all.",
+];
+
+const aimLoop = [
+  "The file is the artifact; the model edits it directly.",
+  "A tweak is one proposal against one chunk id.",
+  "Accept or reject it in place; nothing regenerates.",
+];
+
 const plates = [
   {
     code: substrateDocx,
@@ -74,6 +87,61 @@ export function Substrate() {
               </figcaption>
             </figure>
           ))}
+        </div>
+
+        {/* the loop it replaces: script-mediated generation */}
+        <div className="mt-14 border border-ink/20 bg-surface/60 p-6 sm:p-8">
+          <p className="label-serif text-rubric">The loop it replaces</p>
+          <p className="mt-3 font-body text-[1.1rem] leading-[1.65] text-ink text-pretty">
+            Ask an agent for a formatted document today and what you usually
+            get is a script: python-docx or python-pptx code that regenerates
+            the file on every run. The document is a side effect of a program
+            the model keeps rewriting.
+          </p>
+          <div className="mt-6 grid gap-x-10 gap-y-6 sm:grid-cols-2">
+            <div>
+              <p className="label-mono mb-3 text-ink-soft">
+                One tweak, by script
+              </p>
+              <ol className="space-y-2.5">
+                {scriptLoop.map((step, i) => (
+                  <li
+                    key={i}
+                    className="flex gap-3.5 border-t border-ink/15 pt-2.5 font-body text-[0.98rem] leading-snug text-ink"
+                  >
+                    <span className="label-mono mt-0.5 shrink-0 text-accent">
+                      {i + 1}.
+                    </span>
+                    {step}
+                  </li>
+                ))}
+              </ol>
+            </div>
+            <div>
+              <p className="label-mono mb-3 text-ink-soft">
+                The same tweak, in .aim
+              </p>
+              <ol className="space-y-2.5">
+                {aimLoop.map((step, i) => (
+                  <li
+                    key={i}
+                    className="flex gap-3.5 border-t border-ink/15 pt-2.5 font-body text-[0.98rem] leading-snug text-ink"
+                  >
+                    <span className="label-mono mt-0.5 shrink-0 text-accent">
+                      {i + 1}.
+                    </span>
+                    {step}
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </div>
+          <p className="mt-6 font-body text-[1.1rem] leading-[1.65] text-ink text-pretty">
+            This is where the verbosity pays itself back. A script is the
+            document wrapped in API calls, paid for again on every round; a
+            proposal is the size of the change. An edit costs in proportion
+            to what changed, not to the document it changed in.
+          </p>
         </div>
 
         {/* source is the artifact */}
