@@ -25,13 +25,18 @@ const entries: {
 }[] = [
   {
     name: "Tndm",
-    pill: "Flagship · coming soon",
+    pill: "Flagship · live",
     body: (
       <>
         The flagship editor, by the format&apos;s authors. Collaborative
         review with the red-and-green ink built into the writing surface:
         word-level diffs, one-click accept and reject, and every decision
-        attributed in the file&apos;s own history.{" "}
+        attributed in the file&apos;s own history. Open a document at{" "}
+        <a href="https://app.usetndm.com" className={linkClass}>
+          app.usetndm.com
+        </a>{" "}
+        — no account needed to upload a file and read its pending changes.
+        More at{" "}
         <a href="https://usetndm.com" className={linkClass}>
           usetndm.com
         </a>
@@ -56,8 +61,11 @@ const entries: {
       <>
         The tier every file ships with. Because a .aim document is valid
         HTML5 with its stylesheet embedded, the raw file renders its content
-        plus a readable memo of pending changes: no editor, no extension,
-        no build step.
+        with no editor, no extension and no build step, followed by a list
+        of the pending changes: what each one targets, who proposed it, and
+        why. The proposed wording itself is not shown — payloads are inert
+        templates that browsers deliberately do not render — so seeing the
+        redline, or acting on it, needs an editor.
       </>
     ),
   },
