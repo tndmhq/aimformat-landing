@@ -7,6 +7,7 @@ import {
   RunningHead,
   SectionHeader,
 } from "@/components/aim/primitives";
+import { PressButton } from "@/components/aim/press-button";
 import { pageMeta } from "@/lib/meta";
 
 export const metadata = pageMeta({
@@ -22,10 +23,12 @@ const entries: {
   name: string;
   pill: string;
   body: ReactNode;
+  cta?: { href: string; label: string };
 }[] = [
   {
     name: "Tndm",
     pill: "Flagship · live",
+    cta: { href: "https://app.usetndm.com", label: "Open the Tndm editor" },
     body: (
       <>
         The flagship editor, by the format&apos;s authors. Collaborative
@@ -97,6 +100,11 @@ export default function EditorsPage() {
                   <p className="measure mt-3 font-body text-[1.08rem] leading-[1.72] text-ink text-pretty">
                     {e.body}
                   </p>
+                  {e.cta && (
+                    <PressButton href={e.cta.href} className="mt-5">
+                      {e.cta.label}
+                    </PressButton>
+                  )}
                 </article>
               ))}
 
