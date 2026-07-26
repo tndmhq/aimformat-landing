@@ -22,7 +22,7 @@ export function Faq() {
           n="§8"
           eyebrow="§8 · Notes & Queries"
           title="Notes and queries"
-          lede="Six questions a careful reader asks before adopting a new format, answered plainly."
+          lede="Seven questions a careful reader asks before adopting a new format, answered plainly."
         />
 
         <div className="mt-10 measure">

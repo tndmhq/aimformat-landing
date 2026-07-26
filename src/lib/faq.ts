@@ -6,6 +6,10 @@ export const faq = [
     a: "Yes. An .aim file is valid HTML5 with a small set of custom elements and a Tailwind utility subset. It renders in any browser with no viewer. The custom elements carry the structure ordinary HTML cannot, and degrade to plain inline content anywhere they are not understood.",
   },
   {
+    q: "Can I render an .aim file I did not write?",
+    a: "Lint it first. The spec bans executable script, event-handler attributes, javascript: URLs, and embedding elements like iframe, so a conforming file has nothing to run, and aim lint checks that in one pass (rules X001 to X004). That is a conformance rule, not a browser guarantee: .aim is HTML, so a file that breaks the spec is as risky as any other HTML from a stranger. Put the linter in your upload path.",
+  },
+  {
     q: "What is the license?",
     a: "MIT. The format, the spec, the MCP server, and the SDK are open source. There is no hosted dependency: the MCP server runs locally over stdio.",
   },
