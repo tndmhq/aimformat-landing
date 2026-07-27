@@ -36,10 +36,10 @@ function Cell({ value, accent }: { value: string; accent?: boolean }) {
   );
 }
 
-export function Ledger() {
+export function Ledger({ specVersion }: { specVersion: string }) {
   return (
     <section id="comparison" className="relative scroll-mt-16">
-      <RunningHead section="§7" folio="The Ledger" />
+      <RunningHead section="§7" folio="The Ledger" specVersion={specVersion} />
       <Container className="py-20 sm:py-24">
         <SectionHeader
           n="§7"

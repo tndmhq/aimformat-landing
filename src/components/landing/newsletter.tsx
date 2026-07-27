@@ -12,7 +12,7 @@ import { Input } from "@/components/ui/input";
 
 type Status = "idle" | "loading" | "success" | "error";
 
-export function Newsletter() {
+export function Newsletter({ specVersion }: { specVersion: string }) {
   const [email, setEmail] = useState("");
   const [editorInterest, setEditorInterest] = useState(false);
   const [status, setStatus] = useState<Status>("idle");
@@ -48,7 +48,7 @@ export function Newsletter() {
 
   return (
     <section id="cta" className="relative scroll-mt-16">
-      <RunningHead section="Off the Press" folio="Subscribe" />
+      <RunningHead section="Off the Press" folio="Subscribe" specVersion={specVersion} />
       <Container className="py-20 sm:py-24">
         <div className="mx-auto max-w-2xl text-center">
           <p className="label-serif text-rubric">Off the press</p>

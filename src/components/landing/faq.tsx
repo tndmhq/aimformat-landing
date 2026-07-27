@@ -13,10 +13,10 @@ import {
 } from "@/components/ui/accordion";
 import { faq as queries } from "@/lib/faq";
 
-export function Faq() {
+export function Faq({ specVersion }: { specVersion: string }) {
   return (
     <section id="faq" className="relative scroll-mt-16">
-      <RunningHead section="§8" folio="Notes & Queries" />
+      <RunningHead section="§8" folio="Notes & Queries" specVersion={specVersion} />
       <Container className="py-20 sm:py-24">
         <SectionHeader
           n="§8"

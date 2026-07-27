@@ -45,19 +45,19 @@ export default async function Home() {
       <SiteHeader />
       <main id="main" className="relative flex-1">
         <Hero specVersion={specVersion} />
-        <Manifesto />
-        <ThreeLanes />
+        <Manifesto specVersion={specVersion} />
+        <ThreeLanes specVersion={specVersion} />
         <Anatomy specVersion={specVersion} />
-        <Substrate />
-        <Agents />
-        <LayoutExport />
-        <Ledger />
+        <Substrate specVersion={specVersion} />
+        <Agents specVersion={specVersion} />
+        <LayoutExport specVersion={specVersion} />
+        <Ledger specVersion={specVersion} />
         <EditorNote />
-        <Faq />
-        <Quickstart />
-        <Newsletter />
+        <Faq specVersion={specVersion} />
+        <Quickstart specVersion={specVersion} />
+        <Newsletter specVersion={specVersion} />
       </main>
-      <SiteFooter />
+      <SiteFooter specVersion={specVersion} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

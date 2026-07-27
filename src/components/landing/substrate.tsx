@@ -41,10 +41,10 @@ const plates = [
   },
 ];
 
-export function Substrate() {
+export function Substrate({ specVersion }: { specVersion: string }) {
   return (
     <section id="substrate" className="relative scroll-mt-16">
-      <RunningHead section="§4" folio="The Substrate" />
+      <RunningHead section="§4" folio="The Substrate" specVersion={specVersion} />
       <Container className="py-20 sm:py-24">
         <SectionHeader
           n="§4"

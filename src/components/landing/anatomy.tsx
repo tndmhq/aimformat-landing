@@ -50,7 +50,7 @@ export function Anatomy({ specVersion }: { specVersion: string }) {
   ];
   return (
     <section id="anatomy" className="relative scroll-mt-16">
-      <RunningHead section="§3" folio="The Vocabulary" />
+      <RunningHead section="§3" folio="The Vocabulary" specVersion={specVersion} />
       <Container className="py-20 sm:py-24">
         <SectionHeader
           n="§3"

@@ -38,10 +38,10 @@ const capabilities = [
 
 const clients = ["Claude Code", "Claude Desktop", "Cursor", "Cline", "Zed"];
 
-export function Agents() {
+export function Agents({ specVersion }: { specVersion: string }) {
   return (
     <section id="agents" className="relative scroll-mt-16">
-      <RunningHead section="§5" folio="The On-Ramps" />
+      <RunningHead section="§5" folio="The On-Ramps" specVersion={specVersion} />
       <Container className="py-20 sm:py-24">
         <SectionHeader
           n="§5"
