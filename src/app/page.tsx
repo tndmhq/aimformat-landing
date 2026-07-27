@@ -13,6 +13,7 @@ import { Quickstart } from "@/components/landing/quickstart";
 import { Newsletter } from "@/components/landing/newsletter";
 import { SiteFooter } from "@/components/landing/site-footer";
 import { faq } from "@/lib/faq";
+import { getSpecVersion } from "@/lib/aim-version";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -37,15 +38,16 @@ const jsonLd = {
   ],
 };
 
-export default function Home() {
+export default async function Home() {
+  const specVersion = await getSpecVersion();
   return (
     <>
       <SiteHeader />
       <main id="main" className="relative flex-1">
-        <Hero />
+        <Hero specVersion={specVersion} />
         <Manifesto />
         <ThreeLanes />
-        <Anatomy />
+        <Anatomy specVersion={specVersion} />
         <Substrate />
         <Agents />
         <LayoutExport />

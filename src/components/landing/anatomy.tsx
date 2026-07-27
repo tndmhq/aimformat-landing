@@ -39,16 +39,15 @@ const elements = [
   },
 ];
 
-const annotations = [
-  ["application/aim-meta+json", "An agent reads this first to orient (summary and TOC) instead of loading the whole file."],
-  ['<style data-aim-css="0.3">', "The embedded stylesheet. Machine-managed, never content; the file renders with nothing installed."],
-  ['data-aim="a7f3c1e0"', "A stable id. It survives rewrites, so proposals and history stay pinned to this passage."],
-  ['class="text-2xl…"', "Plain Tailwind. The model already writes this fluently; it is also the rendered style."],
-  ["<aim-proposals>", "Lane II. Pending suggestions wait here, visible and inert, for a human accept or reject."],
-  ["application/aim-history+jsonl", "The append-only history: every change recorded invertibly, so past versions are reconstructible."],
-];
-
-export function Anatomy() {
+export function Anatomy({ specVersion }: { specVersion: string }) {
+  const annotations = [
+    ["application/aim-meta+json", "An agent reads this first to orient (summary and TOC) instead of loading the whole file."],
+    [`<style data-aim-css="${specVersion}">`, "The embedded stylesheet. Machine-managed, never content; the file renders with nothing installed."],
+    ['data-aim="a7f3c1e0"', "A stable id. It survives rewrites, so proposals and history stay pinned to this passage."],
+    ['class="text-2xl…"', "Plain Tailwind. The model already writes this fluently; it is also the rendered style."],
+    ["<aim-proposals>", "Lane II. Pending suggestions wait here, visible and inert, for a human accept or reject."],
+    ["application/aim-history+jsonl", "The append-only history: every change recorded invertibly, so past versions are reconstructible."],
+  ];
   return (
     <section id="anatomy" className="relative scroll-mt-16">
       <RunningHead section="§3" folio="The Vocabulary" />
@@ -80,7 +79,7 @@ export function Anatomy() {
         {/* the file, set as a plate, with margin annotations */}
         <div className="mt-14 grid grid-cols-1 gap-8 lg:grid-cols-[1.45fr_1fr] lg:items-start">
           <CodePlate
-            code={anatomyFile}
+            code={anatomyFile(specVersion)}
             filename="report.aim"
             label="Fig. 2"
           />

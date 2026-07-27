@@ -251,24 +251,13 @@ export function InkStamp({ className }: { className?: string }) {
       </text>
       <text
         x="60"
-        y="56"
+        y="65"
         textAnchor="middle"
         className="font-display"
         fill="currentColor"
         fontSize="20"
       >
         .aim
-      </text>
-      <text
-        x="60"
-        y="72"
-        textAnchor="middle"
-        fill="currentColor"
-        fontFamily="var(--font-mono), monospace"
-        fontSize="8.5"
-        letterSpacing="2"
-      >
-        v0.3
       </text>
     </svg>
   );

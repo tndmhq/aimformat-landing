@@ -20,7 +20,7 @@ function CropMark({ className }: { className?: string }) {
   );
 }
 
-export function Hero() {
+export function Hero({ specVersion }: { specVersion: string }) {
   return (
     <section id="top" className="relative scroll-mt-16">
       <Container wide className="relative pb-16 pt-14 sm:pt-20 lg:pb-24 lg:pt-24">
@@ -61,7 +61,7 @@ export function Hero() {
 
             <div className="meta-run mt-7 flex flex-wrap items-baseline gap-x-2.5 gap-y-1.5">
               <MetaPill>MIT</MetaPill>
-              <MetaPill>v0.3</MetaPill>
+              <MetaPill>v{specVersion}</MetaPill>
               <MetaPill>HTML5 + Tailwind</MetaPill>
               <MetaPill>stdio + MCP</MetaPill>
             </div>
