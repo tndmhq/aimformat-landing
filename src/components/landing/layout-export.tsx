@@ -113,10 +113,10 @@ function ExportFan() {
   );
 }
 
-export function LayoutExport() {
+export function LayoutExport({ specVersion }: { specVersion: string }) {
   return (
     <section id="layout" className="relative scroll-mt-16">
-      <RunningHead section="§6" folio="Layout & Export" />
+      <RunningHead section="§6" folio="Layout & Export" specVersion={specVersion} />
       <Container className="py-20 sm:py-24">
         <SectionHeader
           n="§6"

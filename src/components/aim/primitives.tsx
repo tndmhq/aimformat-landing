@@ -77,15 +77,17 @@ export function MetaPill({
 export function RunningHead({
   section,
   folio,
+  specVersion,
 }: {
   section: string;
   folio: string;
+  specVersion: string;
 }) {
   return (
     <div className="relative z-10 border-y border-ink/20 bg-paper/30">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-1.5 sm:px-10">
         <span className="label-mono text-ink-soft">
-          .aim · vol. 0.3 · {section}
+          .aim · vol. {specVersion} · {section}
         </span>
         <span className="label-mono text-ink-soft">{folio}</span>
       </div>
@@ -251,24 +253,13 @@ export function InkStamp({ className }: { className?: string }) {
       </text>
       <text
         x="60"
-        y="56"
+        y="65"
         textAnchor="middle"
         className="font-display"
         fill="currentColor"
         fontSize="20"
       >
         .aim
-      </text>
-      <text
-        x="60"
-        y="72"
-        textAnchor="middle"
-        fill="currentColor"
-        fontFamily="var(--font-mono), monospace"
-        fontSize="8.5"
-        letterSpacing="2"
-      >
-        v0.3
       </text>
     </svg>
   );

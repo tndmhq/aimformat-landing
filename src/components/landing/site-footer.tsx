@@ -10,7 +10,8 @@ import {
 
 // Section hrefs are "/#…" (not bare "#…") so they also work from subpages
 // like /editors; on the home page they still behave as fragment jumps.
-const columns = [
+// The Imprint edition tracks the live spec version (see getSpecVersion).
+const buildColumns = (specVersion: string) => [
   {
     heading: "The Format",
     items: [
@@ -33,7 +34,7 @@ const columns = [
     heading: "Imprint",
     items: [
       { label: "License: MIT", href: "/#faq" },
-      { label: "Edition: Vol. 0.3", href: "/#top" },
+      { label: `Edition: Vol. ${specVersion}`, href: "/#top" },
       { label: "Editors", href: "/editors" },
       { label: "Repo · GitHub", href: REPO_URL },
       { label: "Contact", href: "mailto:contact@usetndm.com" },
@@ -42,7 +43,8 @@ const columns = [
   },
 ];
 
-export function SiteFooter() {
+export function SiteFooter({ specVersion }: { specVersion: string }) {
+  const columns = buildColumns(specVersion);
   return (
     <footer className="mt-auto border-t border-ink/25 bg-paper-deep/60">
       <Container wide className="py-16">

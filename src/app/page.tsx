@@ -13,6 +13,7 @@ import { Quickstart } from "@/components/landing/quickstart";
 import { Newsletter } from "@/components/landing/newsletter";
 import { SiteFooter } from "@/components/landing/site-footer";
 import { faq } from "@/lib/faq";
+import { getSpecVersion } from "@/lib/aim-version";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -37,25 +38,26 @@ const jsonLd = {
   ],
 };
 
-export default function Home() {
+export default async function Home() {
+  const specVersion = await getSpecVersion();
   return (
     <>
       <SiteHeader />
       <main id="main" className="relative flex-1">
-        <Hero />
-        <Manifesto />
-        <ThreeLanes />
-        <Anatomy />
-        <Substrate />
-        <Agents />
-        <LayoutExport />
-        <Ledger />
+        <Hero specVersion={specVersion} />
+        <Manifesto specVersion={specVersion} />
+        <ThreeLanes specVersion={specVersion} />
+        <Anatomy specVersion={specVersion} />
+        <Substrate specVersion={specVersion} />
+        <Agents specVersion={specVersion} />
+        <LayoutExport specVersion={specVersion} />
+        <Ledger specVersion={specVersion} />
         <EditorNote />
-        <Faq />
-        <Quickstart />
-        <Newsletter />
+        <Faq specVersion={specVersion} />
+        <Quickstart specVersion={specVersion} />
+        <Newsletter specVersion={specVersion} />
       </main>
-      <SiteFooter />
+      <SiteFooter specVersion={specVersion} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

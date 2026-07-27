@@ -61,8 +61,9 @@ export function threeLaneSourceFor(status: ProposalStatus) {
 </script>`;
 }
 
-export const anatomyFile = `<!doctype html>
-<html data-aim-version="0.3" lang="en">
+export function anatomyFile(specVersion: string): string {
+  return `<!doctype html>
+<html data-aim-version="${specVersion}" lang="en">
 <head>
 <meta charset="utf-8">
 <title>Q3 Vendor Proposal — Acme GmbH</title>
@@ -74,7 +75,7 @@ export const anatomyFile = `<!doctype html>
  "toc":[{"title":"Scope of Work","level":2,
    "chunks":["8b1f","a7f3c1e0"]}, …]}
 </script>
-<style data-aim-css="0.3">
+<style data-aim-css="${specVersion}">
   /* machine-managed Tailwind subset */
 </style>
 </head>
@@ -98,6 +99,7 @@ export const anatomyFile = `<!doctype html>
 
 </body>
 </html>`;
+}
 
 export const substrateDocx = `<w:p>
   <w:pPr>

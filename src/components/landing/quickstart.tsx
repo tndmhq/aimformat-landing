@@ -27,10 +27,10 @@ const resources = [
   },
 ];
 
-export function Quickstart() {
+export function Quickstart({ specVersion }: { specVersion: string }) {
   return (
     <section id="quickstart" className="relative scroll-mt-16">
-      <RunningHead section="Set & Ready" folio="Quickstart" />
+      <RunningHead section="Set & Ready" folio="Quickstart" specVersion={specVersion} />
       <Container className="py-20 sm:py-24">
         <SectionHeader
           eyebrow="Off the shelf"

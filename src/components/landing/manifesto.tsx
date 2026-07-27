@@ -10,10 +10,10 @@ function Sup({ children }: { children: React.ReactNode }) {
   );
 }
 
-export function Manifesto() {
+export function Manifesto({ specVersion }: { specVersion: string }) {
   return (
     <section id="format" className="relative scroll-mt-16">
-      <RunningHead section="§1" folio="The Thesis" />
+      <RunningHead section="§1" folio="The Thesis" specVersion={specVersion} />
       <Container className="py-20 sm:py-24">
         <p className="label-serif mb-6 text-center text-rubric">
           §1 · The Thesis

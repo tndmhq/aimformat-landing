@@ -9,6 +9,7 @@ import {
 } from "@/components/aim/primitives";
 import { PressButton } from "@/components/aim/press-button";
 import { pageMeta } from "@/lib/meta";
+import { getSpecVersion } from "@/lib/aim-version";
 
 export const metadata = pageMeta({
   title: "Editors",
@@ -74,13 +75,14 @@ const entries: {
   },
 ];
 
-export default function EditorsPage() {
+export default async function EditorsPage() {
+  const specVersion = await getSpecVersion();
   return (
     <>
       <SiteHeader />
       <main id="main" className="relative flex-1">
         <section className="relative">
-          <RunningHead section="Editors" folio="A Directory" />
+          <RunningHead section="Editors" folio="A Directory" specVersion={specVersion} />
           <Container className="py-20 sm:py-24">
             <SectionHeader
               eyebrow="Editors & Viewers"
@@ -120,7 +122,7 @@ export default function EditorsPage() {
           </Container>
         </section>
       </main>
-      <SiteFooter />
+      <SiteFooter specVersion={specVersion} />
     </>
   );
 }

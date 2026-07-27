@@ -5,10 +5,10 @@ import {
 } from "@/components/aim/primitives";
 import { ThreeLaneFigure } from "./three-lane-figure";
 
-export function ThreeLanes() {
+export function ThreeLanes({ specVersion }: { specVersion: string }) {
   return (
     <section id="three-lanes" className="relative scroll-mt-16">
-      <RunningHead section="§2" folio="The Differentiator" />
+      <RunningHead section="§2" folio="The Differentiator" specVersion={specVersion} />
       <Container className="py-20 sm:py-24">
         <SectionHeader
           n="§2"
