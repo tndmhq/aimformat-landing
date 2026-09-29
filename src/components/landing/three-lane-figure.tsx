@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { LeafCard } from "@/components/aim/leaf";
 import { RedlineDemo } from "@/components/aim/redline";
 import { CodePlate } from "@/components/aim/code-plate";
+import { FigNo } from "@/components/aim/primitives";
 import { threeLaneSourceFor, type ProposalStatus } from "@/lib/snippets";
 
 function Lane({
@@ -17,8 +18,8 @@ function Lane({
   children: React.ReactNode;
 }) {
   return (
-    <div className="bg-surface p-5">
-      <p className="label-mono mb-3 text-ink-soft">
+    <div className="bg-surface p-5 lg:p-4">
+      <p className="label-note mb-3 text-ink-soft">
         {numeral}. {label}
       </p>
       {children}
@@ -36,10 +37,22 @@ export function ThreeLaneFigure() {
 
   return (
     <figure className="lg:sticky lg:top-20">
-      <LeafCard runningHead="Fig. 1 · One chunk, three lanes · try it">
+      <LeafCard
+        runningHead={{
+          left: (
+            <>
+              <FigNo n={1} /> One chunk, three lanes
+            </>
+          ),
+          right: "Try it",
+        }}
+      >
         <RedlineDemo status={status} onStatusChange={setStatus} />
 
-        <div className="mt-6 grid gap-px overflow-hidden rounded-[3px] border border-ink/15 bg-ink/10 sm:grid-cols-3">
+        {/* At lg the figure shares the row with the prose, so the State lane
+            gets a little more width: its record rows stay on one line each
+            instead of overflowing the box. */}
+        <div className="mt-6 grid gap-px overflow-hidden rounded-[3px] border border-ink/15 bg-ink/10 sm:grid-cols-3 lg:grid-cols-[1fr_1fr_1.2fr]">
           <Lane numeral="I" label="Accepted">
             <p className="font-body text-[0.86rem] leading-relaxed text-ink/90">
               {status === "accepted" ? (
@@ -70,29 +83,31 @@ export function ThreeLaneFigure() {
             )}
           </Lane>
           <Lane numeral="III" label="State">
-            <ul className="space-y-0.5 font-mono text-[0.7rem] text-ink-soft">
-              <li>id p-3b9d</li>
-              <li>
-                status{" "}
-                <span
-                  className={cn(
-                    status === "pending" && "text-accent",
-                    status === "accepted" && "text-greenline",
-                    status === "rejected" && "text-redline",
-                  )}
-                >
-                  {status}
-                </span>
-              </li>
-              <li>author claude</li>
-              <li>at 14:32</li>
-            </ul>
+            {/* The proposal's record as key/value rows, keys in the faint ink. */}
+            <dl className="label-note grid grid-cols-[auto_1fr] gap-x-2 gap-y-0.5 text-[0.8rem]">
+              <dt className="text-ink-faint">id</dt>
+              <dd className="text-ink-soft">p-3b9d</dd>
+              <dt className="text-ink-faint">status</dt>
+              <dd
+                className={cn(
+                  status === "pending" && "text-accent",
+                  status === "accepted" && "text-greenline",
+                  status === "rejected" && "text-redline",
+                )}
+              >
+                {status}
+              </dd>
+              <dt className="text-ink-faint">author</dt>
+              <dd className="text-ink-soft">claude</dd>
+              <dt className="text-ink-faint">at</dt>
+              <dd className="text-ink-soft">14:32</dd>
+            </dl>
           </Lane>
         </div>
       </LeafCard>
 
       <details className="group mt-4">
-        <summary className="label-mono inline-flex cursor-pointer list-none items-center gap-2 text-ink-soft transition-colors hover:text-accent">
+        <summary className="label-note inline-flex cursor-pointer list-none text-[0.88rem] items-center gap-2 text-ink-soft transition-colors hover:text-accent">
           <span className="transition-transform group-open:rotate-90">▸</span>
           View the literal source
         </summary>

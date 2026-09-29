@@ -8,11 +8,11 @@ import { ThreeLaneFigure } from "./three-lane-figure";
 export function ThreeLanes({ specVersion }: { specVersion: string }) {
   return (
     <section id="three-lanes" className="relative scroll-mt-16">
-      <RunningHead section="§2" folio="The Differentiator" specVersion={specVersion} />
+      <RunningHead title="The differentiator" specVersion={specVersion} />
       <Container className="py-20 sm:py-24">
         <SectionHeader
-          n="§2"
-          eyebrow="§2 · The Differentiator"
+          n="2"
+          eyebrow="The differentiator"
           title="Three lanes on one page"
           lede="Track-changes is usually a feature of an editor. In .aim it is a property of the file: one document carries the accepted text, the changes proposed against it, and the acceptance state of each proposal."
         />
@@ -38,24 +38,31 @@ export function ThreeLanes({ specVersion }: { specVersion: string }) {
             <dl className="mt-8 space-y-3">
               {[
                 {
-                  k: "Lane I · Accepted",
-                  v: "the document as it stands. Clean, renderable, exportable.",
+                  lane: "Lane I",
+                  k: "Accepted",
+                  v: "The document as it stands. Clean, renderable, exportable.",
                 },
                 {
-                  k: "Lane II · Proposed",
-                  v: "changes written beside the chunk they touch. Deletions struck, insertions underlined.",
+                  lane: "Lane II",
+                  k: "Proposed",
+                  v: "Changes written beside the chunk they touch. Deletions struck, insertions underlined.",
                 },
                 {
-                  k: "Lane III · State",
-                  v: "per-proposal acceptance (pending, accepted, or rejected) with attribution and time.",
+                  lane: "Lane III",
+                  k: "State",
+                  v: "Per-proposal acceptance (pending, accepted, or rejected) with attribution and time.",
                 },
               ].map((row) => (
                 <div
                   key={row.k}
-                  className="grid grid-cols-[auto_1fr] gap-x-4 border-t border-ink/15 pt-3"
+                  className="grid grid-cols-[4.75rem_1fr] gap-x-4 border-t border-ink/15 pt-3"
                 >
-                  <dt className="label-mono whitespace-nowrap text-accent">
-                    {row.k}
+                  {/* Lane number over lane name: two lines, no glyph between. */}
+                  <dt className="flex flex-col">
+                    <span className="label-note text-ink-faint">{row.lane}</span>
+                    <span className="font-display text-[1.02rem] font-medium leading-snug text-accent">
+                      {row.k}
+                    </span>
                   </dt>
                   <dd className="font-body text-[0.98rem] leading-snug text-ink-soft">
                     {row.v}

@@ -1,5 +1,6 @@
-// Single source of truth for the FAQ: rendered in §8 (faq.tsx) and emitted as
-// FAQPage JSON-LD in page.tsx. Edit here, both stay in step.
+// Single source of truth for the FAQ: rendered in the Notes and queries
+// section (faq.tsx) and emitted as FAQPage JSON-LD in page.tsx. Edit here,
+// both stay in step.
 export const faq = [
   {
     q: "Is .aim really just HTML?",

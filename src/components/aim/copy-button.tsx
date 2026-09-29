@@ -27,7 +27,7 @@ export function CopyButton({
       }}
       aria-label={copied ? "Copied to clipboard" : "Copy code"}
       className={cn(
-        "label-mono inline-flex items-center gap-1.5 rounded-[2px] border border-code-text/25 px-2 py-1 text-[10px] text-code-text/65 transition-colors hover:border-code-text/50 hover:text-code-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-code-accent",
+        "label-note inline-flex items-center gap-1.5 rounded-[2px] border border-code-text/25 px-2 py-0.5 text-[0.78rem] text-code-text/65 transition-colors hover:border-code-text/50 hover:text-code-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-code-accent",
         className,
       )}
     >

@@ -11,8 +11,17 @@ red/green editor's ink (the three-lane track-changes primitive) with a half-peel
 green leads (display, actions) with a madder rubric for eyebrows and marks; no
 text run ever mixes inks. `redline`/`greenline` are reserved exclusively for the
 track-changes metaphor. Palette: `src/app/globals.css` `:root` block, mirrored
-for TS consumers in `src/lib/palette.ts`. Set in Fraunces, Newsreader, and
-IBM Plex Mono.
+for TS consumers in `src/lib/palette.ts`.
+
+Type: two families only, Fraunces for display and Newsreader for everything
+else. There is no monospace face on the site, and no separating dot or section
+sign in any string (maintainer rule, 2026-09-29). Labels, running heads,
+captions and meta facts use the `.label-note` class; code, commands and file
+source use `.code-text`, where the dark plate or highlight marks it as code.
+Both are Newsreader with lining tabular figures, defined in
+`src/app/globals.css`. Facts go in label/value rows, short lists in commas,
+running heads left and right by position. `npm run check:type` enforces the
+rules, and `npm run build` runs it first, so a violation cannot deploy.
 
 The primary call to action is the newsletter. The public
 [repository](https://github.com/tndmhq/aimformat) is linked as a secondary, deliberately
@@ -25,7 +34,7 @@ ahead of the newsletter CTA.
 
 ## Stack
 
-- [Next.js 16](https://nextjs.org) (App Router) · React 19 · TypeScript
+- [Next.js 16](https://nextjs.org) (App Router), React 19, TypeScript
 - Tailwind CSS v4
 - [shadcn/ui](https://ui.shadcn.com) (Base UI primitives): Input, Accordion, Badge
 - Fonts via `next/font/google` (self-hosted at build)
@@ -39,6 +48,7 @@ npm run dev      # http://localhost:3000
 npm run build    # production build
 npm run start    # serve the production build
 npm run lint
+npm run check:type   # no monospace, separating dots or section signs
 ```
 
 ## Newsletter signup

@@ -6,7 +6,7 @@ export const contentType = "image/png";
 
 export default function Image() {
   return renderOgImage({
-    eyebrow: "Editors & Viewers",
+    eyebrow: "Editors and viewers",
     wordmark: ".aim",
     headline: "Where .aim\nfiles open.",
     support:

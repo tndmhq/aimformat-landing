@@ -37,15 +37,17 @@ const capabilities = [
 ];
 
 const clients = ["Claude Code", "Claude Desktop", "Cursor", "Cline", "Zed"];
+// A short list of like things reads as prose with commas, never a glyph run.
+const clientList = `${clients.slice(0, -1).join(", ")}, and ${clients.at(-1)}`;
 
 export function Agents({ specVersion }: { specVersion: string }) {
   return (
     <section id="agents" className="relative scroll-mt-16">
-      <RunningHead section="§5" folio="The On-Ramps" specVersion={specVersion} />
+      <RunningHead title="The on-ramps" specVersion={specVersion} />
       <Container className="py-20 sm:py-24">
         <SectionHeader
-          n="§5"
-          eyebrow="§5 · The On-Ramps"
+          n="5"
+          eyebrow="The on-ramps"
           title="Agent-native from day one"
           lede="Because a plain .aim file is valid HTML, any model can already read one with no tooling at all. For chunk-level propose and accept, and for navigation without loading the whole file, there is a local MCP server."
         />
@@ -73,17 +75,13 @@ export function Agents({ specVersion }: { specVersion: string }) {
               ))}
             </ul>
 
-            <div className="mt-8">
-              <p className="label-mono mb-3 text-ink-soft">
+            <div className="mt-8 border-t border-ink/15 pt-3">
+              <p className="label-note text-ink-faint">
                 Works with the clients you already run
               </p>
-              <div className="meta-run flex flex-wrap items-baseline gap-x-2.5 gap-y-1.5">
-                {clients.map((c) => (
-                  <span key={c} className="label-mono text-ink-soft">
-                    {c}
-                  </span>
-                ))}
-              </div>
+              <p className="mt-1 font-body text-[1rem] leading-snug text-ink">
+                {clientList}.
+              </p>
             </div>
           </div>
 
@@ -91,7 +89,7 @@ export function Agents({ specVersion }: { specVersion: string }) {
             <CodePlate
               code={mcpSource}
               lang="shell"
-              filename="install + propose/accept"
+              filename="Install, propose, accept"
             />
             <div className="mt-8 grid gap-x-8 gap-y-5 sm:grid-cols-2">
               {onRamps.map((o) => (

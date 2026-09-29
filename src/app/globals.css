@@ -127,9 +127,15 @@
   --color-stamp: var(--stamp);
   --color-highlight: var(--highlight);
 
+  /* Two families only: Fraunces for display, Newsreader for everything
+     else, code and labels included. Tailwind v4 ships its own fixed-width
+     theme; the next two lines remove it at the source (the font utility
+     and preflight's code/kbd/samp/pre family). See the workspace
+     design-rules.md. */
   --font-display: var(--font-fraunces);
   --font-body: var(--font-newsreader);
-  --font-mono: var(--font-plex-mono);
+  --font-mono: initial;
+  --default-mono-font-family: var(--font-body);
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -171,7 +177,11 @@
     background-color: var(--paper);
     color: var(--ink);
     font-family: var(--font-body), Georgia, "Times New Roman", serif;
-    font-feature-settings: "liga" 1, "onum" 1, "kern" 1;
+    font-feature-settings: "liga" 1, "kern" 1;
+    /* Old-style figures for running text. Set through font-variant (not a
+       feature-settings "onum") so .label-note and .code-text can switch to
+       lining tabular figures by overriding one property. */
+    font-variant-numeric: oldstyle-nums;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     /* Laid-paper substrate: faint horizontal laid lines over morning cream. */
@@ -220,18 +230,35 @@
   }
 }
 
-@layer utilities {
-  /* Lowercase mono annotation — for technical labels: running heads, figure
-     captions, file names, meta lines. Deliberately NOT uppercase/tracked-out
-     (the tracked-caps eyebrow is a generated-site tell; see the workspace
-     ai-design-tells doc). */
-  .label-mono {
-    font-family: var(--font-mono), ui-monospace, monospace;
-    letter-spacing: 0.05em;
-    font-size: 0.72rem;
+/* The annotation and code voices live in the components layer, not
+   utilities: Tailwind emits its generated utilities before this file's
+   own @layer utilities rules, so a size set here would silently beat a
+   call-site text-[0.9rem]. As components they are defaults that any
+   utility (text-*, leading-*, tracking-*) can tune per context. */
+@layer components {
+  /* Quiet annotation in the text face: running heads, captions, file names,
+     meta facts, small UI labels. Replaces the old fixed-width label voice
+     (banned on every surface, design-rules.md). */
+  .label-note {
+    font-family: var(--font-body), Georgia, serif;
+    font-size: 0.8rem;
     line-height: 1.4;
+    letter-spacing: 0.01em;
+    font-variant-numeric: lining-nums tabular-nums;
   }
 
+  /* Code, commands and file source, set in the text face. The dark plate or
+     highlight behind it is what marks it as code, not a typewriter font.
+     Ligatures off so `fi`, `--` and quotes stay literal. */
+  .code-text {
+    font-family: var(--font-body), Georgia, serif;
+    font-variant-numeric: lining-nums tabular-nums;
+    font-variant-ligatures: none;
+    font-feature-settings: "liga" 0, "dlig" 0, "onum" 0, "lnum" 1;
+  }
+}
+
+@layer utilities {
   /* Small-caps serif eyebrow — chapter-heading voice for section openers.
      Author the text in sentence case; the variant sets the small caps. */
   .label-serif {
@@ -243,22 +270,11 @@
     font-weight: 500;
   }
 
-  /* Colophon run — plain meta facts separated by interpuncts, not pill
-     badges. Apply to the flex container; children get a leading "·". */
-  .meta-run > * + *::before {
-    content: "·";
-    margin-right: 0.65em;
-    color: var(--ink-faint);
-  }
-
   .font-display {
     font-family: var(--font-display), Georgia, serif;
   }
   .font-body {
     font-family: var(--font-body), Georgia, serif;
-  }
-  .font-mono {
-    font-family: var(--font-mono), ui-monospace, monospace;
   }
 
   .small-caps {

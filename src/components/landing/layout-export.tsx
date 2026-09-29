@@ -1,5 +1,6 @@
 import {
   Container,
+  FigNo,
   RunningHead,
   SectionHeader,
 } from "@/components/aim/primitives";
@@ -27,13 +28,15 @@ function SlideArtifact() {
           }}
           aria-hidden
         />
-        <span className="absolute left-5 top-0.5 z-20 font-mono text-[0.5rem] text-ink-faint">
+        {/* Ruler figures sit on a paper chip so a tick never runs through
+            a numeral. */}
+        <span className="label-note absolute left-5 top-0.5 z-20 bg-paper px-0.5 text-[11px] leading-none text-ink-faint">
           0
         </span>
-        <span className="absolute left-1/2 top-0.5 z-20 font-mono text-[0.5rem] text-ink-faint">
+        <span className="label-note absolute left-1/2 top-0.5 z-20 bg-paper px-0.5 text-[11px] leading-none text-ink-faint">
           480
         </span>
-        <span className="absolute right-1 top-0.5 z-20 font-mono text-[0.5rem] text-ink-faint">
+        <span className="label-note absolute right-1 top-0.5 z-20 bg-paper px-0.5 text-[11px] leading-none text-ink-faint">
           960
         </span>
 
@@ -56,14 +59,18 @@ function SlideArtifact() {
               ))}
             </div>
           </div>
-          <span className="absolute bottom-[7%] left-[8%] font-mono text-[0.6rem] text-zinc-400">
-            report.aim · §6
+          {/* Slide footer: file name left, slide number right. */}
+          <span className="label-note absolute bottom-[7%] left-[8%] text-[11px] text-zinc-400">
+            report.aim
+          </span>
+          <span className="label-note absolute bottom-[7%] right-[7%] text-[11px] text-zinc-400">
+            6
           </span>
         </div>
       </div>
       <figcaption className="mt-3 font-body text-[0.92rem] leading-snug text-ink-soft">
-        Fig. 5 · An aim-slide rendered to scale, with faint coordinate rulers.
-        Real HTML, real coordinates.
+        <FigNo n={5} /> An aim-slide rendered to scale, with faint coordinate
+        rulers. Real HTML, real coordinates.
       </figcaption>
     </figure>
   );
@@ -77,9 +84,9 @@ function ExportFan() {
   ];
   return (
     <div className="flex flex-wrap items-center gap-5">
-      <div className="flex h-16 w-16 shrink-0 flex-col items-center justify-center rounded-[2px] border border-ink/20 bg-surface text-center shadow-leaf">
+      <div className="flex size-[4.5rem] shrink-0 flex-col items-center justify-center rounded-[2px] border border-ink/20 bg-surface text-center shadow-leaf">
         <span className="font-display text-sm text-accent">.aim</span>
-        <span className="label-mono mt-0.5 text-[0.5rem] text-ink-faint">
+        <span className="label-note mt-0.5 text-[11px] leading-none text-ink-faint">
           one source
         </span>
       </div>
@@ -100,10 +107,10 @@ function ExportFan() {
             key={t.name}
             className="flex items-center gap-2 rounded-[2px] border border-ink/20 bg-surface px-3 py-1.5"
           >
-            <span className="font-mono text-[0.82rem] font-medium text-ink">
+            <span className="font-body text-[0.92rem] font-medium text-ink">
               {t.name}
             </span>
-            <span className={`label-mono text-[0.55rem] ${t.badgeClass}`}>
+            <span className={`label-note text-[0.78rem] ${t.badgeClass}`}>
               {t.badge}
             </span>
           </div>
@@ -116,11 +123,11 @@ function ExportFan() {
 export function LayoutExport({ specVersion }: { specVersion: string }) {
   return (
     <section id="layout" className="relative scroll-mt-16">
-      <RunningHead section="§6" folio="Layout & Export" specVersion={specVersion} />
+      <RunningHead title="Layout & export" specVersion={specVersion} />
       <Container className="py-20 sm:py-24">
         <SectionHeader
-          n="§6"
-          eyebrow="§6 · Layout &amp; Export"
+          n="6"
+          eyebrow="Layout &amp; export"
           title="Fixed canvas, deterministic export"
           lede="This is where the case for a new format lands hardest. A slide is a fixed canvas with positioned children, and Markdown has no way to say so. .aim does. An aim-slide defines the canvas; its children are pinned to it with plain pixel coordinates, styled in the same Tailwind subset."
         />

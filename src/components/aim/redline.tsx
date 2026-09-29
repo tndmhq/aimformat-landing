@@ -17,14 +17,14 @@ export function AcceptRejectChips({
   className?: string;
 }) {
   const pad =
-    size === "sm" ? "px-2 py-0.5 text-[0.62rem]" : "px-2.5 py-1 text-[0.72rem]";
+    size === "sm" ? "px-2 py-0.5 text-[0.8rem]" : "px-2.5 py-0.5 text-[0.88rem]";
   return (
     <div className={cn("flex items-center gap-2", className)}>
       <button
         type="button"
         onClick={onAccept}
         className={cn(
-          "inline-flex cursor-pointer items-center gap-1 rounded-[2px] border border-greenline/45 bg-greenline/10 font-mono tracking-wide text-greenline transition-colors hover:border-greenline hover:bg-greenline/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-greenline",
+          "inline-flex cursor-pointer items-center gap-1 rounded-[2px] border border-greenline/45 bg-greenline/10 font-body font-medium text-greenline transition-colors hover:border-greenline hover:bg-greenline/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-greenline",
           pad,
         )}
       >
@@ -34,7 +34,7 @@ export function AcceptRejectChips({
         type="button"
         onClick={onReject}
         className={cn(
-          "inline-flex cursor-pointer items-center gap-1 rounded-[2px] border border-redline/45 bg-redline/10 font-mono tracking-wide text-redline transition-colors hover:border-redline hover:bg-redline/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-redline",
+          "inline-flex cursor-pointer items-center gap-1 rounded-[2px] border border-redline/45 bg-redline/10 font-body font-medium text-redline transition-colors hover:border-redline hover:bg-redline/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-redline",
           pad,
         )}
       >
@@ -46,10 +46,10 @@ export function AcceptRejectChips({
 
 function statusLine(status: ProposalStatus) {
   if (status === "accepted")
-    return "accepted · folded into the document · record kept in the file";
+    return "Accepted and folded into the document. The record stays in the file.";
   if (status === "rejected")
-    return "rejected · document unchanged · record kept in the file";
-  return "proposed by Claude · 14:32";
+    return "Rejected, so the document is unchanged. The record stays in the file.";
+  return "Proposed by Claude at 14:32";
 }
 
 /**
@@ -116,9 +116,9 @@ export function RedlineDemo({
           <button
             type="button"
             onClick={() => setStatus("pending")}
-            className="label-mono cursor-pointer text-ink-soft underline decoration-ink/30 underline-offset-4 transition-colors hover:text-accent"
+            className="label-note cursor-pointer text-[0.85rem] text-ink-soft underline decoration-ink/30 underline-offset-4 transition-colors hover:text-accent"
           >
-            ↺ reopen the proposal
+            ↺ Reopen the proposal
           </button>
         )}
         <span

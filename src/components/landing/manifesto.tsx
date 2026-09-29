@@ -4,7 +4,7 @@ import { Container, RunningHead } from "@/components/aim/primitives";
    the one-ink-per-text-run rule they stay a neutral gray, never a press ink. */
 function Sup({ children }: { children: React.ReactNode }) {
   return (
-    <sup className="ml-0.5 align-super font-mono text-[0.58em] text-ink-faint">
+    <sup className="ml-0.5 align-super font-body text-[0.62em] text-ink-faint [font-variant-numeric:lining-nums]">
       {children}
     </sup>
   );
@@ -13,14 +13,22 @@ function Sup({ children }: { children: React.ReactNode }) {
 export function Manifesto({ specVersion }: { specVersion: string }) {
   return (
     <section id="format" className="relative scroll-mt-16">
-      <RunningHead section="§1" folio="The Thesis" specVersion={specVersion} />
+      <RunningHead title="The thesis" specVersion={specVersion} />
       <Container className="py-20 sm:py-24">
-        <p className="label-serif mb-6 text-center text-rubric">
-          §1 · The Thesis
-        </p>
-        <h2 className="mx-auto mb-10 max-w-2xl border-b border-accent/30 pb-4 text-center font-display text-[clamp(1.8rem,3.2vw,2.4rem)] font-medium leading-[1.15] tracking-[-0.01em] text-accent text-balance">
-          The format that does not exist yet
-        </h2>
+        <p className="label-serif mb-6 text-center text-rubric">The thesis</p>
+        {/* Chapter 1 of the home page's numbered sequence, centered: the bare
+            numeral sits on the title's rule like SectionHeader's. */}
+        <div className="mx-auto mb-10 flex max-w-2xl items-baseline justify-center gap-4 border-b border-accent/30 pb-4">
+          <span
+            className="font-display text-[1.4rem] font-medium leading-none text-rubric [font-variant-numeric:lining-nums]"
+            aria-hidden
+          >
+            1
+          </span>
+          <h2 className="text-center font-display text-[clamp(1.8rem,3.2vw,2.4rem)] font-medium leading-[1.15] tracking-[-0.01em] text-accent text-balance">
+            The format that does not exist yet
+          </h2>
+        </div>
 
         <div className="mx-auto measure">
           <p className="dropcap font-body text-[1.28rem] leading-[1.72] text-ink text-pretty">
@@ -62,9 +70,9 @@ export function Manifesto({ specVersion }: { specVersion: string }) {
               ].map((step, i) => (
                 <li
                   key={i}
-                  className="flex gap-3.5 border-t border-ink/15 pt-2.5 font-body text-[1.02rem] leading-snug text-ink"
+                  className="flex items-baseline gap-3.5 border-t border-ink/15 pt-2.5 font-body text-[1.02rem] leading-snug text-ink"
                 >
-                  <span className="label-mono mt-1 shrink-0 text-accent">
+                  <span className="label-note w-4 shrink-0 text-[0.88rem] text-accent">
                     {i + 1}.
                   </span>
                   {step}
@@ -86,7 +94,7 @@ export function Manifesto({ specVersion }: { specVersion: string }) {
               <Sup>1</Sup> PDF: binary, read-only, hostile to structured edits.
             </p>
             <p className="font-body text-[0.92rem] leading-[1.5] text-ink-soft">
-              <Sup>2</Sup> DOCX / PPTX: zipped XML schemas no language model
+              <Sup>2</Sup> DOCX and PPTX: zipped XML schemas no language model
               edits reliably.
             </p>
             <p className="font-body text-[0.92rem] leading-[1.5] text-ink-soft">

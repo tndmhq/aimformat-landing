@@ -3,7 +3,6 @@ import { SiteHeader } from "@/components/landing/site-header";
 import { SiteFooter } from "@/components/landing/site-footer";
 import {
   Container,
-  MetaPill,
   RunningHead,
   SectionHeader,
 } from "@/components/aim/primitives";
@@ -22,13 +21,14 @@ const linkClass = "text-accent underline-offset-4 hover:underline";
 
 const entries: {
   name: string;
-  pill: string;
+  /** One-word status set beside the name, never a glyph-joined run. */
+  status: string;
   body: ReactNode;
   cta?: { href: string; label: string };
 }[] = [
   {
     name: "Tndm",
-    pill: "Flagship · live",
+    status: "Live",
     cta: { href: "https://app.usetndm.com", label: "Open the Tndm editor" },
     body: (
       <>
@@ -38,9 +38,9 @@ const entries: {
         attributed in the file&apos;s own history. Open a document at{" "}
         <a href="https://app.usetndm.com" className={linkClass}>
           app.usetndm.com
-        </a>{" "}
-        — no account needed to upload a file and read its pending changes.
-        More at{" "}
+        </a>
+        ; no account is needed to upload a file and read its pending
+        changes. More at{" "}
         <a href="https://usetndm.com" className={linkClass}>
           usetndm.com
         </a>
@@ -49,7 +49,7 @@ const entries: {
   },
   {
     name: "Reference viewer",
-    pill: "Planned",
+    status: "Planned",
     body: (
       <>
         A minimal viewer maintained alongside the specification, for reading
@@ -60,15 +60,15 @@ const entries: {
   },
   {
     name: "Any browser",
-    pill: "Zero install",
+    status: "Zero install",
     body: (
       <>
         The tier every file ships with. Because a .aim document is valid
         HTML5 with its stylesheet embedded, the raw file renders its content
         with no editor, no extension and no build step, followed by a list
         of the pending changes: what each one targets, who proposed it, and
-        why. The proposed wording itself is not shown — payloads are inert
-        templates that browsers deliberately do not render — so seeing the
+        why. The proposed wording itself is not shown (payloads are inert
+        templates that browsers deliberately do not render), so seeing the
         redline, or acting on it, needs an editor.
       </>
     ),
@@ -82,12 +82,12 @@ export default async function EditorsPage() {
       <SiteHeader />
       <main id="main" className="relative flex-1">
         <section className="relative">
-          <RunningHead section="Editors" folio="A Directory" specVersion={specVersion} />
+          <RunningHead title="Editors and viewers" specVersion={specVersion} />
           <Container className="py-20 sm:py-24">
             <SectionHeader
-              eyebrow="Editors & Viewers"
+              eyebrow="Editors and viewers"
               title="Where .aim files open"
-              lede=".aim renders in any browser, because it is the page; an editor adds the review surface: word-level diffs, one-click accept/reject, slide navigation."
+              lede=".aim renders in any browser, because it is the page; an editor adds the review surface: word-level diffs, one-click accept and reject, slide navigation."
             />
 
             <div className="mt-14 max-w-3xl space-y-10">
@@ -97,7 +97,9 @@ export default async function EditorsPage() {
                     <h3 className="font-display text-[1.4rem] font-medium leading-tight text-ink">
                       {e.name}
                     </h3>
-                    <MetaPill>{e.pill}</MetaPill>
+                    <span className="label-note text-[0.92rem] italic text-ink-soft">
+                      {e.status}
+                    </span>
                   </div>
                   <p className="measure mt-3 font-body text-[1.08rem] leading-[1.72] text-ink text-pretty">
                     {e.body}

@@ -1,5 +1,6 @@
 import {
   Container,
+  FigNo,
   RunningHead,
   SectionHeader,
 } from "@/components/aim/primitives";
@@ -50,11 +51,11 @@ export function Anatomy({ specVersion }: { specVersion: string }) {
   ];
   return (
     <section id="anatomy" className="relative scroll-mt-16">
-      <RunningHead section="§3" folio="The Vocabulary" specVersion={specVersion} />
+      <RunningHead title="The vocabulary" specVersion={specVersion} />
       <Container className="py-20 sm:py-24">
         <SectionHeader
-          n="§3"
-          eyebrow="§3 · The Vocabulary"
+          n="3"
+          eyebrow="The vocabulary"
           title="Anatomy of an .aim file"
           lede="An .aim file is valid HTML5. Open it in a browser and it renders; there is nothing to install to read one. The structure lives in a small vocabulary of attributes and custom elements, each one plain markup a model already knows how to balance."
         />
@@ -63,7 +64,7 @@ export function Anatomy({ specVersion }: { specVersion: string }) {
         <div className="mt-12 grid gap-x-10 gap-y-8 sm:grid-cols-2">
           {elements.map((el) => (
             <div key={el.term} className="border-t border-ink/15 pt-4">
-              <code className="font-mono text-[0.95rem] font-medium text-accent">
+              <code className="code-text inline-block rounded-[2px] bg-highlight px-1.5 py-0.5 text-[1.02rem] font-medium text-accent">
                 {el.term}
               </code>
               <p className="mt-1.5 font-body text-[1.05rem] leading-snug text-ink">
@@ -81,11 +82,10 @@ export function Anatomy({ specVersion }: { specVersion: string }) {
           <CodePlate
             code={anatomyFile(specVersion)}
             filename="report.aim"
-            label="Fig. 2"
           />
           <div className="lg:pt-2">
-            <p className="label-mono mb-4 text-ink-soft">
-              Fig. 2 · Read the margins
+            <p className="label-note mb-4 text-[0.88rem] text-ink-soft">
+              <FigNo n={2} /> Read the margins
             </p>
             <ol className="space-y-3">
               {annotations.map(([target, note]) => (
@@ -93,7 +93,7 @@ export function Anatomy({ specVersion }: { specVersion: string }) {
                   key={target}
                   className="border-l border-accent/35 pl-3.5"
                 >
-                  <code className="font-mono text-[0.78rem] text-accent">
+                  <code className="code-text text-[0.92rem] text-accent">
                     {target}
                   </code>
                   <p className="mt-1 font-body text-[0.95rem] leading-snug text-ink-soft">

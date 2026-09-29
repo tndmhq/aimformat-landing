@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Newsreader, IBM_Plex_Mono } from "next/font/google";
+import { Fraunces, Newsreader } from "next/font/google";
 import { PALETTE } from "@/lib/palette";
 import "./globals.css";
 
@@ -19,20 +19,13 @@ const newsreader = Newsreader({
   axes: ["opsz"],
 });
 
-const plexMono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  variable: "--font-plex-mono",
-  display: "swap",
-  weight: ["400", "500", "600"],
-});
-
 const SITE_URL = "https://aimformat.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: ".aim: the open document format for the AI era",
-    template: "%s · .aim",
+    template: ".aim: %s",
   },
   description:
     "There is no Markdown for layout-rich, AI-native documents. So we set one in type. .aim is valid HTML5 with a Tailwind subset, extended with stable chunks, slides, and a three-lane file that makes track-changes a property of the document itself. Open source, MIT. By Tndm.",
@@ -80,12 +73,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fraunces.variable} ${newsreader.variable} ${plexMono.variable}`}
+      className={`${fraunces.variable} ${newsreader.variable}`}
     >
       <body className="relative flex min-h-dvh flex-col">
         <a
           href="#main"
-          className="label-mono sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:border focus:border-ink focus:bg-surface focus:px-3 focus:py-2 focus:text-ink"
+          className="label-note sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:border focus:border-ink focus:bg-surface focus:px-3 focus:py-2 focus:text-ink"
         >
           Skip to content
         </a>

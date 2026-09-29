@@ -13,7 +13,7 @@ const resources = [
   {
     label: "The full on-ramps",
     href: "#agents",
-    note: "MCP tools, the SDK, and the clients it works with (§5).",
+    note: "MCP tools, the SDK, and the clients it works with.",
   },
   {
     label: "llms.txt",
@@ -30,7 +30,7 @@ const resources = [
 export function Quickstart({ specVersion }: { specVersion: string }) {
   return (
     <section id="quickstart" className="relative scroll-mt-16">
-      <RunningHead section="Set & Ready" folio="Quickstart" specVersion={specVersion} />
+      <RunningHead title="Quickstart" specVersion={specVersion} />
       <Container className="py-20 sm:py-24">
         <SectionHeader
           eyebrow="Off the shelf"
@@ -43,7 +43,7 @@ export function Quickstart({ specVersion }: { specVersion: string }) {
             <>
               The .aim format is
               MIT-licensed and published to PyPI: a typed Python SDK and
-              the <code className="rounded-[2px] bg-ink/[0.06] px-1 py-0.5 font-mono text-[0.85em] text-ink">aim</code>{" "}
+              the <code className="code-text rounded-[2px] bg-ink/[0.07] px-1.5 py-0.5 text-ink">aim</code>{" "}
               CLI, zero runtime dependencies. Nothing hosted, no account,
               nothing to wait for. The press notices below are for the launch.
             </>

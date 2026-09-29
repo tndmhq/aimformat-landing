@@ -48,7 +48,7 @@ export function Newsletter({ specVersion }: { specVersion: string }) {
 
   return (
     <section id="cta" className="relative scroll-mt-16">
-      <RunningHead section="Off the Press" folio="Subscribe" specVersion={specVersion} />
+      <RunningHead title="Subscribe" specVersion={specVersion} />
       <Container className="py-20 sm:py-24">
         <div className="mx-auto max-w-2xl text-center">
           <p className="label-serif text-rubric">Off the press</p>

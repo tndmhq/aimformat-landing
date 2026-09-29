@@ -3,10 +3,12 @@ import { cn } from "@/lib/utils";
 import { CopyButton } from "./copy-button";
 
 /**
- * The single dark "inked plate" surface of the page — code set in IBM Plex
- * Mono on warm near-black, with a 2px accent left-rule and a typeset
- * filename tab. The deliberate tonal inversion that makes the technical
- * sections feel like a pressman's metal type tray against the cream.
+ * The single dark "inked plate" surface of the page: code set in the text
+ * face (Newsreader, lining tabular figures, ligatures off) on warm
+ * near-black, with a 2px accent left-rule and a typeset filename tab. The
+ * plate, not a typewriter font, is what marks it as code; the tonal
+ * inversion makes the technical sections read like a pressman's metal type
+ * tray against the cream.
  */
 export function CodePlate({
   code,
@@ -36,9 +38,9 @@ export function CodePlate({
     >
       {hasChrome && (
         <div className="flex items-center justify-between gap-3 border-b border-white/10 px-3.5 py-2">
-          <span className="label-mono inline-flex min-w-0 items-center gap-2 truncate text-code-text/55">
+          <span className="label-note inline-flex min-w-0 items-center gap-2 truncate text-[0.85rem] text-code-text/55">
             {filename ? (
-              <span className="truncate normal-case tracking-normal text-code-accent/90">
+              <span className="truncate text-code-accent/90">
                 {filename}
               </span>
             ) : (
@@ -55,7 +57,7 @@ export function CodePlate({
         />
         <pre
           className={cn(
-            "overflow-x-auto px-4 py-4 font-mono text-[0.82rem] leading-[1.62] text-code-text",
+            "code-text overflow-x-auto px-4 py-4 text-[0.9rem] leading-[1.6] text-code-text",
             bodyClassName,
           )}
         >
