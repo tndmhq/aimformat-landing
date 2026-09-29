@@ -16,11 +16,10 @@ import { faq as queries } from "@/lib/faq";
 export function Faq({ specVersion }: { specVersion: string }) {
   return (
     <section id="faq" className="relative scroll-mt-16">
-      <RunningHead section="§8" folio="Notes & Queries" specVersion={specVersion} />
+      <RunningHead title="Notes and queries" specVersion={specVersion} />
       <Container className="py-20 sm:py-24">
         <SectionHeader
-          n="§8"
-          eyebrow="§8 · Notes & Queries"
+          n="8"
           title="Notes and queries"
           lede="Seven questions a careful reader asks before adopting a new format, answered plainly."
         />
@@ -35,7 +34,9 @@ export function Faq({ specVersion }: { specVersion: string }) {
               >
                 <AccordionTrigger className="py-4 text-left hover:no-underline">
                   <span className="flex items-baseline gap-3">
-                    <span className="label-mono text-accent">{i + 1}.</span>
+                    <span className="label-note w-5 shrink-0 text-[0.95rem] text-accent">
+                      {i + 1}.
+                    </span>
                     <span className="font-display text-[1.2rem] font-medium text-ink">
                       {item.q}
                     </span>

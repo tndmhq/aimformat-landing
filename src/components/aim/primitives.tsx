@@ -54,11 +54,44 @@ export function Monogram({ className }: { className?: string }) {
   );
 }
 
-/* ------------------------------------------------------------ meta colophon */
+/* ------------------------------------------------------------- running head */
 
-/** One fact in a colophon run (plain mono text; the parent `.meta-run`
- *  container draws the interpunct separators — no pill chrome). */
-export function MetaPill({
+/**
+ * A printed running head: the book title flush left, the section title flush
+ * right, the way a bound page carries them. Position does the separating;
+ * never string the facts on a glyph (design-rules.md).
+ */
+export function RunningHead({
+  title,
+  specVersion,
+}: {
+  title: string;
+  specVersion: string;
+}) {
+  return (
+    <div className="relative z-10 border-y border-ink/20 bg-paper/30">
+      <div className="mx-auto flex max-w-6xl items-baseline justify-between gap-6 px-6 py-1.5 sm:px-10">
+        <span className="label-note text-ink-soft">.aim, vol. {specVersion}</span>
+        <span className="label-note italic text-ink-soft">{title}</span>
+      </div>
+    </div>
+  );
+}
+
+/* ----------------------------------------------------------- figure number */
+
+/** "Fig. 3." as a printed caption opens: the number set a weight up, in the
+ *  caption's own ink (one ink per run), closed by a period. The caption
+ *  text follows after a space. */
+export function FigNo({ n }: { n: number }) {
+  return <span className="font-semibold">Fig. {n}.</span>;
+}
+
+/* ------------------------------------------------------------- inline code */
+
+/** A command or identifier inside prose. The text face stays; the tinted
+ *  chip is what marks it as code, and a command never breaks across lines. */
+export function InlineCode({
   children,
   className,
 }: {
@@ -66,32 +99,14 @@ export function MetaPill({
   className?: string;
 }) {
   return (
-    <span className={cn("label-mono text-ink-soft", className)}>
+    <code
+      className={cn(
+        "code-text whitespace-nowrap rounded-[2px] bg-ink/[0.07] px-1 py-0.5 text-ink",
+        className,
+      )}
+    >
       {children}
-    </span>
-  );
-}
-
-/* ------------------------------------------------------------- running head */
-
-export function RunningHead({
-  section,
-  folio,
-  specVersion,
-}: {
-  section: string;
-  folio: string;
-  specVersion: string;
-}) {
-  return (
-    <div className="relative z-10 border-y border-ink/20 bg-paper/30">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-1.5 sm:px-10">
-        <span className="label-mono text-ink-soft">
-          .aim · vol. {specVersion} · {section}
-        </span>
-        <span className="label-mono text-ink-soft">{folio}</span>
-      </div>
-    </div>
+    </code>
   );
 }
 
@@ -102,15 +117,15 @@ export function SectionHeader({
   eyebrow,
   title,
   lede,
-  pills,
   className,
   titleClassName,
 }: {
+  /** Bare chapter numeral ("4"), only where the numbers are a sequence the
+   *  reader follows. */
   n?: string;
   eyebrow?: string;
   title: ReactNode;
   lede?: ReactNode;
-  pills?: ReactNode;
   className?: string;
   titleClassName?: string;
 }) {
@@ -124,7 +139,7 @@ export function SectionHeader({
       <div className="flex items-baseline gap-4 border-b border-accent/30 pb-4">
         {n && (
           <span
-            className="font-display text-[1.4rem] font-medium leading-none text-rubric small-caps"
+            className="font-display text-[1.4rem] font-medium leading-none text-rubric [font-variant-numeric:lining-nums]"
             aria-hidden
           >
             {n}
@@ -143,11 +158,6 @@ export function SectionHeader({
         <p className="measure mt-5 font-body text-[1.18rem] leading-[1.72] text-ink text-pretty">
           {lede}
         </p>
-      )}
-      {pills && (
-        <div className="meta-run mt-6 flex flex-wrap items-baseline gap-x-2.5 gap-y-1.5">
-          {pills}
-        </div>
       )}
     </header>
   );
@@ -189,6 +199,13 @@ export function Pressmark({ className }: { className?: string }) {
   );
 }
 
+/**
+ * The seal, an illustration rather than text to read: it is aria-hidden, and
+ * at its 64px and 80px sizes the ring lettering renders at about 5px, so the
+ * 11px floor for UI text doesn't apply to it. Anything a visitor needs to
+ * read goes in the text beside the seal, not on it. Same geometry as
+ * tndm-landing's EditorStamp.
+ */
 export function InkStamp({ className }: { className?: string }) {
   return (
     <svg
@@ -197,9 +214,12 @@ export function InkStamp({ className }: { className?: string }) {
       aria-hidden
     >
       <defs>
+        {/* The top legend runs on a 220 degree arc (20 degrees below the
+            horizontal at each end) set inside the solid ring, so the full
+            "OPEN DOCUMENT FORMAT" fits without clipping at the ends. */}
         <path
           id="stamp-arc-top"
-          d="M60 60 m -42 0 a 42 42 0 1 1 84 0"
+          d="M22.41 73.68 A 40 40 0 1 1 97.59 73.68"
           fill="none"
         />
         <path
@@ -227,11 +247,13 @@ export function InkStamp({ className }: { className?: string }) {
         strokeWidth="1"
         opacity="0.85"
       />
+      {/* Seal lettering in the text face's capitals, as a rubber stamp
+          would carry them. */}
       <text
         fill="currentColor"
-        fontFamily="var(--font-mono), monospace"
-        fontSize="9.5"
-        letterSpacing="2.4"
+        className="font-body"
+        fontSize="8.5"
+        letterSpacing="0.8"
       >
         <textPath href="#stamp-arc-top" startOffset="50%" textAnchor="middle">
           OPEN DOCUMENT FORMAT
@@ -239,16 +261,16 @@ export function InkStamp({ className }: { className?: string }) {
       </text>
       <text
         fill="currentColor"
-        fontFamily="var(--font-mono), monospace"
-        fontSize="9.5"
-        letterSpacing="2.4"
+        className="font-body"
+        fontSize="8.5"
+        letterSpacing="0.8"
       >
         <textPath
           href="#stamp-arc-bottom"
           startOffset="50%"
           textAnchor="middle"
         >
-          · MIT LICENSE ·
+          MIT LICENSE
         </textPath>
       </text>
       <text
@@ -280,8 +302,8 @@ export function GitHubMark({ className }: { className?: string }) {
  * Link to the public repository. The secondary action to Subscribe.
  * - `button`: underlined body-type link — the hero's companion to the press
  *   button (deliberately not a second button shape).
- * - `seal`: quiet mono link, echoing the running heads.
- * - `inline`: quiet mono link for the header and footer.
+ * - `seal`: quiet annotation link, echoing the running heads.
+ * - `inline`: quiet annotation link for the header.
  */
 export function RepoLink({
   variant = "inline",
@@ -323,7 +345,7 @@ export function RepoLink({
         )}
       >
         <GitHubMark className="size-3.5" />
-        <span className="label-mono underline-offset-4 hover:underline">
+        <span className="label-note text-[0.88rem] underline-offset-4 hover:underline">
           {children ?? "Read the source on GitHub"}
         </span>
       </a>
@@ -334,7 +356,7 @@ export function RepoLink({
     <a
       {...external}
       className={cn(
-        "label-mono inline-flex items-center gap-1.5 text-ink-soft transition-colors hover:text-accent",
+        "label-note inline-flex items-center gap-1.5 text-[0.9rem] text-ink-soft transition-colors hover:text-accent",
         className,
       )}
     >

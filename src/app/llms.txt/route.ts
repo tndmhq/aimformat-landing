@@ -79,7 +79,7 @@ CLI cheatsheet:
 - \`aim lint FILE...\` — verify structure, vocabulary, security, history
 - \`aim hash FILE\` — print the current doc_hash
 - \`aim new -o FILE\` — scaffold a minimal valid document
-- \`aim show FILE\` — chunks / pending lane / history overview;
+- \`aim show FILE\` — overview of chunks, the pending lane and history;
   \`--format json\` for machine reads
 - \`aim note FILE...\` — add or refresh the agent-note head comment;
   \`--check\` verifies without writing, \`--remove\` strips it
@@ -90,7 +90,7 @@ CLI cheatsheet:
 - \`aim flatten FILE\` — drop history (and embeddings) for a clean file
 - \`aim reconcile FILE\` — detect out-of-band edits; record them in history
 - \`aim import IN -o F.aim\` / \`aim export F.aim -o OUT\` — convert
-  md / txt / docx / pdf to .aim; export to docx / md / html / pdf
+  md, txt, docx or pdf to .aim; export to docx, md, html or pdf
 - \`aim mcp\` — run the MCP server (requires \`pip install 'aimformat[mcp]'\`)
 
 On propose, accept, and reject, always identify yourself with

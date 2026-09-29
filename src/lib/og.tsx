@@ -2,11 +2,18 @@
  * Shared Open Graph / social-preview card renderer ("The Standing Type").
  *
  * One letterpress plate per route: paper ground, an accent-ink rule, a
- * Fraunces headline, a quiet mono eyebrow (sentence case — tracked-out caps
- * read as generated), and a real track-changes proposal chip (redline /
- * greenline — the format's actual track-changes metaphor, never a generic
- * icon). Two-ink rules apply here too: the wordmark takes the rubric ink as
- * a standalone mark; no text run ever mixes inks.
+ * Fraunces headline, a quiet eyebrow in the same face, roman (sentence case;
+ * tracked-out caps read as generated, an italic accent line reads the same
+ * way, and no typewriter face is allowed here or anywhere else, see the
+ * workspace design-rules.md), and a real
+ * track-changes proposal chip (redline and greenline are the format's own
+ * track-changes metaphor, never a generic icon). Two-ink rules apply here
+ * too: the wordmark takes the rubric ink as a standalone mark; no text run
+ * ever mixes inks.
+ *
+ * Everything sits inside the plate frame (inset 44px): the stack is sized so
+ * the longest card (a two-line headline over a two-line support line) still
+ * clears the frame with air between the rows.
  *
  * Consumed only by `opengraph-image.tsx` route handlers, which run on the
  * Node.js runtime, so reading the vendored fonts off disk is safe. Twitter
@@ -48,14 +55,8 @@ export type OgContent = {
 
 async function loadFonts() {
   const dir = join(process.cwd(), "public", "og-fonts");
-  const [fraunces, mono] = await Promise.all([
-    readFile(join(dir, "Fraunces-600.ttf")),
-    readFile(join(dir, "IBMPlexMono-500.ttf")),
-  ]);
-  return [
-    { name: "Fraunces", data: fraunces, weight: 600 as const, style: "normal" as const },
-    { name: "IBM Plex Mono", data: mono, weight: 500 as const, style: "normal" as const },
-  ];
+  const fraunces = await readFile(join(dir, "Fraunces-600.ttf"));
+  return [{ name: "Fraunces", data: fraunces, weight: 600 as const, style: "normal" as const }];
 }
 
 function ProposalChip() {
@@ -70,21 +71,20 @@ function ProposalChip() {
         display: "flex",
         flexDirection: "column",
         alignSelf: "flex-start",
-        gap: 12,
+        gap: 8,
         backgroundColor: SURFACE,
         border: `1px solid ${RULE}`,
         borderRadius: 12,
-        padding: "20px 26px",
+        padding: "14px 24px 16px",
         boxShadow: "0 16px 40px -24px rgba(20,14,6,0.5)",
       }}
     >
       <div
         style={{
           display: "flex",
-          fontFamily: "IBM Plex Mono",
-          fontWeight: 500,
+          fontFamily: "Fraunces",
+          fontWeight: 600,
           fontSize: 17,
-          letterSpacing: 0.5,
           color: INK_FAINT,
         }}
       >
@@ -97,7 +97,7 @@ function ProposalChip() {
           gap: 10,
           fontFamily: "Fraunces",
           fontWeight: 600,
-          fontSize: 33,
+          fontSize: 29,
           color: INK,
         }}
       >
@@ -162,7 +162,7 @@ function Card(c: OgContent) {
           flexDirection: "column",
           flex: 1,
           justifyContent: "space-between",
-          padding: "72px 88px",
+          padding: "66px 88px 70px",
         }}
       >
         {/* header */}
@@ -170,10 +170,9 @@ function Card(c: OgContent) {
           <div
             style={{
               display: "flex",
-              fontFamily: "IBM Plex Mono",
-              fontWeight: 500,
-              fontSize: 25,
-              letterSpacing: 1,
+              fontFamily: "Fraunces",
+              fontWeight: 600,
+              fontSize: 26,
               color: ACCENT,
             }}
           >
@@ -192,9 +191,9 @@ function Card(c: OgContent) {
               whiteSpace: "pre-wrap",
               fontFamily: "Fraunces",
               fontWeight: 600,
-              fontSize: 82,
-              lineHeight: 1.03,
-              letterSpacing: -1.5,
+              fontSize: 72,
+              lineHeight: 1.04,
+              letterSpacing: -1.2,
               color: INK,
             }}
           >
@@ -203,12 +202,12 @@ function Card(c: OgContent) {
           <div
             style={{
               display: "flex",
-              marginTop: 26,
-              maxWidth: 900,
+              marginTop: 20,
+              maxWidth: 1000,
               fontFamily: "Fraunces",
               fontWeight: 600,
-              fontSize: 31,
-              lineHeight: 1.32,
+              fontSize: 27,
+              lineHeight: 1.3,
               color: INK_SOFT,
             }}
           >
@@ -223,10 +222,9 @@ function Card(c: OgContent) {
           <div
             style={{
               display: "flex",
-              fontFamily: "IBM Plex Mono",
-              fontWeight: 500,
-              fontSize: 20,
-              letterSpacing: 0.5,
+              fontFamily: "Fraunces",
+              fontWeight: 600,
+              fontSize: 21,
               color: INK_FAINT,
             }}
           >
@@ -235,8 +233,8 @@ function Card(c: OgContent) {
           <div
             style={{
               display: "flex",
-              fontFamily: "IBM Plex Mono",
-              fontWeight: 500,
+              fontFamily: "Fraunces",
+              fontWeight: 600,
               fontSize: 24,
               color: INK_SOFT,
             }}

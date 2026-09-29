@@ -1,5 +1,6 @@
 import {
   Container,
+  FigNo,
   RunningHead,
   SectionHeader,
 } from "@/components/aim/primitives";
@@ -44,11 +45,11 @@ const plates = [
 export function Substrate({ specVersion }: { specVersion: string }) {
   return (
     <section id="substrate" className="relative scroll-mt-16">
-      <RunningHead section="§4" folio="The Substrate" specVersion={specVersion} />
+      <RunningHead title="The substrate" specVersion={specVersion} />
       <Container className="py-20 sm:py-24">
         <SectionHeader
-          n="§4"
-          eyebrow="§4 · The Substrate"
+          n="4"
+          eyebrow="The substrate"
           title="Why HTML5 and a Tailwind subset"
           lede="The substrate is the whole bet, so we will defend it plainly. Frontier models are massively over-trained on HTML and Tailwind. They read it and write it natively and accurately, far better than they handle DOCX XML or a bespoke AST they have never seen."
         />
@@ -69,8 +70,8 @@ export function Substrate({ specVersion }: { specVersion: string }) {
         </div>
 
         {/* the same clause, three substrates */}
-        <p className="label-mono mt-14 mb-5 text-ink-soft">
-          Fig. 3 · The same heading, three ways. One a model can actually edit.
+        <p className="label-note mt-14 mb-5 text-[0.88rem] text-ink-soft">
+          <FigNo n={3} /> The same heading, three ways. One a model can edit.
         </p>
         <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
           {plates.map((p) => (
@@ -80,7 +81,7 @@ export function Substrate({ specVersion }: { specVersion: string }) {
                 lang={p.lang}
                 filename={p.filename}
                 copy={false}
-                bodyClassName="text-[0.72rem] min-h-[12rem]"
+                bodyClassName="text-[0.82rem] min-h-[12rem]"
               />
               <figcaption className="mt-3 font-body text-[0.92rem] leading-snug text-ink-soft">
                 {p.verdict}
@@ -100,16 +101,16 @@ export function Substrate({ specVersion }: { specVersion: string }) {
           </p>
           <div className="mt-6 grid gap-x-10 gap-y-6 sm:grid-cols-2">
             <div>
-              <p className="label-mono mb-3 text-ink-soft">
+              <p className="label-note mb-3 text-[0.88rem] text-ink-soft">
                 One tweak, by script
               </p>
               <ol className="space-y-2.5">
                 {scriptLoop.map((step, i) => (
                   <li
                     key={i}
-                    className="flex gap-3.5 border-t border-ink/15 pt-2.5 font-body text-[0.98rem] leading-snug text-ink"
+                    className="flex items-baseline gap-3.5 border-t border-ink/15 pt-2.5 font-body text-[0.98rem] leading-snug text-ink"
                   >
-                    <span className="label-mono mt-0.5 shrink-0 text-accent">
+                    <span className="label-note w-4 shrink-0 text-[0.88rem] text-accent">
                       {i + 1}.
                     </span>
                     {step}
@@ -118,16 +119,16 @@ export function Substrate({ specVersion }: { specVersion: string }) {
               </ol>
             </div>
             <div>
-              <p className="label-mono mb-3 text-ink-soft">
+              <p className="label-note mb-3 text-[0.88rem] text-ink-soft">
                 The same tweak, in .aim
               </p>
               <ol className="space-y-2.5">
                 {aimLoop.map((step, i) => (
                   <li
                     key={i}
-                    className="flex gap-3.5 border-t border-ink/15 pt-2.5 font-body text-[0.98rem] leading-snug text-ink"
+                    className="flex items-baseline gap-3.5 border-t border-ink/15 pt-2.5 font-body text-[0.98rem] leading-snug text-ink"
                   >
-                    <span className="label-mono mt-0.5 shrink-0 text-accent">
+                    <span className="label-note w-4 shrink-0 text-[0.88rem] text-accent">
                       {i + 1}.
                     </span>
                     {step}
@@ -146,8 +147,9 @@ export function Substrate({ specVersion }: { specVersion: string }) {
 
         {/* source is the artifact */}
         <div className="mt-14">
-          <p className="label-mono mb-5 text-ink-soft">
-            It is the styled artifact, not a representation you transform
+          <p className="label-note mb-5 text-[0.88rem] text-ink-soft">
+            <FigNo n={4} /> The source is the styled artifact, not a
+            representation you transform.
           </p>
           <div className="grid grid-cols-1 items-center gap-5 md:grid-cols-[1fr_auto_1fr]">
             <CodePlate code={substrateAim} filename="report.aim" copy={false} />
@@ -158,7 +160,7 @@ export function Substrate({ specVersion }: { specVersion: string }) {
               ≡
             </div>
             <LeafCard innerClassName="min-h-[9rem]">
-              <p className="label-mono mb-3 text-ink-faint">rendered, in any browser</p>
+              <p className="label-note mb-3 text-ink-faint">Rendered in any browser</p>
               <h2 className="font-body text-2xl font-semibold text-ink">
                 Scope of Work
               </h2>

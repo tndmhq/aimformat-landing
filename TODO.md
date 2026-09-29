@@ -20,8 +20,8 @@ Deferred deliberately; revisit before (or at) launch.
   ([tndmhq/aimformat `spec.md`](https://github.com/tndmhq/aimformat/blob/main/spec.md),
   v0.2 as of this note), and site links such as the `llms.txt` Docs list point
   at the spec directly rather than the repo root.
-- [ ] **Status / roadmap strip** ("Now: v0.3 spec + Python SDK + MCP server ·
-  …") so present-tense feature claims are anchored to a visible timeline;
+- [ ] **Status / roadmap strip** ("Now: the v0.3 spec, the Python SDK and the
+  MCP server") so present-tense feature claims are anchored to a visible timeline;
   exact Next/Later copy decided when the strip ships.
 - [x] **Editor landing page.** Done: the editor site serves
   [usetndm.com](https://usetndm.com), reachable from
@@ -35,8 +35,8 @@ Deferred deliberately; revisit before (or at) launch.
   [tndmhq/aimformat](https://github.com/tndmhq/aimformat).
 
 ## To discuss
-- [ ] **§7 Ledger table review.** The table self-grades `.aim` with five checkmarks
+- [ ] **Ledger table review** (chapter 7, "Where .aim sits"). The table self-grades `.aim` with five checkmarks
   while it's unreleased, and a couple of competitor cells are simplified
   ("PDF read-only", DOCX row). Consider adding a "bespoke AST / ProseMirror JSON"
-  row — §4 already argues against that approach and it's the actual incumbent in
+  row — the substrate chapter already argues against that approach and it's the actual incumbent in
   AI editors. Parked pending discussion.

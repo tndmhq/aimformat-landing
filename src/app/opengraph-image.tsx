@@ -11,7 +11,7 @@ export default function Image() {
     headline: "The document format\nfor the AI era.",
     support:
       "Valid HTML5 and a Tailwind subset. Stable chunks, slides, and three-lane track changes, native to the file.",
-    footerLeft: "Open source / MIT",
+    footerLeft: "Open source under the MIT License",
     domain: "aimformat.com",
   });
 }

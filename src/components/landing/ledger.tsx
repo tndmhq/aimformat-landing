@@ -5,7 +5,7 @@ import {
 } from "@/components/aim/primitives";
 import { cn } from "@/lib/utils";
 
-const columns = ["Open", "AI-native", "Layout", "Propose / accept", "Renders itself"];
+const columns = ["Open", "AI-native", "Layout", "Propose and accept", "Renders itself"];
 
 const rows: {
   name: string;
@@ -18,7 +18,7 @@ const rows: {
   { name: "PPTX", cells: ["partial", "—", "✓", "—", "needs app"] },
   { name: "PDF", cells: ["partial", "—", "✓", "—", "read-only"] },
   {
-    name: "Notion / Gamma",
+    name: "Notion and Gamma",
     cells: ["—", "in-app only", "✓", "in-app only", "closed service"],
   },
 ];
@@ -39,26 +39,39 @@ function Cell({ value, accent }: { value: string; accent?: boolean }) {
 export function Ledger({ specVersion }: { specVersion: string }) {
   return (
     <section id="comparison" className="relative scroll-mt-16">
-      <RunningHead section="§7" folio="The Ledger" specVersion={specVersion} />
+      <RunningHead title="The ledger" specVersion={specVersion} />
       <Container className="py-20 sm:py-24">
         <SectionHeader
-          n="§7"
-          eyebrow="§7 · The Ledger"
+          n="7"
+          eyebrow="The ledger"
           title="Where .aim sits"
-          lede="The footnotes in §1 carry the argument; this is the same argument made scannable. Five properties, the formats people reach for today, and the one that has all five."
+          lede={
+            <>
+              The footnotes in{" "}
+              <a
+                href="#format"
+                className="underline decoration-ink/30 underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
+              >
+                the thesis
+              </a>{" "}
+              carry the argument; this is the same argument made scannable.
+              Five properties, the formats people reach for today, and the one
+              that has all five.
+            </>
+          }
         />
 
         <div className="mt-12 overflow-x-auto">
           <table className="w-full min-w-[44rem] border-collapse text-left">
             <thead>
               <tr className="border-b border-ink/30">
-                <th className="label-mono py-3 pr-4 font-normal text-ink-soft">
+                <th className="label-note py-3 pr-4 text-[0.88rem] font-normal text-ink-soft">
                   Format
                 </th>
                 {columns.map((c) => (
                   <th
                     key={c}
-                    className="label-mono px-3 py-3 text-center font-normal text-ink-soft"
+                    className="label-note px-3 py-3 text-center text-[0.88rem] font-normal text-ink-soft"
                   >
                     {c}
                   </th>

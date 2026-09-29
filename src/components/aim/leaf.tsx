@@ -6,6 +6,9 @@ import { InkStamp } from "./primitives";
  * A raised cream "leaf" laid on the paper desk: warm shadow, optional deckled
  * (torn) right edge, a slight tilt, a running head, and an ink stamp. The hero
  * artifact and the frame for rendered-output figures.
+ *
+ * The running head is set by position, as on a printed page: `left` flush
+ * left, `right` flush right. No glyph strings the two together.
  */
 export function LeafCard({
   children,
@@ -22,7 +25,7 @@ export function LeafCard({
   tilt?: boolean;
   deckle?: boolean;
   stamp?: boolean;
-  runningHead?: ReactNode;
+  runningHead?: { left: ReactNode; right?: ReactNode };
 }) {
   return (
     <div className={cn("relative", tilt && "rotate-[0.4deg]", className)}>
@@ -34,8 +37,13 @@ export function LeafCard({
         )}
       >
         {runningHead && (
-          <div className="flex items-center justify-between border-b border-accent/30 px-6 pb-2 pt-5">
-            <span className="label-mono text-ink-soft">{runningHead}</span>
+          <div className="flex items-baseline justify-between gap-4 border-b border-accent/30 px-6 pb-2 pt-5">
+            <span className="label-note text-ink-soft">{runningHead.left}</span>
+            {runningHead.right && (
+              <span className="label-note italic text-ink-soft">
+                {runningHead.right}
+              </span>
+            )}
           </div>
         )}
         <div className="px-6 py-6 sm:px-8">{children}</div>

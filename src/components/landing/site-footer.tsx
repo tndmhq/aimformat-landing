@@ -13,21 +13,21 @@ import {
 // The Imprint edition tracks the live spec version (see getSpecVersion).
 const buildColumns = (specVersion: string) => [
   {
-    heading: "The Format",
+    heading: "The format",
     items: [
-      { label: "§1 Thesis", href: "/#format" },
-      { label: "§2 Three Lanes", href: "/#three-lanes" },
-      { label: "§3 Anatomy", href: "/#anatomy" },
-      { label: "§4 Substrate", href: "/#substrate" },
+      { label: "Thesis", href: "/#format" },
+      { label: "Three lanes", href: "/#three-lanes" },
+      { label: "Anatomy", href: "/#anatomy" },
+      { label: "Substrate", href: "/#substrate" },
     ],
   },
   {
-    heading: "For Agents",
+    heading: "For agents",
     items: [
-      { label: "§5 MCP & SDK", href: "/#agents" },
-      { label: "§6 Layout & Export", href: "/#layout" },
-      { label: "§7 Ledger", href: "/#comparison" },
-      { label: "§8 Notes & Queries", href: "/#faq" },
+      { label: "MCP and SDK", href: "/#agents" },
+      { label: "Layout and export", href: "/#layout" },
+      { label: "Ledger", href: "/#comparison" },
+      { label: "Notes and queries", href: "/#faq" },
     ],
   },
   {
@@ -36,7 +36,7 @@ const buildColumns = (specVersion: string) => [
       { label: "License: MIT", href: "/#faq" },
       { label: `Edition: Vol. ${specVersion}`, href: "/#top" },
       { label: "Editors", href: "/editors" },
-      { label: "Repo · GitHub", href: REPO_URL },
+      { label: "Source on GitHub", href: REPO_URL },
       { label: "Contact", href: "mailto:contact@usetndm.com" },
       { label: "Subscribe", href: "/#cta" },
     ],
@@ -108,8 +108,8 @@ export function SiteFooter({ specVersion }: { specVersion: string }) {
           <div className="flex items-center gap-3">
             <Pressmark className="h-7 w-7" />
             <p className="font-body text-[0.85rem] leading-snug text-ink-soft">
-              Open source under the MIT License. Set in Fraunces and Newsreader,
-              with IBM Plex Mono.
+              Open source under the MIT License. Set in Fraunces and
+              Newsreader.
             </p>
           </div>
           <div className="flex items-center gap-4">

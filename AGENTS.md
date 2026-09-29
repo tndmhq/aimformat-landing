@@ -39,6 +39,26 @@ workspace (`tndm-workspace/knowledge/`).
   compatibility requirement, and redesigning it is a deliberate, versioned
   step rather than a free hand.
 
+## Type rules (maintainer, 2026-09-29)
+
+- **No monospace font anywhere**, OG images included. The annotation voice is
+  `.label-note` and code is `.code-text`, both Newsreader with lining tabular
+  figures (`src/app/globals.css`, components layer so call-site `text-*`
+  utilities can tune the size). Don't add a `font-mono`/`*-mono` class or a
+  third family; Tailwind's own mono theme is switched off in `@theme`.
+- **No separating dot** (middle dot, bullet and relatives) and **no section
+  sign**, in copy or comments. Don't swap in a pipe, slash or dash between
+  facts either: use label/value rows, commas, sentences, "Fig. 3." captions,
+  or left/right position (`RunningHead`, `LeafCard` `runningHead`). Chapter
+  numerals are bare (`n="4"`), nav links carry names only, tab titles read
+  `.aim: <page>`.
+- `scripts/check-type-rules.mjs` enforces both and runs before every
+  `npm run build` (so Workers Builds refuses to deploy a violation). Its
+  shared logic is kept identical with tndm-landing and tndm; only the
+  per-repo block at the top differs. The editor's `document-content` pragma
+  is not allowed here (`ALLOW_PRAGMA = false`): this site renders no user
+  document, so the guard reports the pragma instead of honoring it.
+
 <!-- BEGIN:nextjs-agent-rules -->
 # This is NOT the Next.js you know
 

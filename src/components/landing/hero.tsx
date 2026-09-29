@@ -1,9 +1,33 @@
-import { Container, MetaPill, RepoLink } from "@/components/aim/primitives";
+import { Container, RepoLink } from "@/components/aim/primitives";
 import { PressButton } from "@/components/aim/press-button";
 import { LeafCard } from "@/components/aim/leaf";
 import { RedlineDemo } from "@/components/aim/redline";
 import { highlight } from "@/lib/highlight";
 import { heroSourceSliver } from "@/lib/snippets";
+
+/* The format's vital facts as a colophon: label over value, laid out in a
+   row that spans the rule above it (first fact flush left, last flush
+   right), never strung on a separator glyph. */
+function Colophon({ specVersion }: { specVersion: string }) {
+  const facts = [
+    { label: "License", value: "MIT" },
+    { label: "Spec version", value: specVersion },
+    { label: "Substrate", value: "HTML5 + Tailwind" },
+    { label: "Agents", value: "MCP over stdio" },
+  ];
+  return (
+    <dl className="mt-8 grid max-w-xl grid-cols-2 gap-x-6 gap-y-4 border-t border-ink/15 pt-4 sm:grid-cols-[repeat(4,auto)] sm:justify-between">
+      {facts.map((f) => (
+        <div key={f.label}>
+          <dt className="label-note text-ink-faint">{f.label}</dt>
+          <dd className="mt-0.5 whitespace-nowrap font-body text-[0.98rem] leading-snug text-ink [font-variant-numeric:lining-nums]">
+            {f.value}
+          </dd>
+        </div>
+      ))}
+    </dl>
+  );
+}
 
 function CropMark({ className }: { className?: string }) {
   return (
@@ -32,7 +56,7 @@ export function Hero({ specVersion }: { specVersion: string }) {
           {/* ------------------------------------------------ the claim */}
           <div>
             <p className="label-serif text-rubric">
-              An open document format · by Tndm
+              An open document format by Tndm
             </p>
 
             <h1 className="mt-6 font-display text-[clamp(2.6rem,5.6vw,4.9rem)] font-normal leading-[1.03] tracking-[-0.02em] text-ink text-balance">
@@ -59,12 +83,7 @@ export function Hero({ specVersion }: { specVersion: string }) {
               lands here first: a few letters a year, no more.
             </p>
 
-            <div className="meta-run mt-7 flex flex-wrap items-baseline gap-x-2.5 gap-y-1.5">
-              <MetaPill>MIT</MetaPill>
-              <MetaPill>v{specVersion}</MetaPill>
-              <MetaPill>HTML5 + Tailwind</MetaPill>
-              <MetaPill>stdio + MCP</MetaPill>
-            </div>
+            <Colophon specVersion={specVersion} />
           </div>
 
           {/* ------------------------------------------------ the artifact */}
@@ -75,9 +94,9 @@ export function Hero({ specVersion }: { specVersion: string }) {
               className="absolute -bottom-6 left-2 right-8 top-12 -rotate-[1.3deg] overflow-hidden rounded-[3px] bg-code-panel shadow-plate ring-1 ring-black/20"
             >
               <div className="border-b border-white/10 px-3 py-1.5">
-                <span className="label-mono text-code-text/45">source</span>
+                <span className="label-note text-code-text/45">source</span>
               </div>
-              <pre className="overflow-hidden px-4 py-3 font-mono text-[0.72rem] leading-[1.6] text-code-text">
+              <pre className="code-text overflow-hidden px-4 py-3 text-[0.8rem] leading-[1.6] text-code-text">
                 <code>{highlight(heroSourceSliver, "markup")}</code>
               </pre>
             </div>
@@ -86,7 +105,7 @@ export function Hero({ specVersion }: { specVersion: string }) {
               tilt
               deckle
               stamp
-              runningHead="Proposal · §2 Scope of Work · folio 4"
+              runningHead={{ left: "Proposal", right: "Scope of Work" }}
               className="relative z-10"
             >
               <p className="font-body text-[0.95rem] leading-[1.8] text-ink/90">
@@ -99,7 +118,7 @@ export function Hero({ specVersion }: { specVersion: string }) {
               <RedlineDemo proseClassName="text-[1.02rem]" />
 
               {/* the half-peeled "view source" tab on the leaf edge */}
-              <span className="label-mono absolute -left-3 top-24 hidden rotate-180 [writing-mode:vertical-rl] rounded-l-[2px] border border-ink/15 bg-paper px-1.5 py-2 text-ink-soft sm:inline-block">
+              <span className="label-note absolute -left-3 top-24 hidden rotate-180 [writing-mode:vertical-rl] rounded-l-[2px] border border-ink/15 bg-paper px-1.5 py-2 text-ink-soft sm:inline-block">
                 view source
               </span>
             </LeafCard>

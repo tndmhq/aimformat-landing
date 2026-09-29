@@ -1,5 +1,6 @@
 import {
   Container,
+  InlineCode,
   RepoLink,
   RunningHead,
   SectionHeader,
@@ -13,7 +14,7 @@ const resources = [
   {
     label: "The full on-ramps",
     href: "#agents",
-    note: "MCP tools, the SDK, and the clients it works with (§5).",
+    note: "MCP tools, the SDK, and the clients it works with.",
   },
   {
     label: "llms.txt",
@@ -21,7 +22,7 @@ const resources = [
     note: "The machine-readable orientation an agent reads first.",
   },
   {
-    label: "Editors & viewers",
+    label: "Editors and viewers",
     href: "/editors",
     note: "Where .aim files open, from the browser up.",
   },
@@ -30,7 +31,7 @@ const resources = [
 export function Quickstart({ specVersion }: { specVersion: string }) {
   return (
     <section id="quickstart" className="relative scroll-mt-16">
-      <RunningHead section="Set & Ready" folio="Quickstart" specVersion={specVersion} />
+      <RunningHead title="Quickstart" specVersion={specVersion} />
       <Container className="py-20 sm:py-24">
         <SectionHeader
           eyebrow="Off the shelf"
@@ -43,7 +44,7 @@ export function Quickstart({ specVersion }: { specVersion: string }) {
             <>
               The .aim format is
               MIT-licensed and published to PyPI: a typed Python SDK and
-              the <code className="rounded-[2px] bg-ink/[0.06] px-1 py-0.5 font-mono text-[0.85em] text-ink">aim</code>{" "}
+              the <InlineCode>aim</InlineCode>{" "}
               CLI, zero runtime dependencies. Nothing hosted, no account,
               nothing to wait for. The press notices below are for the launch.
             </>
@@ -55,7 +56,7 @@ export function Quickstart({ specVersion }: { specVersion: string }) {
             <p className="measure font-body text-[1.1rem] leading-[1.74] text-ink text-pretty">
               A plain .aim file is valid
               HTML, so any model can read one with no tooling at all. The
-              package adds the <span className="text-ink">aim</span> CLI, a
+              package adds the <InlineCode>aim</InlineCode> CLI, a
               dependency-free SDK, and a local MCP server for chunk-level
               propose and accept.
             </p>

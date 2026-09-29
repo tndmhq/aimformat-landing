@@ -1,12 +1,14 @@
+import type { ReactNode } from "react";
 import {
   Container,
+  InlineCode,
   RunningHead,
   SectionHeader,
 } from "@/components/aim/primitives";
 import { CodePlate } from "@/components/aim/code-plate";
 import { mcpSource } from "@/lib/snippets";
 
-const onRamps = [
+const onRamps: { label: string; detail: ReactNode }[] = [
   {
     label: "Plain file",
     detail:
@@ -14,18 +16,31 @@ const onRamps = [
   },
   {
     label: "MCP server",
-    detail:
-      "Local stdio: pip install 'aimformat[mcp]', then aim mcp. Six tools, from projected read to export.",
+    detail: (
+      <>
+        Local stdio: <InlineCode>pip install &apos;aimformat[mcp]&apos;</InlineCode>,
+        then <InlineCode>aim mcp</InlineCode>. Six tools, from projected read to
+        export.
+      </>
+    ),
   },
   {
     label: "Claude Skill",
-    detail:
-      "npx skills add tndmhq/aimformat: teaches the conventions and wires up the CLI verbs.",
+    detail: (
+      <>
+        <InlineCode>npx skills add tndmhq/aimformat</InlineCode>: teaches the
+        conventions and wires up the CLI verbs.
+      </>
+    ),
   },
   {
     label: "Python SDK",
-    detail:
-      "pip install aimformat. Zero runtime dependencies; typed load, propose, accept, save.",
+    detail: (
+      <>
+        <InlineCode>pip install aimformat</InlineCode>. Zero runtime
+        dependencies; typed load, propose, accept, save.
+      </>
+    ),
   },
 ];
 
@@ -36,16 +51,14 @@ const capabilities = [
   "Read the summary before touching the body",
 ];
 
-const clients = ["Claude Code", "Claude Desktop", "Cursor", "Cline", "Zed"];
-
 export function Agents({ specVersion }: { specVersion: string }) {
   return (
     <section id="agents" className="relative scroll-mt-16">
-      <RunningHead section="§5" folio="The On-Ramps" specVersion={specVersion} />
+      <RunningHead title="The on-ramps" specVersion={specVersion} />
       <Container className="py-20 sm:py-24">
         <SectionHeader
-          n="§5"
-          eyebrow="§5 · The On-Ramps"
+          n="5"
+          eyebrow="The on-ramps"
           title="Agent-native from day one"
           lede="Because a plain .aim file is valid HTML, any model can already read one with no tooling at all. For chunk-level propose and accept, and for navigation without loading the whole file, there is a local MCP server."
         />
@@ -72,26 +85,13 @@ export function Agents({ specVersion }: { specVersion: string }) {
                 </li>
               ))}
             </ul>
-
-            <div className="mt-8">
-              <p className="label-mono mb-3 text-ink-soft">
-                Works with the clients you already run
-              </p>
-              <div className="meta-run flex flex-wrap items-baseline gap-x-2.5 gap-y-1.5">
-                {clients.map((c) => (
-                  <span key={c} className="label-mono text-ink-soft">
-                    {c}
-                  </span>
-                ))}
-              </div>
-            </div>
           </div>
 
           <div className="lg:sticky lg:top-20">
             <CodePlate
               code={mcpSource}
               lang="shell"
-              filename="install + propose/accept"
+              filename="Install, propose, accept"
             />
             <div className="mt-8 grid gap-x-8 gap-y-5 sm:grid-cols-2">
               {onRamps.map((o) => (
