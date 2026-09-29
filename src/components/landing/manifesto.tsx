@@ -10,6 +10,17 @@ function Sup({ children }: { children: React.ReactNode }) {
   );
 }
 
+/* A footnote in the list under the text: the marker set full size in its own
+   column (a superscript at this size would fall under the 11px floor). */
+function Footnote({ n, children }: { n: number; children: React.ReactNode }) {
+  return (
+    <p className="flex items-baseline gap-2 font-body text-[0.92rem] leading-[1.5] text-ink-soft">
+      <span className="label-note w-3 shrink-0 text-ink-faint">{n}</span>
+      <span>{children}</span>
+    </p>
+  );
+}
+
 export function Manifesto({ specVersion }: { specVersion: string }) {
   return (
     <section id="format" className="relative scroll-mt-16">
@@ -17,8 +28,10 @@ export function Manifesto({ specVersion }: { specVersion: string }) {
       <Container className="py-20 sm:py-24">
         <p className="label-serif mb-6 text-center text-rubric">The thesis</p>
         {/* Chapter 1 of the home page's numbered sequence, centered: the bare
-            numeral sits on the title's rule like SectionHeader's. */}
-        <div className="mx-auto mb-10 flex max-w-2xl items-baseline justify-center gap-4 border-b border-accent/30 pb-4">
+            numeral sits on the title's rule like SectionHeader's. On a narrow
+            screen the title wraps, so the numeral stands centered above it
+            instead of pinned to the left edge. */}
+        <div className="mx-auto mb-10 flex max-w-2xl flex-col items-center gap-1 border-b border-accent/30 pb-4 sm:flex-row sm:items-baseline sm:justify-center sm:gap-4">
           <span
             className="font-display text-[1.4rem] font-medium leading-none text-rubric [font-variant-numeric:lining-nums]"
             aria-hidden
@@ -32,7 +45,7 @@ export function Manifesto({ specVersion }: { specVersion: string }) {
 
         <div className="mx-auto measure">
           <p className="dropcap font-body text-[1.28rem] leading-[1.72] text-ink text-pretty">
-            For <span className="small-caps tracking-[0.04em]">forty years</span>{" "}
+            For <span className="small-caps tracking-[0.03em]">forty years</span>{" "}
             our documents have been written for printers and readers, never for
             the machines now asked to edit them. PDF is binary and read-only.
             <Sup>1</Sup> DOCX and PPTX are zipped XML that no model reasons about
@@ -90,17 +103,17 @@ export function Manifesto({ specVersion }: { specVersion: string }) {
           </div>
 
           <div className="mt-10 space-y-2 border-t border-ink/20 pt-5">
-            <p className="font-body text-[0.92rem] leading-[1.5] text-ink-soft">
-              <Sup>1</Sup> PDF: binary, read-only, hostile to structured edits.
-            </p>
-            <p className="font-body text-[0.92rem] leading-[1.5] text-ink-soft">
-              <Sup>2</Sup> DOCX and PPTX: zipped XML schemas no language model
-              edits reliably.
-            </p>
-            <p className="font-body text-[0.92rem] leading-[1.5] text-ink-soft">
-              <Sup>3</Sup> Markdown: text only, no slides, no positioned layout,
-              no propose-and-accept.
-            </p>
+            <Footnote n={1}>
+              PDF: binary, read-only, hostile to structured edits.
+            </Footnote>
+            <Footnote n={2}>
+              DOCX and PPTX: zipped XML schemas no language model edits
+              reliably.
+            </Footnote>
+            <Footnote n={3}>
+              Markdown: text only, no slides, no positioned layout, no
+              propose-and-accept.
+            </Footnote>
           </div>
         </div>
       </Container>

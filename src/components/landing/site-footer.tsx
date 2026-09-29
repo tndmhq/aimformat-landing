@@ -24,10 +24,10 @@ const buildColumns = (specVersion: string) => [
   {
     heading: "For agents",
     items: [
-      { label: "MCP & SDK", href: "/#agents" },
-      { label: "Layout & export", href: "/#layout" },
+      { label: "MCP and SDK", href: "/#agents" },
+      { label: "Layout and export", href: "/#layout" },
       { label: "Ledger", href: "/#comparison" },
-      { label: "Notes & queries", href: "/#faq" },
+      { label: "Notes and queries", href: "/#faq" },
     ],
   },
   {

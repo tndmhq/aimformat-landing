@@ -2,18 +2,27 @@
 /**
  * Type-rules guard (maintainer ruling, 2026-09-29; workspace
  * knowledge/design-rules.md, the section on fixed-width faces, separating
- * dots and the section sign). Zero dependencies. The same logic ships in aimformat-landing,
- * tndm-landing and tndm; only ROOTS differ.
+ * dots and the section sign). Zero dependencies. The same file ships in
+ * aimformat-landing, tndm-landing and tndm; only the per-repo block (ROOTS,
+ * DOCUMENT_PATHS, ALLOW_PRAGMA and their comments) differs, and everything
+ * else is kept byte-identical across the three copies.
  *
  * Fails (exit 1) on:
- *   glyph check, no exceptions: the separating dots U+00B7, U+2022, U+22C5,
- *     U+2219, U+30FB, U+2027 and the section sign U+00A7, typed or escaped
- *     (HTML named/numeric entities, JS/CSS escapes), in any text file.
- *   mono check: any fixed-width font declaration or face name. A line
- *     carrying the pragma "type-rules: document-content" is exempt from the
- *     mono check only; it exists for the editor's rendering of the user's own
- *     document and nothing else. The two Tailwind v4 declarations that REMOVE
- *     the default fixed-width theme are allowed (see ALLOWED below).
+ *   glyph check, no exceptions: the separating dots (the middle dot U+00B7,
+ *     its look-alikes U+0387, U+2027, U+2E31, U+2E33, U+16EB, U+30FB, U+FF65,
+ *     and the bullets U+2022, U+2043, U+2219, U+22C5, U+25E6) and the section
+ *     sign U+00A7, typed or escaped (HTML named and numeric entities, with or
+ *     without the closing semicolon where browsers accept that, JS and CSS
+ *     escapes), in any text file.
+ *   fixed-width check: the generic fixed-width family keywords, any face,
+ *     token or identifier with a standalone fixed-width part (separated by
+ *     an underscore, hyphen, space or quote, or camel-cased), and the named
+ *     fixed-width faces listed below. A line carrying the document-content
+ *     pragma (PRAGMA below) is exempt from this check only, and only where
+ *     ALLOW_PRAGMA is true: it exists for the editor's rendering of the
+ *     user's own document and nothing else. Where ALLOW_PRAGMA is false the
+ *     pragma is itself a violation. The two Tailwind v4 declarations that
+ *     REMOVE the default fixed-width theme are allowed (see ALLOWED below).
  *
  * Prints `file:line: rule: excerpt` per hit.
  *
@@ -25,7 +34,17 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 // ---------------------------------------------------------------- per repo
+// Everything under src/, public/ (text files) and scripts/. Wired into
+// `npm run build` (and `npm run check:type`), which Workers Builds runs on
+// every deploy, so a violation cannot ship.
 const ROOTS = ["src", "public", "scripts"];
+// Users' documents kept as test inputs, skipped whole. The landing sites
+// have none.
+const DOCUMENT_PATHS = new Set([]);
+// Whether a line may opt out of the fixed-width check with the
+// document-content pragma. Only the editor renders a user's document; the
+// landing sites have none, so here the pragma is reported instead of honored.
+const ALLOW_PRAGMA = false;
 
 // ------------------------------------------------------------ shared logic
 const REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
@@ -65,21 +84,31 @@ const hex = (n) => n.toString(16).padStart(4, "0");
 // Glyphs: [code point, rule, name]
 const GLYPHS = [
   [0x00b7, "separator-dot", "middle dot"],
+  [0x0387, "separator-dot", "greek ano teleia"],
+  [0x16eb, "separator-dot", "runic single punctuation"],
   [0x2022, "separator-dot", "bullet"],
-  [0x22c5, "separator-dot", "dot operator"],
-  [0x2219, "separator-dot", "bullet operator"],
-  [0x30fb, "separator-dot", "katakana middle dot"],
   [0x2027, "separator-dot", "hyphenation point"],
+  [0x2043, "separator-dot", "hyphen bullet"],
+  [0x2219, "separator-dot", "bullet operator"],
+  [0x22c5, "separator-dot", "dot operator"],
+  [0x25e6, "separator-dot", "white bullet"],
+  [0x2e31, "separator-dot", "word separator middle dot"],
+  [0x2e33, "separator-dot", "raised dot"],
+  [0x30fb, "separator-dot", "katakana middle dot"],
+  [0xff65, "separator-dot", "halfwidth katakana middle dot"],
   [0x00a7, "section-sign", "section sign"],
 ];
+// [name, rule, legacy]: a legacy entity is one HTML parsers still decode
+// without its closing semicolon.
 const NAMED_ENTITIES = [
-  ["middot", "separator-dot"],
-  ["bull", "separator-dot"],
-  ["bullet", "separator-dot"],
-  ["centerdot", "separator-dot"],
-  ["CenterDot", "separator-dot"],
-  ["sdot", "separator-dot"],
-  ["sect", "section-sign"],
+  ["middot", "separator-dot", true],
+  ["centerdot", "separator-dot", false],
+  ["CenterDot", "separator-dot", false],
+  ["bull", "separator-dot", false],
+  ["bullet", "separator-dot", false],
+  ["hybull", "separator-dot", false],
+  ["sdot", "separator-dot", false],
+  ["sect", "section-sign", true],
 ];
 
 const reEsc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -94,43 +123,63 @@ for (const [n, rule, name] of GLYPHS) {
     reEsc("\\") + "u\\{0*" + bare + "\\}",
     reEsc("\\") + "0*" + bare + "(?![0-9a-f])",
     ...(n < 0x100 ? [reEsc("\\") + "x" + bare] : []),
-    // HTML numeric entities
-    "&#0*" + n + ";",
-    "&#x0*" + bare + ";",
+    // HTML numeric entities; parsers accept them without the semicolon
+    "&#0*" + n + ";?(?![0-9])",
+    "&#x0*" + bare + ";?(?![0-9a-f])",
   ];
   glyphChecks.push({ rule, name: `U+${h.toUpperCase()} ${name}`, re: new RegExp(alts.join("|"), "i") });
 }
-for (const [ent, rule] of NAMED_ENTITIES) {
-  glyphChecks.push({ rule, name: `&${ent}; entity`, re: new RegExp("&" + ent + ";") });
+for (const [ent, rule, legacy] of NAMED_ENTITIES) {
+  const re = new RegExp("&" + ent + (legacy ? ";?(?![A-Za-z0-9])" : ";"));
+  glyphChecks.push({ rule, name: `&${ent}; entity`, re });
 }
 
 const j = (...parts) => parts.join("");
-const MONO_TOKENS = [
-  j("font", "-", "mono"),
-  j("label", "-", "mono"),
-  j("mono", "space"),
-  j("IBM", " Plex ", "Mono"),
-  j("IBM", "_Plex_", "Mono"),
-  j("ibm", "-plex-", "mono"),
-  j("IBM", "Plex", "Mono"),
-  j("Jet", "Brains"),
-  j("SF", "Mono"),
-  j("Men", "lo"),
-  j("Conso", "las"),
-  j("Cour", "ier"),
+const FW = j("mo", "no"); // the standalone fixed-width word
+const FW_CAP = j("Mo", "no");
+// Regex sources, matched case-insensitively unless noted.
+const FIXED_WIDTH_PATTERNS = [
+  // font-*, label-*, the family keywords, and Tailwind's ui- stack
+  reEsc(j("font", "-", FW)),
+  reEsc(j("label", "-", FW)),
+  reEsc(j(FW, "space")),
+  // any standalone part: Plex_X, "Roboto X", --font-geist-X,
+  // --default-X-font-family, X in a comment
+  "(?<![a-z])" + FW + "(?![a-z])",
+  // named faces without such a part
+  reEsc(j("IBM", "Plex", FW_CAP)),
+  reEsc(j("Jet", "Brains")),
+  reEsc(j("SF", FW_CAP)),
+  reEsc(j("Men", "lo")),
+  reEsc(j("Mon", "aco")),
+  reEsc(j("Conso", "las")),
+  reEsc(j("Cour", "ier")),
+  j("Lucida", "[ _-]?", "(Console|Sans[ _-]?Typewriter)"),
+  j("Fira", "[ _-]?", "Code"),
+  j("Source", "[ _-]?", "Code", "[ _-]?", "Pro"),
+  j("Cascadia", "[ _-]?", "(Code|", FW, ")"),
+  j("Anonymous", "[ _-]?", "Pro"),
+  reEsc(j("Incon", "solata")),
+  reEsc(j("Cous", "ine")),
+  reEsc(j("Iose", "vka")),
 ];
-const MONO_RE = new RegExp(MONO_TOKENS.map(reEsc).join("|"), "i");
+const FIXED_WIDTH_RES = [
+  new RegExp(FIXED_WIDTH_PATTERNS.join("|"), "i"),
+  // camel-cased identifiers (geistX, robotoX); case-sensitive on purpose
+  new RegExp("(?<=[a-z])" + FW_CAP + "(?![a-z])"),
+];
 
 // The Tailwind v4 declarations that REMOVE its default fixed-width theme
 // (the utility and preflight's code/kbd/samp/pre family). They are the
 // removal, not a use.
 const ALLOWED = [
-  new RegExp(reEsc(j("--font", "-", "mono")) + ":\\s*initial\\s*;", "g"),
-  new RegExp(reEsc(j("--default-", "mono", "-font-family")) + ":\\s*var\\(--font-body\\)\\s*;", "g"),
+  new RegExp(reEsc(j("--font", "-", FW)) + ":\\s*initial\\s*;", "g"),
+  new RegExp(reEsc(j("--default-", FW, "-font-family")) + ":\\s*var\\(--font-body\\)\\s*;", "g"),
 ];
 const PRAGMA = j("type-rules", ": ", "document-content");
 
 function* walk(abs) {
+  if (DOCUMENT_PATHS.has(path.relative(REPO, abs).split(path.sep).join("/"))) return;
   let st;
   try {
     st = fs.statSync(abs);
@@ -169,11 +218,19 @@ for (const root of ROOTS) {
       for (const g of glyphChecks) {
         if (g.re.test(line)) hits.push(`${rel}:${i + 1}: ${g.rule} (${g.name}): ${excerpt}`);
       }
-      if (line.includes(PRAGMA)) return;
+      if (line.includes(PRAGMA)) {
+        if (ALLOW_PRAGMA) return;
+        hits.push(`${rel}:${i + 1}: pragma-not-allowed: ${excerpt}`);
+      }
       let stripped = line;
       for (const re of ALLOWED) stripped = stripped.replace(re, "");
-      const m = stripped.match(MONO_RE);
-      if (m) hits.push(`${rel}:${i + 1}: mono-font (${m[0]}): ${excerpt}`);
+      for (const re of FIXED_WIDTH_RES) {
+        const m = stripped.match(re);
+        if (m) {
+          hits.push(`${rel}:${i + 1}: fixed-width-font (${m[0]}): ${excerpt}`);
+          break;
+        }
+      }
     });
   }
 }

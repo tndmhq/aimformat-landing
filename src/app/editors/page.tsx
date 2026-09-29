@@ -44,6 +44,7 @@ const entries: {
         <a href="https://usetndm.com" className={linkClass}>
           usetndm.com
         </a>
+        .
       </>
     ),
   },

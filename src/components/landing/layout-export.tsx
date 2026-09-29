@@ -59,12 +59,13 @@ function SlideArtifact() {
               ))}
             </div>
           </div>
-          {/* Slide footer: file name left, slide number right. */}
+          {/* Slide footer: the file it comes from on the left, the slide's
+              number on the right (the plate beside it is deck.aim's s1). */}
           <span className="label-note absolute bottom-[7%] left-[8%] text-[11px] text-zinc-400">
-            report.aim
+            deck.aim
           </span>
           <span className="label-note absolute bottom-[7%] right-[7%] text-[11px] text-zinc-400">
-            6
+            1
           </span>
         </div>
       </div>
@@ -123,11 +124,11 @@ function ExportFan() {
 export function LayoutExport({ specVersion }: { specVersion: string }) {
   return (
     <section id="layout" className="relative scroll-mt-16">
-      <RunningHead title="Layout & export" specVersion={specVersion} />
+      <RunningHead title="Layout and export" specVersion={specVersion} />
       <Container className="py-20 sm:py-24">
         <SectionHeader
           n="6"
-          eyebrow="Layout &amp; export"
+          eyebrow="Layout and export"
           title="Fixed canvas, deterministic export"
           lede="This is where the case for a new format lands hardest. A slide is a fixed canvas with positioned children, and Markdown has no way to say so. .aim does. An aim-slide defines the canvas; its children are pinned to it with plain pixel coordinates, styled in the same Tailwind subset."
         />

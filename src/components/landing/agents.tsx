@@ -1,12 +1,14 @@
+import type { ReactNode } from "react";
 import {
   Container,
+  InlineCode,
   RunningHead,
   SectionHeader,
 } from "@/components/aim/primitives";
 import { CodePlate } from "@/components/aim/code-plate";
 import { mcpSource } from "@/lib/snippets";
 
-const onRamps = [
+const onRamps: { label: string; detail: ReactNode }[] = [
   {
     label: "Plain file",
     detail:
@@ -14,18 +16,31 @@ const onRamps = [
   },
   {
     label: "MCP server",
-    detail:
-      "Local stdio: pip install 'aimformat[mcp]', then aim mcp. Six tools, from projected read to export.",
+    detail: (
+      <>
+        Local stdio: <InlineCode>pip install &apos;aimformat[mcp]&apos;</InlineCode>,
+        then <InlineCode>aim mcp</InlineCode>. Six tools, from projected read to
+        export.
+      </>
+    ),
   },
   {
     label: "Claude Skill",
-    detail:
-      "npx skills add tndmhq/aimformat: teaches the conventions and wires up the CLI verbs.",
+    detail: (
+      <>
+        <InlineCode>npx skills add tndmhq/aimformat</InlineCode>: teaches the
+        conventions and wires up the CLI verbs.
+      </>
+    ),
   },
   {
     label: "Python SDK",
-    detail:
-      "pip install aimformat. Zero runtime dependencies; typed load, propose, accept, save.",
+    detail: (
+      <>
+        <InlineCode>pip install aimformat</InlineCode>. Zero runtime
+        dependencies; typed load, propose, accept, save.
+      </>
+    ),
   },
 ];
 
@@ -35,10 +50,6 @@ const capabilities = [
   "A projected, token-cheap read: summary, TOC, chunks, pending lane",
   "Read the summary before touching the body",
 ];
-
-const clients = ["Claude Code", "Claude Desktop", "Cursor", "Cline", "Zed"];
-// A short list of like things reads as prose with commas, never a glyph run.
-const clientList = `${clients.slice(0, -1).join(", ")}, and ${clients.at(-1)}`;
 
 export function Agents({ specVersion }: { specVersion: string }) {
   return (
@@ -74,15 +85,6 @@ export function Agents({ specVersion }: { specVersion: string }) {
                 </li>
               ))}
             </ul>
-
-            <div className="mt-8 border-t border-ink/15 pt-3">
-              <p className="label-note text-ink-faint">
-                Works with the clients you already run
-              </p>
-              <p className="mt-1 font-body text-[1rem] leading-snug text-ink">
-                {clientList}.
-              </p>
-            </div>
           </div>
 
           <div className="lg:sticky lg:top-20">

@@ -2,9 +2,10 @@
  * Shared Open Graph / social-preview card renderer ("The Standing Type").
  *
  * One letterpress plate per route: paper ground, an accent-ink rule, a
- * Fraunces headline, a quiet eyebrow in Fraunces italic (sentence case;
- * tracked-out caps read as generated, and no typewriter face is allowed here
- * or anywhere else, see the workspace design-rules.md), and a real
+ * Fraunces headline, a quiet eyebrow in the same face, roman (sentence case;
+ * tracked-out caps read as generated, an italic accent line reads the same
+ * way, and no typewriter face is allowed here or anywhere else, see the
+ * workspace design-rules.md), and a real
  * track-changes proposal chip (redline and greenline are the format's own
  * track-changes metaphor, never a generic icon). Two-ink rules apply here
  * too: the wordmark takes the rubric ink as a standalone mark; no text run
@@ -54,14 +55,8 @@ export type OgContent = {
 
 async function loadFonts() {
   const dir = join(process.cwd(), "public", "og-fonts");
-  const [upright, italic] = await Promise.all([
-    readFile(join(dir, "Fraunces-600.ttf")),
-    readFile(join(dir, "Fraunces-600-italic.ttf")),
-  ]);
-  return [
-    { name: "Fraunces", data: upright, weight: 600 as const, style: "normal" as const },
-    { name: "Fraunces", data: italic, weight: 600 as const, style: "italic" as const },
-  ];
+  const fraunces = await readFile(join(dir, "Fraunces-600.ttf"));
+  return [{ name: "Fraunces", data: fraunces, weight: 600 as const, style: "normal" as const }];
 }
 
 function ProposalChip() {
@@ -88,9 +83,8 @@ function ProposalChip() {
         style={{
           display: "flex",
           fontFamily: "Fraunces",
-          fontStyle: "italic",
           fontWeight: 600,
-          fontSize: 19,
+          fontSize: 17,
           color: INK_FAINT,
         }}
       >
@@ -177,9 +171,8 @@ function Card(c: OgContent) {
             style={{
               display: "flex",
               fontFamily: "Fraunces",
-              fontStyle: "italic",
               fontWeight: 600,
-              fontSize: 28,
+              fontSize: 26,
               color: ACCENT,
             }}
           >
@@ -230,9 +223,8 @@ function Card(c: OgContent) {
             style={{
               display: "flex",
               fontFamily: "Fraunces",
-              fontStyle: "italic",
               fontWeight: 600,
-              fontSize: 22,
+              fontSize: 21,
               color: INK_FAINT,
             }}
           >

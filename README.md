@@ -19,9 +19,11 @@ sign in any string (maintainer rule, 2026-09-29). Labels, running heads,
 captions and meta facts use the `.label-note` class; code, commands and file
 source use `.code-text`, where the dark plate or highlight marks it as code.
 Both are Newsreader with lining tabular figures, defined in
-`src/app/globals.css`. Facts go in label/value rows, short lists in commas,
-running heads left and right by position. `npm run check:type` enforces the
-rules, and `npm run build` runs it first, so a violation cannot deploy.
+`src/app/globals.css`. A command inside prose is an `InlineCode` chip. Facts go
+in label/value rows, short lists in commas, running heads left and right by
+position. `npm run check:type` enforces the rules (any fixed-width face or
+token, any banned glyph, typed or escaped), and `npm run build` runs it first,
+so a violation cannot deploy.
 
 The primary call to action is the newsletter. The public
 [repository](https://github.com/tndmhq/aimformat) is linked as a secondary, deliberately

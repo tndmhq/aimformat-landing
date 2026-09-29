@@ -87,6 +87,29 @@ export function FigNo({ n }: { n: number }) {
   return <span className="font-semibold">Fig. {n}.</span>;
 }
 
+/* ------------------------------------------------------------- inline code */
+
+/** A command or identifier inside prose. The text face stays; the tinted
+ *  chip is what marks it as code, and a command never breaks across lines. */
+export function InlineCode({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <code
+      className={cn(
+        "code-text whitespace-nowrap rounded-[2px] bg-ink/[0.07] px-1 py-0.5 text-ink",
+        className,
+      )}
+    >
+      {children}
+    </code>
+  );
+}
+
 /* ------------------------------------------------------------ section header */
 
 export function SectionHeader({
@@ -176,6 +199,13 @@ export function Pressmark({ className }: { className?: string }) {
   );
 }
 
+/**
+ * The seal, an illustration rather than text to read: it is aria-hidden, and
+ * at its 64px and 80px sizes the ring lettering renders at about 5px, so the
+ * 11px floor for UI text doesn't apply to it. Anything a visitor needs to
+ * read goes in the text beside the seal, not on it. Same geometry as
+ * tndm-landing's EditorStamp.
+ */
 export function InkStamp({ className }: { className?: string }) {
   return (
     <svg

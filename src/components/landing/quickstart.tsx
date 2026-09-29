@@ -1,5 +1,6 @@
 import {
   Container,
+  InlineCode,
   RepoLink,
   RunningHead,
   SectionHeader,
@@ -21,7 +22,7 @@ const resources = [
     note: "The machine-readable orientation an agent reads first.",
   },
   {
-    label: "Editors & viewers",
+    label: "Editors and viewers",
     href: "/editors",
     note: "Where .aim files open, from the browser up.",
   },
@@ -43,7 +44,7 @@ export function Quickstart({ specVersion }: { specVersion: string }) {
             <>
               The .aim format is
               MIT-licensed and published to PyPI: a typed Python SDK and
-              the <code className="code-text rounded-[2px] bg-ink/[0.07] px-1.5 py-0.5 text-ink">aim</code>{" "}
+              the <InlineCode>aim</InlineCode>{" "}
               CLI, zero runtime dependencies. Nothing hosted, no account,
               nothing to wait for. The press notices below are for the launch.
             </>
@@ -55,7 +56,7 @@ export function Quickstart({ specVersion }: { specVersion: string }) {
             <p className="measure font-body text-[1.1rem] leading-[1.74] text-ink text-pretty">
               A plain .aim file is valid
               HTML, so any model can read one with no tooling at all. The
-              package adds the <span className="text-ink">aim</span> CLI, a
+              package adds the <InlineCode>aim</InlineCode> CLI, a
               dependency-free SDK, and a local MCP server for chunk-level
               propose and accept.
             </p>

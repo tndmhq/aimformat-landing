@@ -178,10 +178,6 @@
     color: var(--ink);
     font-family: var(--font-body), Georgia, "Times New Roman", serif;
     font-feature-settings: "liga" 1, "kern" 1;
-    /* Old-style figures for running text. Set through font-variant (not a
-       feature-settings "onum") so .label-note and .code-text can switch to
-       lining tabular figures by overriding one property. */
-    font-variant-numeric: oldstyle-nums;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     /* Laid-paper substrate: faint horizontal laid lines over morning cream. */
@@ -228,6 +224,17 @@
     outline: 2px solid var(--accent);
     outline-offset: 2px;
   }
+
+  /* Preflight folds the @theme default for code into a stack that still
+     ends in a fixed-width fallback. This rule comes later in the same layer,
+     so it wins, and if the body face ever fails to resolve, code falls back
+     to a serif rather than a typewriter face. */
+  code,
+  kbd,
+  samp,
+  pre {
+    font-family: var(--font-body), Georgia, serif;
+  }
 }
 
 /* The annotation and code voices live in the components layer, not
@@ -260,11 +267,13 @@
 
 @layer utilities {
   /* Small-caps serif eyebrow — chapter-heading voice for section openers.
-     Author the text in sentence case; the variant sets the small caps. */
+     Author the text in sentence case; the variant sets the small caps.
+     Tracking stays at 0.03em or less: wider reads as the tracked-caps
+     eyebrow the design rules ban. */
   .label-serif {
     font-family: var(--font-display), Georgia, serif;
     font-variant-caps: small-caps;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.03em;
     font-size: 1rem;
     line-height: 1.2;
     font-weight: 500;
@@ -277,8 +286,10 @@
     font-family: var(--font-body), Georgia, serif;
   }
 
+  /* Caps only: the font-variant shorthand would also reset the numeric
+     variants (lining tabular figures) the element inherits. */
   .small-caps {
-    font-variant: small-caps;
+    font-variant-caps: small-caps;
   }
   .text-balance {
     text-wrap: balance;

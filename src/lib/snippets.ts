@@ -66,7 +66,7 @@ export function anatomyFile(specVersion: string): string {
 <html data-aim-version="${specVersion}" lang="en">
 <head>
 <meta charset="utf-8">
-<title>Q3 Vendor Proposal — Acme GmbH</title>
+<title>Q3 Vendor Proposal for Acme GmbH</title>
 <script type="application/aim-meta+json">
 {"summary":{"text":"Q3 vendor proposal:
    scope, timeline, and payment terms.",

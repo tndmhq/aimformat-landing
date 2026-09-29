@@ -6,7 +6,7 @@ const pressButtonClasses =
 
 /**
  * The page's one primary action: a bookplate — display type in sentence case
- * on a plate of the leading press ink. (Not tracked-caps mono; that reads
+ * on a plate of the leading press ink. (Not a tracked-caps label; that reads
  * as generated.)
  * Renders an anchor when given `href`, a real button otherwise.
  */

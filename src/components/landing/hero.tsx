@@ -105,7 +105,7 @@ export function Hero({ specVersion }: { specVersion: string }) {
               tilt
               deckle
               stamp
-              runningHead={{ left: "Proposal", right: "Scope of work" }}
+              runningHead={{ left: "Proposal", right: "Scope of Work" }}
               className="relative z-10"
             >
               <p className="font-body text-[0.95rem] leading-[1.8] text-ink/90">

@@ -16,7 +16,7 @@ import { faq as queries } from "@/lib/faq";
 export function Faq({ specVersion }: { specVersion: string }) {
   return (
     <section id="faq" className="relative scroll-mt-16">
-      <RunningHead title="Notes & queries" specVersion={specVersion} />
+      <RunningHead title="Notes and queries" specVersion={specVersion} />
       <Container className="py-20 sm:py-24">
         <SectionHeader
           n="8"
