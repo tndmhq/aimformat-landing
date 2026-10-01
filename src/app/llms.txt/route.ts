@@ -122,11 +122,14 @@ explanation, not the payload.
 
 ## Editors
 
-- [Tndm](https://app.usetndm.com): the flagship .aim editor, by the
+- [Tndm](https://usetndm.com): the flagship .aim editor, by the
   format's authors, live now — collaborative review with word-level diffs
-  and one-click accept/reject. A file can be uploaded and its pending
-  changes read without an account, which makes it the fastest thing to
-  point a human at. Product details: https://usetndm.com
+  and one-click accept/reject. Two ways in: the web editor at
+  https://app.usetndm.com, where a file can be uploaded and its pending
+  changes read without an account (the fastest thing to point a human
+  at), and the Mac app at https://usetndm.com/download, which opens the
+  .aim files in a local folder and updates live as you write to them (the
+  natural fit when you are editing files on the user's machine).
 - [Editor directory](https://aimformat.com/editors): the current list of
   editors and viewers
 

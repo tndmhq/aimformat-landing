@@ -13,7 +13,7 @@ import { getSpecVersion } from "@/lib/aim-version";
 export const metadata = pageMeta({
   title: "Editors",
   description:
-    "Where .aim files open: the directory of editors and viewers for the open .aim document format, including Tndm (the flagship review editor) and the zero-install tier of any web browser.",
+    "Where .aim files open: the directory of editors and viewers for the open .aim document format, including Tndm (the flagship review editor, on the web and as a Mac app) and the zero-install tier of any web browser.",
   path: "/editors",
 });
 
@@ -24,23 +24,35 @@ const entries: {
   /** One-word status set beside the name, never a glyph-joined run. */
   status: string;
   body: ReactNode;
+  /** The entry's one press button. */
   cta?: { href: string; label: string };
+  /** A secondary action, set as a plain link beside the button. */
+  link?: { href: string; label: string };
 }[] = [
   {
     name: "Tndm",
     status: "Live",
     cta: { href: "https://app.usetndm.com", label: "Open the Tndm editor" },
+    link: {
+      href: "https://usetndm.com/download",
+      label: "Download the Mac app",
+    },
     body: (
       <>
-        The flagship editor, by the format&apos;s authors. Collaborative
-        review with the red-and-green ink built into the writing surface:
-        word-level diffs, one-click accept and reject, and every decision
-        attributed in the file&apos;s own history. Open a document at{" "}
+        The flagship editor, by the format&apos;s authors. Collaborative review
+        with the red-and-green ink built into the writing surface: word-level
+        diffs, one-click accept and reject, and every decision attributed in the
+        file&apos;s own history. It runs online at{" "}
         <a href="https://app.usetndm.com" className={linkClass}>
           app.usetndm.com
         </a>
-        ; no account is needed to upload a file and read its pending
-        changes. More at{" "}
+        , where no account is needed to upload a file and read its pending
+        changes, and as a{" "}
+        <a href="https://usetndm.com/download" className={linkClass}>
+          Mac app
+        </a>{" "}
+        that opens the .aim files in a folder on your machine and updates live
+        while an agent writes to them. More at{" "}
         <a href="https://usetndm.com" className={linkClass}>
           usetndm.com
         </a>
@@ -53,9 +65,9 @@ const entries: {
     status: "Planned",
     body: (
       <>
-        A minimal viewer maintained alongside the specification, for reading
-        and reviewing without a full editor. Planned; tracked in the
-        spec&apos;s Future Extensions.
+        A minimal viewer maintained alongside the specification, for reading and
+        reviewing without a full editor. Planned; tracked in the spec&apos;s
+        Future Extensions.
       </>
     ),
   },
@@ -64,13 +76,13 @@ const entries: {
     status: "Zero install",
     body: (
       <>
-        The tier every file ships with. Because a .aim document is valid
-        HTML5 with its stylesheet embedded, the raw file renders its content
-        with no editor, no extension and no build step, followed by a list
-        of the pending changes: what each one targets, who proposed it, and
-        why. The proposed wording itself is not shown (payloads are inert
-        templates that browsers deliberately do not render), so seeing the
-        redline, or acting on it, needs an editor.
+        The tier every file ships with. Because a .aim document is valid HTML5
+        with its stylesheet embedded, the raw file renders its content with no
+        editor, no extension and no build step, followed by a list of the
+        pending changes: what each one targets, who proposed it, and why. The
+        proposed wording itself is not shown (payloads are inert templates that
+        browsers deliberately do not render), so seeing the redline, or acting
+        on it, needs an editor.
       </>
     ),
   },
@@ -105,17 +117,29 @@ export default async function EditorsPage() {
                   <p className="measure mt-3 font-body text-[1.08rem] leading-[1.72] text-ink text-pretty">
                     {e.body}
                   </p>
-                  {e.cta && (
-                    <PressButton href={e.cta.href} className="mt-5">
-                      {e.cta.label}
-                    </PressButton>
+                  {(e.cta || e.link) && (
+                    <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-3">
+                      {e.cta && (
+                        <PressButton href={e.cta.href}>
+                          {e.cta.label}
+                        </PressButton>
+                      )}
+                      {e.link && (
+                        <a
+                          href={e.link.href}
+                          className={`${linkClass} font-display text-[0.98rem] font-medium`}
+                        >
+                          {e.link.label}
+                        </a>
+                      )}
+                    </div>
                   )}
                 </article>
               ))}
 
               <p className="measure border-t border-ink/20 pt-6 font-body text-[1rem] leading-[1.7] text-ink-soft">
-                Building an editor or viewer for .aim? The format is open,
-                and so is this list. Write to{" "}
+                Building an editor or viewer for .aim? The format is open, and
+                so is this list. Write to{" "}
                 <a href="mailto:contact@usetndm.com" className={linkClass}>
                   contact@usetndm.com
                 </a>{" "}
