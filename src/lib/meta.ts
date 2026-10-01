@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 
+/** Canonical origin: metadataBase, sitemap.xml and robots.txt all build on it. */
+export const SITE_URL = "https://aimformat.com";
+
 /**
  * Per-page metadata for subpages.
  *
