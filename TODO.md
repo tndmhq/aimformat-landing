@@ -27,8 +27,9 @@ Deferred deliberately; revisit before (or at) launch.
   [usetndm.com](https://usetndm.com), reachable from
   [`/editors`](src/app/editors/page.tsx) and `llms.txt`; the newsletter
   checkbox segments editor-interested subscribers via the Buttondown tag.
-- [ ] **Direct footer link to the editor site** — today the footer reaches it
-  only indirectly via `/editors`.
+- [x] **Direct footer link to the editor site.** Done (2026-10-01): the
+  Imprint column links [usetndm.com](https://usetndm.com) ("Tndm, an editor
+  for .aim") right under the neutral `/editors` pointer.
 - [x] **GitHub link** in header/footer once the repo is public. Done (2026-07-10):
   live repo links in the hero (secondary "View the source" CTA), header, footer, and
   newsletter seal; FAQ + JSON-LD updated. Repo is public at

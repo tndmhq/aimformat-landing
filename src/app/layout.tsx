@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Fraunces, Newsreader } from "next/font/google";
+import { SITE_URL } from "@/lib/meta";
 import { PALETTE } from "@/lib/palette";
 import "./globals.css";
 
@@ -18,8 +19,6 @@ const newsreader = Newsreader({
   style: ["normal", "italic"],
   axes: ["opsz"],
 });
-
-const SITE_URL = "https://aimformat.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

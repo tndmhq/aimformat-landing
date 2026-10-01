@@ -36,6 +36,7 @@ const buildColumns = (specVersion: string) => [
       { label: "License: MIT", href: "/#faq" },
       { label: `Edition: Vol. ${specVersion}`, href: "/#top" },
       { label: "Editors", href: "/editors" },
+      { label: "Tndm", href: "https://usetndm.com" },
       { label: "Source on GitHub", href: REPO_URL },
       { label: "Contact", href: "mailto:contact@usetndm.com" },
       { label: "Subscribe", href: "/#cta" },
